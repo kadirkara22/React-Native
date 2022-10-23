@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Image, Text } from "react-native"
-import styles from "./SongCard.style"
+import styles from "./SongCard.styles"
 const SongCard = ({ song }) => {
     return (
         <View style={styles.container}>
@@ -18,6 +18,7 @@ const SongCard = ({ song }) => {
                         </View>
                     }
                 </View>
+                <Text style={styles.album}>{song.album}</Text>
             </View>
         </View>
     )

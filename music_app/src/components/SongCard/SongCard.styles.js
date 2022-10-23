@@ -50,6 +50,11 @@ export default StyleSheet.create({
         color: "red",
         fontSize: 12,
         fontWeight: "bold"
+    },
+    album: {
+        width: "78%",
+        color: "black"
+
     }
 
 })
