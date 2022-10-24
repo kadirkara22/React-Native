@@ -3,9 +3,9 @@ import { View, Text } from 'react-native'
 import styles from "./TodoCounter.styles"
 const TodoCounter = () => {
     return (
-        <View>
-            <Text>Yapılacaklar</Text>
-            <Text>2</Text>
+        <View style={styles.container}>
+            <Text style={styles.title}>Yapılacaklar</Text>
+            <Text style={styles.counter}>2</Text>
         </View>
     )
 }
