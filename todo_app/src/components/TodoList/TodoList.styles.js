@@ -15,15 +15,17 @@ export default StyleSheet.create({
         color: "white",
         fontSize: 20
     },
-    todo_false: {
+    todo_true: {
         backgroundColor: "#37474F",
         margin: 10,
         padding: 15,
-        borderRadius: 10
-    },
-    todoItem_false: {
-        color: "#808080",
+        borderRadius: 10,
+        color:"#808080",
         fontSize: 20,
-        textDecorationLine: "line-through"
+        textDecorationLine: "line-through",
+    },
+    todoItem_true: {
+        color: "#37474F",
+        
     }
 })
