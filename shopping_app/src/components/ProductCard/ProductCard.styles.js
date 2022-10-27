@@ -17,7 +17,7 @@ export default StyleSheet.create({
     body_container: {
         flex: 1,
         padding: 5,
-        justifyContent: "space-between"
+
     },
     title: {
         fontSize: 18,
@@ -30,4 +30,9 @@ export default StyleSheet.create({
         fontStyle: "italic",
         color: "black"
     },
+    rate: {
+        fontWeight: "bold",
+        color: "green",
+        fontSize: 16
+    }
 });
