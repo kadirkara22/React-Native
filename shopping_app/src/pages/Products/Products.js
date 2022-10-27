@@ -5,11 +5,15 @@ import ProductCard from '../../components/ProductCard';
 import useFetch from "../../hooks/useFetch"
 import Loading from "../../components/Loading"
 import Error from "../../components/Error"
-const Products = () => {
+const Products = ({navigation}) => {
    const {data,error,loading}=useFetch(Config.API_URL)
 
-    const renderProduct = ({ item }) => <ProductCard product={item} />
-
+const handleProductSelect=(id)=>{
+navigation.navigate("DetailPage",{id})
+}
+const renderProduct = ({ item }) => (
+<ProductCard product={item} onSelect={()=>handleProductSelect(item.id)}/>
+)
 if(loading){
     return <Loading /> 
 }
@@ -22,6 +26,7 @@ if(error){
                 <FlatList
                     data={data}
                     renderItem={renderProduct}
+                  
                 />
             </View>
 
