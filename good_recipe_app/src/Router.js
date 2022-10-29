@@ -24,8 +24,28 @@ const Router = () => {
             headerTitleAlign: "center"
           }}
         />
-        <Stack.Screen name="MealsPage" component={Meals} />
-        <Stack.Screen name="DetailPage" component={Detail} />
+        <Stack.Screen
+          name="MealsPage"
+          component={Meals}
+          options={{
+            headerTitle: "Meals",
+            headerStyle: { backgroundColor: "white" },
+            headerTitleStyle: { color: "#FFA500" },
+            headerTitleAlign: "center",
+            headerTintColor: "#FFA500"
+          }}
+        />
+        <Stack.Screen
+          name="DetailPage"
+          component={Detail}
+          options={{
+            headerTitle: "Detail",
+            headerStyle: { backgroundColor: "white" },
+            headerTitleStyle: { color: "#FFA500" },
+            headerTitleAlign: "center",
+            headerTintColor: "#FFA500"
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

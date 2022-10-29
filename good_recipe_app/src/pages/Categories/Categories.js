@@ -5,15 +5,18 @@ import CategoryCard from "../../components/CategoryCard"
 import Error from "../../components/Error/Error"
 import Loading from "../../components/Loading/Loading"
 import useFetch from "../../hooks/useFetch"
+
+import styles from "./Categories.styles"
+
 const Categories = ({ navigation }) => {
     const { data, error, loading } = useFetch(Config.API_CATEGORIES);
 
-    const handleCategorySelect = (id) => {
-        navigation.navigate("MealsPage", { id })
+    const handleCategorySelect = (strCategory) => {
+        navigation.navigate("MealsPage", { strCategory })
     }
 
     const renderCategory = ({ item }) => (
-        <CategoryCard category={item} onSelect={() => handleCategorySelect(item.idCategory)} />
+        <CategoryCard category={item} onSelectCategory={() => handleCategorySelect(item.strCategory)} />
     )
 
     if (loading) {
@@ -23,7 +26,7 @@ const Categories = ({ navigation }) => {
         return <Error />
     }
     return (
-        <View>
+        <View style={styles.container}>
             <FlatList
                 keyExtractor={item => item.idCategory}
                 data={data.categories}
