@@ -1,11 +1,35 @@
 import React from "react"
-import { Image, View } from "react-native"
+import { Alert, Image, View } from "react-native"
 import Input from "../../components/Input"
 import Button from "../../components/Button"
 import styles from "./Login.styles"
 import { Formik } from "formik"
+import usePost from "../../hooks/usePost/usePost"
+import Config from "react-native-config"
+import { useDispatch, useSelector } from "react-redux"
+const Login = ({ navigation }) => {
+    const user = useSelector(state => state.user)
+    const { data, loading, error, post } = usePost();
 
-const Login = () => {
+    const dispatch = useDispatch()
+
+    const handleLogin = (values) => {
+        post(Config.API_AUTH_URL + "/login", (values))
+    }
+
+
+    if (error) {
+        Alert.alert("Shopping", "Bir hata oluştu")
+    }
+    if (data) {
+        if (data.status === "Error") {
+            Alert.alert("Shopping", "Kullanıcı Bulunamadı")
+        } else {
+            dispatch({ type: 'SET_USER', payload: { user: JSON.stringify(user) } })
+        }
+    }
+
+
     return (
         <View style={styles.container}>
             <View style={styles.logo_container}>
@@ -13,7 +37,7 @@ const Login = () => {
             </View>
             <Formik
                 initialValues={{ username: '', password: '' }}
-                onSubmit={(values11) => console.log(values11)}
+                onSubmit={handleLogin}
             >
                 {({ handleChange, handleSubmit, values }) => (
                     <View style={styles.body_container}>
@@ -25,11 +49,13 @@ const Login = () => {
                         />
                         <Input
                             placeholder="Şifrenizi giriniz..."
-                            value={values.username}
+                            value={values.password}
                             onType={handleChange('password')}
                             iconName="key"
+                            isSecure
                         />
-                        <Button text="Giriş yap" onPress={handleSubmit} />
+
+                        <Button text="Giriş yap" onPress={handleSubmit} loading={loading} />
                     </View>
                 )}
             </Formik>
@@ -38,3 +64,4 @@ const Login = () => {
 }
 
 export default Login;
+

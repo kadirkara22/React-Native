@@ -6,10 +6,11 @@ import useFetch from "../../hooks/useFetch"
 import Loading from "../../components/Loading"
 import Error from "../../components/Error"
 import SearchBar from '../../components/SearchBar';
+
 const Products = ({ navigation }) => {
     const [text, setText] = React.useState("");
-    const { data, error, loading } = useFetch(Config.API_URL)
 
+    const { data, error, loading } = useFetch(Config.API_PRODUCT_URL)
     const handleProductSelect = (id) => {
         navigation.navigate("DetailPage", { id })
     }
