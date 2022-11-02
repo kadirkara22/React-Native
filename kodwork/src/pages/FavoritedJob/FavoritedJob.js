@@ -4,7 +4,7 @@ import { View, Text } from 'react-native'
 const FavoritedJob = () => {
     return (
         <View>
-            <Text></Text>
+            <Text>favo</Text>
         </View>
     )
 }

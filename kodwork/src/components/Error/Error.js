@@ -1,13 +1,11 @@
-import React from 'react'
-import { View, Text } from 'react-native'
-
+import React from "react"
+import Lottie from 'lottie-react-native';
 const Error = () => {
     return (
-        <View>
-            <Text></Text>
-        </View>
+        <Lottie
+            source={require('../../assets/error.json')}
+            autoPlay
+        />
     )
 }
-
-export default Error
-
+export default Error;

@@ -1,10 +1,25 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, FlatList } from 'react-native'
+import Config from 'react-native-config'
+import Error from '../../components/Error'
+import Loading from '../../components/Loading'
+import useFetch from '../../hooks/useFetch'
+import DetailCard from '../../components/DetailCard'
+const JobDetail = ({ route }) => {
+    const { id } = route.params
+    const { loading, error, data } = useFetch(`${Config.API_JOBS_URL}/${id}`)
 
-const JobDetail = () => {
+    if (loading) {
+        return <Loading />
+    }
+    if (error) {
+        return <Error />
+    }
+
+
     return (
         <View>
-            <Text></Text>
+            <DetailCard detail={data} />
         </View>
     )
 }
