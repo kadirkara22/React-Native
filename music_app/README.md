@@ -1,5 +1,3 @@
 ## MusicApp
 
-![alt text](https://github.com/kadirkara22/React-Native/blob/main/music_app/src/assets/musicApp1.PNG)
-
-![alt text](https://github.com/kadirkara22/React-Native/blob/main/music_app/src/assets/musicApp2.PNG)
+<img src="./src/assets/musicApp1.PNG" width="300"> <img src="./src/assets/musicApp2.PNG" width="300">

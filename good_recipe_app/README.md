@@ -1,9 +1,3 @@
 ## good_recipe_app
 
-![alt text](https://github.com/kadirkara22/React-Native/blob/main/good_recipe_app/src/image/recipe1.png)
-
-![alt text](https://github.com/kadirkara22/React-Native/blob/main/good_recipe_app/src/image/recipe2.png)
-
-![alt text](https://github.com/kadirkara22/React-Native/blob/main/good_recipe_app/src/image/recipe3.png)
-
-![alt text](https://github.com/kadirkara22/React-Native/blob/main/good_recipe_app/src/image/recipe4.png)
+<img src="./src/image/recipe1.png" width="300"> <img src="./src/image/recipe2.png" width="300"> <img src="./src/image/recipe3.png" width="300"> <img src="./src/image/recipe4.png" width="300">
