@@ -1,7 +1,8 @@
 import React from 'react'
 import { Text, TouchableWithoutFeedback, View } from 'react-native'
+import Button from '../Button'
 import styles from "./JobCard.styles"
-const JobCard = ({ job, onSelect }) => {
+const JobCard = ({ job, onSelect, onRemove }) => {
 
     return (
         <TouchableWithoutFeedback onPress={onSelect}>
@@ -10,6 +11,9 @@ const JobCard = ({ job, onSelect }) => {
                 <Text style={styles.company}>{job.company.name}</Text>
                 <Text style={styles.location}>{job.locations[0].name}</Text>
                 <Text style={styles.level}>{job.levels[0].name}</Text>
+                {
+                    onRemove && <Button text="Remove" onPress={onRemove} style={styles.button} />
+                }
             </View>
         </TouchableWithoutFeedback>
     )

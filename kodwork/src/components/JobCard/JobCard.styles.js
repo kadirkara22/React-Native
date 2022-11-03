@@ -41,4 +41,7 @@ export default StyleSheet.create({
         marginRight: 5,
         marginVertical: 5
     },
+    button: {
+        marginVertical: 30
+    }
 })

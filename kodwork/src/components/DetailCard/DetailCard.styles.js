@@ -52,5 +52,11 @@ export default StyleSheet.create({
         borderWidth: 1,
         borderColor: "gray",
         paddingHorizontal: 5,
-    }
+    },
+    detail_footer: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginVertical: 10
+    },
+
 })

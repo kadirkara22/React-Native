@@ -52,7 +52,13 @@ const Router = () => {
         <Drawer.Screen name="FavoritedPage" component={FavoritedJob}
           options={{
             drawerActiveBackgroundColor: "#FDEAEA",
-            drawerActiveTintColor: "#EF5350"
+            drawerActiveTintColor: "#EF5350",
+            drawerLabel: "Favorited Jobs",
+            title: "Favorited Jobs",
+            headerStyle: { backgroundColor: "white" },
+            headerTitleStyle: { color: "#EF5350" },
+            headerTitleAlign: "center",
+            headerTintColor: "#EF5350",
           }}
 
         />

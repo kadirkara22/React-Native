@@ -5,14 +5,18 @@ export default StyleSheet.create({
         flex: 1,
         backgroundColor: "#EF5350",
         marginHorizontal: 20,
-        borderRadius: 10,
+        borderRadius: 7,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        marginHorizontal: 10
     },
     title: {
         color: "white",
         fontWeight: "bold",
-        fontSize: 25,
+        fontSize: 20,
         paddingVertical: 10,
-        paddingHorizontal: 20,
+        paddingHorizontal: 5,
         textAlign: "center"
     }
 })

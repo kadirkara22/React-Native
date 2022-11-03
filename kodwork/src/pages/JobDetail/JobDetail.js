@@ -5,6 +5,7 @@ import Error from '../../components/Error'
 import Loading from '../../components/Loading'
 import useFetch from '../../hooks/useFetch'
 import DetailCard from '../../components/DetailCard'
+
 const JobDetail = ({ route }) => {
     const { id } = route.params
     const { loading, error, data } = useFetch(`${Config.API_JOBS_URL}/${id}`)
@@ -20,6 +21,7 @@ const JobDetail = ({ route }) => {
     return (
         <View>
             <DetailCard detail={data} />
+
         </View>
     )
 }
