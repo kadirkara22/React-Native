@@ -22,6 +22,10 @@ const Login = ({ navigation }) => {
         try {
             setLoading(true)
             await auth().signInWithEmailAndPassword(formValues.usermail, formValues.password)
+            showMessage({
+                message: "başarılı şekilde giriş yapıldı",
+                type: "success",
+            });
             setLoading(false)
         } catch (error) {
             console.log(error)
@@ -41,10 +45,12 @@ const Login = ({ navigation }) => {
                         <Input placeholder="e-pastanızı giriniz..."
                             value={values.usermail}
                             onType={handleChange("usermail")}
+
                         />
                         <Input placeholder="sifrenizi giriniz..."
                             value={values.password}
                             onType={handleChange("password")}
+                            isSecure
                         />
                         <Button text="Giriş yap" theme="primary" onPress={handleSubmit} loading={loading} />
                     </>

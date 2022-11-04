@@ -36,13 +36,13 @@ const Sign = ({ navigation }) => {
                 type: "success",
             });
             navigation.navigate("LoginPage")
-            setloading(false)
+            setLoading(false)
         } catch (error) {
             showMessage({
                 message: authErrorMessageParser(error.code),
-                type: "danger",
+                type: "info",
             });
-            setloading(false)
+            setLoading(false)
         }
 
 
@@ -60,12 +60,14 @@ const Sign = ({ navigation }) => {
                         <Input placeholder="sifrenizi giriniz..."
                             value={values.password}
                             onType={handleChange("password")}
+                            isSecure
                         />
                         <Input placeholder="sifrenizi tekrar giriniz..."
                             value={values.repassword}
                             onType={handleChange("repassword")}
+                            isSecure
                         />
-                        <Button text="Giriş yap" theme="primary" onPress={handleSubmit} />
+                        <Button text="Giriş yap" theme="primary" onPress={handleSubmit} loading={loading} />
                     </>
                 )}
             </Formik>
