@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 
 export default StyleSheet.create({
     container: {
@@ -11,5 +11,6 @@ export default StyleSheet.create({
     },
     input: {
         flex: 1,
+        //padding:Platform.OS ==="android" ? 0 : 5,
     }
 })
