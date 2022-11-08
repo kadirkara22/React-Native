@@ -1,10 +1,28 @@
-import React from 'react'
-import { View, Text } from 'react-native'
-
+import React, { useState } from 'react'
+import { View, FlatList } from 'react-native'
+import FloatingButton from '../../components/FloatingButton'
+import ContentInputModal from '../../components/Modal/ContentInput'
+import styles from "./ChatRooms.style"
 const ChatRooms = () => {
+    const [inputModalVisible, setInputModalVisible] = useState(false)
+    const handleInputToggle = () => {
+        setInputModalVisible(!inputModalVisible)
+    }
+
+    const sendContent = () => {
+
+
+    }
+
     return (
-        <View>
-            <Text></Text>
+        <View style={styles.container}>
+            <FlatList />
+            <FloatingButton icon="plus" onPress={handleInputToggle} />
+            <ContentInputModal
+                visible={inputModalVisible}
+                onClose={handleInputToggle}
+
+            />
         </View>
     )
 }

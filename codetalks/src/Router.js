@@ -6,6 +6,7 @@ import auth from "@react-native-firebase/auth"
 import Login from './pages/auth/Login';
 import Sign from './pages/auth/Sign';
 import ChatRooms from './pages/ChatRooms';
+import colors from './styles/colors';
 
 
 const Stack = createNativeStackNavigator();
@@ -33,7 +34,14 @@ function Router() {
       <Stack.Navigator>
         {
           !userSession ? <Stack.Screen name="AuthStack" component={AuthStack} options={{ headerShown: false }} />
-            : <Stack.Screen name="Rooms" component={ChatRooms} />
+            : <Stack.Screen name="Rooms" component={ChatRooms}
+              options={{
+                title: "Odalar",
+                headerTitleAlign: "center",
+                headerTitleStyle: { color: colors.primaryColor },
+
+              }}
+            />
         }
 
       </Stack.Navigator>
