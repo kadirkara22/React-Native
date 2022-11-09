@@ -4,7 +4,7 @@ import colors from "../../styles/colors";
 export default StyleSheet.create({
     container: {
         position: "absolute",
-        backgroundColor: colors.primaryColor,
+        backgroundColor: colors.secondaryColor,
         borderWidth: 1,
         borderColor: colors.darkOrange,
         top: 590,

@@ -4,14 +4,14 @@ import Modal from 'react-native-modal'
 import styles from "./ContentInputModal.style"
 import Button from "../../Button"
 
-const ContentInputModal = ({ visible, onClose }) => {
+const ContentInputModal = ({ visible, onClose, onSend, placeholder, buttonText }) => {
     const [text, setText] = useState(null)
 
     const handleSend = () => {
         if (!text) {
             return
         } else {
-            //onSend(text)
+            onSend(text)
             setText(null)
         }
 
@@ -27,9 +27,9 @@ const ContentInputModal = ({ visible, onClose }) => {
         >
             <View style={styles.container}>
                 <View style={styles.input_container}>
-                    <TextInput placeholder="Oda adı..." onChangeText={setText} multiline />
+                    <TextInput placeholder={placeholder} value={text} onChangeText={setText} multiline />
                 </View>
-                <Button text="Ekle" onPress={handleSend} theme="primary" />
+                <Button text={buttonText} onPress={handleSend} theme="primary" />
             </View>
         </Modal>
     )

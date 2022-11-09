@@ -20,7 +20,7 @@ export default {
         ...base_style,
         container: {
             ...base_style.container,
-            backgroundColor: colors.primaryColor
+            backgroundColor: colors.secondaryColor
         },
         title: {
             ...base_style.title,
