@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import auth from "@react-native-firebase/auth"
+import FlashMessage from "react-native-flash-message";
 import Login from './pages/auth/Login';
 import Sign from './pages/auth/Sign';
 import ChatRooms from './pages/ChatRooms';
 import colors from './styles/colors';
 import ChatRoomDetail from './pages/ChatRoomDetail/ChatRoomDetail';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { ChatRoomContext } from './context/ChatRoomContext';
 
 
 const Stack = createNativeStackNavigator();
@@ -15,11 +17,14 @@ const Stack = createNativeStackNavigator();
 function Router() {
   const [userSession, setUserSession] = useState()
 
+  const { roomTitle } = useContext(ChatRoomContext)
+  console.log(roomTitle)
   useEffect(() => {
     auth().onAuthStateChanged(user => {
       setUserSession(!!user)
     })
   }, [])
+
 
   const AuthStack = () => {
     return (
@@ -42,7 +47,7 @@ function Router() {
         />
         <Stack.Screen name="ChatRoomDetail" component={ChatRoomDetail}
           options={{
-            title: "Mesajlar",
+            title: roomTitle,
             headerTitleAlign: "center",
             headerTintColor: colors.primaryColor,
             headerTitleStyle: { color: colors.primaryColor },
@@ -63,6 +68,7 @@ function Router() {
         }
 
       </Stack.Navigator>
+      <FlashMessage position="top" />
     </NavigationContainer>
   );
 }

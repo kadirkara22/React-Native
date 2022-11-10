@@ -25,7 +25,7 @@ const MessageCard = ({ message }) => {
     return (
         <View style={user !== message.username ? styles.container : styles.otherContainer}>
             <View style={styles.title_container}>
-                <Text style={styles.username}>{message.username}</Text>
+                <Text style={styles.username}>{user === message.username ? "you" : message.username}</Text>
                 <Text style={styles.date}>{formattedDate}</Text>
             </View>
             <Text style={styles.message}>{message.text}</Text>

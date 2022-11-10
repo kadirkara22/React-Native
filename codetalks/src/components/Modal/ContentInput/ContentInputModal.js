@@ -24,6 +24,7 @@ const ContentInputModal = ({ visible, onClose, onSend, placeholder, buttonText }
             onSwipeComplete={onClose}
             onBackdropPress={onClose}
             onBackButtonPress={onClose}
+
         >
             <View style={styles.container}>
                 <View style={styles.input_container}>
