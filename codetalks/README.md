@@ -10,8 +10,4 @@
 
 ## Message Room Page
 
-<img src="./src/assets/codeTalks5.png" width="300"> <img src="./src/assets/codeTalks6.png" width="300">
-
-## Messages
-
-<img src="./src/assets/codeTalks7.png" width="300"> <img src="./src/assets/codeTalks8.png" width="300">
+<img src="./src/assets/codeTalks5.png" width="300"> <img src="./src/assets/codeTalks6.png" width="300"> <img src="./src/assets/codeTalks7.png" width="300"> <img src="./src/assets/codeTalks8.png" width="300">
