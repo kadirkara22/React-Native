@@ -18,7 +18,6 @@ function Router() {
   const [userSession, setUserSession] = useState()
 
   const { roomTitle } = useContext(ChatRoomContext)
-  console.log(roomTitle)
   useEffect(() => {
     auth().onAuthStateChanged(user => {
       setUserSession(!!user)
