@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "780077194267",
+    "project_id": "mydiet-fd8af",
+    "storage_bucket": "mydiet-fd8af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:780077194267:android:514c1d333845857279acbe",
+        "android_client_info": {
+          "package_name": "com.mydiet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "780077194267-h0hvgdu6tvtvcpq89gjujaaj6bn5dnf4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALEGRK1Lsjb_9IJS-vSGcOHVPXuCy7ka0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "780077194267-h0hvgdu6tvtvcpq89gjujaaj6bn5dnf4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

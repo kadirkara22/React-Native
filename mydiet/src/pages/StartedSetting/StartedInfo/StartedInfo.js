@@ -18,7 +18,7 @@ const StartedInfo = ({ navigation }) => {
                 </Text>
             </View>
             <View style={styles.button}>
-                <Button iconName="arrow-right" onPress={handleNext} theme="started" iconTheme="arrow" />
+                <Button iconName="arrow-right" text={false} onPress={handleNext} theme="started" iconTheme="arrow" />
             </View>
 
         </View>

@@ -2,10 +2,15 @@ import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import styles from "./Button.style"
-const Button = ({ onPress, iconName, theme, iconTheme }) => {
+const Button = ({ onPress, iconName, theme, iconTheme, text }) => {
+
     return (
         <TouchableOpacity onPress={onPress} style={styles[theme].container}>
-            <Icon name={iconName} size={30} color="#33B24B" style={styles[iconTheme].icon} />
+            {
+                text ? <Text style={styles[theme].title}>{text}</Text>
+                    : (<Icon name={iconName} size={30} color="#33B24B" style={styles[iconTheme].icon} />)
+            }
+
         </TouchableOpacity>
     )
 }
