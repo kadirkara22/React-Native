@@ -16,7 +16,20 @@ const Login = ({ navigation }) => {
     }
 
     const handleFormSubmit = async (formValues) => {
-
+        if (formValues.usermail == "") {
+            showMessage({
+                message: "boş bırakmayınız",
+                type: "danger"
+            })
+            return
+        }
+        if (formValues.password == "") {
+            showMessage({
+                message: "boş bırakmayınız",
+                type: "danger"
+            })
+            return
+        }
         try {
             setLoading(true)
             await auth().signInWithEmailAndPassword(

@@ -12,7 +12,6 @@ const StartedAge = ({ navigation }) => {
     const handleNext = () => {
         if (text) {
             createUserAge(text)
-
         } else {
             showMessage({
                 message: "Yaşınızı giriniz",
@@ -20,11 +19,14 @@ const StartedAge = ({ navigation }) => {
             })
         }
 
+
     }
 
     const createUserAge = (text) => {
         try {
-            setUserInfo({ ...userInfo, age: text })
+            const newUserInfo = { ...userInfo, age: text }
+            database().ref("/userinfo").push(newUserInfo)
+
 
         } catch (error) {
             showMessage({
@@ -32,9 +34,7 @@ const StartedAge = ({ navigation }) => {
                 type: "danger",
             });
         }
-        if (userInfo.age) {
-            database().ref(`userinfo/`).push(userInfo)
-        }
+
 
     }
 

@@ -1,12 +1,12 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-const StartedPage = () => {
+const Daily = () => {
     return (
         <View>
-            <Text></Text>
+            <Text>Daily</Text>
         </View>
     )
 }
 
-export default StartedPage
+export default Daily

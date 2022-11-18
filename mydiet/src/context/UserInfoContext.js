@@ -5,6 +5,7 @@ export const UserInfoContext = React.createContext();
 const UserInfoContextProvider = (props) => {
     const [userInfo, setUserInfo] = useState([])
 
+
     const methods = {
         userInfo, setUserInfo
     }

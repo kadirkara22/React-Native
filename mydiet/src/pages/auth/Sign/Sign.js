@@ -15,6 +15,20 @@ const Sign = ({ navigation }) => {
     }
 
     const handleFormSubmit = async (formValues) => {
+        if (formValues.usermail == "") {
+            showMessage({
+                message: "boş bırakmayınız",
+                type: "danger"
+            })
+            return
+        }
+        if (formValues.password == "" && formValues.repassword == "") {
+            showMessage({
+                message: "boş bırakmayınız",
+                type: "danger"
+            })
+            return
+        }
         if (formValues.password !== formValues.repassword) {
             showMessage({
                 message: "şifreler uyuşmuyor",
@@ -22,6 +36,7 @@ const Sign = ({ navigation }) => {
             })
             return
         }
+
         try {
             await auth().createUserWithEmailAndPassword(
                 formValues.usermail,

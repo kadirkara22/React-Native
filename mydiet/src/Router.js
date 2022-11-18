@@ -17,6 +17,7 @@ import colors from './styles/colors';
 import Login from './pages/auth/Login';
 import Sign from './pages/auth/Sign/Sign';
 import parseContentData from './utils/parseContentData';
+import Daily from './pages/Daily';
 
 
 const Stack = createNativeStackNavigator();
@@ -26,7 +27,7 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   const [userSession, setUserSession] = useState()
   const [userInfo, setUserInfo] = useState()
-  console.log(userInfo)
+
 
   useEffect(() => {
     auth().onAuthStateChanged(user => {
@@ -37,11 +38,11 @@ export default function App() {
   useEffect(() => {
     database()
       .ref('/userinfo')
-      .once('value')
-      .then(snapshot => {
+      .on('value', snapshot => {
         const userInfoData = snapshot.val();
         const parsedInfoData = parseContentData(userInfoData || {})
-        setUserInfo(!!parsedInfoData)
+        setUserInfo(parsedInfoData)
+
       });
   }, [])
 
@@ -102,7 +103,7 @@ export default function App() {
 
       <Tab.Navigator screenOptions={{ headerShown: false }}>
         <Tab.Screen name="Ben" component={UserInfo} />
-        {/*   <Tab.Screen name="Hedef" component={ } /> */}
+        <Tab.Screen name="Daily" component={Daily} />
         <Tab.Screen name="Raporlar" component={Rapors} />
       </Tab.Navigator>
     )
@@ -111,13 +112,11 @@ export default function App() {
   const MainStack = () => {
     return (
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {
-          !userInfo < Stack.Screen name="StartedPage" component={StartedPage} />
-        : (
-        <Stack.Screen name="HomePage" component={HomePage} />
-        )
-        }
 
+        {
+          userInfo && userInfo.length == 0 ? (<Stack.Screen name="StartedPage" component={StartedPage} />)
+            : (<Stack.Screen name="HomePage" component={HomePage} />)
+        }
 
       </Stack.Navigator>
     )
@@ -131,8 +130,6 @@ export default function App() {
           <Stack.Screen name="AuthStack" component={AuthStack} /> : (
             <Stack.Screen name="MainStack" component={MainStack} />)
         }
-
-
       </Stack.Navigator>
       <FlashMessage position="top" />
     </NavigationContainer>
