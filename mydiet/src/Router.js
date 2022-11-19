@@ -18,6 +18,7 @@ import Login from './pages/auth/Login';
 import Sign from './pages/auth/Sign/Sign';
 import parseContentData from './utils/parseContentData';
 import Daily from './pages/Daily';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 
 const Stack = createNativeStackNavigator();
@@ -32,6 +33,7 @@ export default function App() {
   useEffect(() => {
     auth().onAuthStateChanged(user => {
       setUserSession(!!user)
+
     })
   }, [])
 
@@ -102,9 +104,33 @@ export default function App() {
     return (
 
       <Tab.Navigator screenOptions={{ headerShown: false }}>
-        <Tab.Screen name="Ben" component={UserInfo} />
-        <Tab.Screen name="Daily" component={Daily} />
-        <Tab.Screen name="Raporlar" component={Rapors} />
+        <Tab.Screen name="Ben" component={UserInfo}
+          options={{
+            tabBarActiveBackgroundColor: colors.tabColor,
+            tabBarActiveTintColor: colors.darkGreen,
+            tabBarIcon: ({ tintColor }) => (
+              <Icon name="supervised-user-circle" size={30} color="gray" />
+            )
+          }} />
+        <Tab.Screen name="Daily" component={Daily}
+          options={{
+            tabBarActiveBackgroundColor: colors.tabColor,
+            tabBarActiveTintColor: colors.darkGreen,
+            tabBarIcon: ({ tintColor }) => (
+              <Icon name="food-bank" size={30} color="gray" />
+            )
+          }}
+
+        />
+        <Tab.Screen name="Raporlar" component={Rapors}
+          options={{
+            tabBarActiveBackgroundColor: colors.tabColor,
+            tabBarActiveTintColor: colors.darkGreen,
+            tabBarIcon: ({ tintColor }) => (
+              <Icon name="insert-chart-outlined" size={30} color="gray" />
+            )
+          }}
+        />
       </Tab.Navigator>
     )
   }

@@ -6,12 +6,13 @@ import { showMessage } from 'react-native-flash-message'
 import { UserInfoContext } from '../../../context/UserInfoContext'
 import styles from "./StartedAge.style"
 const StartedAge = ({ navigation }) => {
-    const [text, userText] = useState()
-    const { userInfo, setUserInfo } = useContext(UserInfoContext)
+    const [text, setText] = useState()
+    const { userInfo } = useContext(UserInfoContext)
 
-    const handleNext = () => {
+    const handleNext = async () => {
         if (text) {
             createUserAge(text)
+
         } else {
             showMessage({
                 message: "Yaşınızı giriniz",
@@ -24,6 +25,7 @@ const StartedAge = ({ navigation }) => {
 
     const createUserAge = (text) => {
         try {
+
             const newUserInfo = { ...userInfo, age: text }
             database().ref("/userinfo").push(newUserInfo)
 
@@ -47,7 +49,7 @@ const StartedAge = ({ navigation }) => {
                     placeholderTextColor="white"
                     style={styles.input}
                     value={text}
-                    onChangeText={userText}
+                    onChangeText={setText}
                 />
                 <Text style={styles.cm_title}>yaş</Text>
             </View>
