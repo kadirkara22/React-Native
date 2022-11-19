@@ -1,10 +1,11 @@
 import React from 'react'
 import { View, Text } from 'react-native'
+import DailyHeader from "../../components/DailyCard/DailyHeader"
 
 const Daily = () => {
     return (
         <View>
-            <Text>Daily</Text>
+            <DailyHeader/>
         </View>
     )
 }
