@@ -19,6 +19,7 @@
     "axios": "^0.27.2",
     "date-fns": "^2.29.3",
     "formik": "^2.2.9",
+    "lottie-react-native": "^5.1.4",
     "react": "18.1.0",
     "react-native": "0.70.5",
     "react-native-config": "^1.4.11",

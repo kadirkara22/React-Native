@@ -5,25 +5,57 @@ import { format } from 'date-fns'
 import { tr } from 'date-fns/locale'
 import styles from "./SelectedFoodModal.style"
 import Config from 'react-native-config'
-import useFetch from '../../../hooks/useFetch'
+import axios from 'axios'
 import SearchFoodCard from '../SearchFoodCard'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Loading from "../../Loading"
+import Error from "../../Error"
 const SelectedFoodModal = ({ visible, name, onClose }) => {
-    const [search, setSearch] = useState("")
-    const [food, setFood] = useState("")
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
+    const [search, setSearch] = useState('')
     const formattedDate = format(new Date(), "eeee d", { locale: tr })
 
-    const { data, error, loading } = useFetch(`${Config.API_URL}?query=${food}&common=true&detailed=true`)
 
-    console.log(data)
     const handleClose = () => {
-        setFood("")
         setSearch("")
     }
+    const fetch = async () => {
 
-    const handleSelectFood = () => {
-        setFood(search)
+        try {
+
+            await axios.get(`${Config.API_URL}?query=${search}&common=true&detailed=true`, {
+                headers: {
+                    'x-app-id': "909e2c13",
+                    'x-app-key': "70e91eacda15bf8d786b2908b46bd087",
+                    'x-remote-user-id': "0"
+                }
+            }).then((response) => {
+                console.log(response.data)
+                setData(response.data)
+                setLoading(false)
+                return response.data;
+            })
+
+        } catch (error) {
+            if (error.response) {
+
+                console.log(error.response)
+
+            } else if (error.request) {
+
+                console.log(error.request)
+
+            } else if (error.message) {
+
+                console.log(error.message)
+            }
+        }
     }
+
+
+
 
     const renderFood = ({ item }) => <SearchFoodCard food={item} />
     return (
@@ -45,13 +77,13 @@ const SelectedFoodModal = ({ visible, name, onClose }) => {
                     placeholder="yemek ara..."
                     value={search}
                     onChangeText={setSearch}
-                    onSubmitEditing={handleSelectFood}
+                    onSubmitEditing={fetch}
                 />
-                {food && <Icon name="close" size={30} style={styles.close_icon} onPress={handleClose} />}
+                {search && <Icon name="close" size={30} style={styles.close_icon} onPress={handleClose} />}
             </View>
             <View>
                 {
-                    food && <FlatList
+                    <FlatList
                         data={data.branded}
                         renderItem={renderFood}
                     />

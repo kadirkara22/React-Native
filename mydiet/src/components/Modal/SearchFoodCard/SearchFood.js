@@ -1,7 +1,6 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-import Config from 'react-native-config'
-import useFetch from '../../../hooks/useFetch'
+
 
 const SearchFood = ({ food }) => {
 
