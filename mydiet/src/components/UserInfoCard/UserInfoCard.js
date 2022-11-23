@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { View, Text } from 'react-native'
 import database from "@react-native-firebase/database"
 import styles from "./UserInfoCard.style"
+import { UserInfoContext } from '../../context/UserInfoContext'
 const UserInfoCard = ({ userinfo }) => {
     const [tgd, setTgd] = useState()
 
+    const { setUserInfo } = useContext(UserInfoContext)
     const handleTgd = () => {
         if (userinfo.gender == "male") {
             const bazMH = 10 * userinfo.weight + 6.25 * userinfo.height - 5 * userinfo.age + 5
@@ -19,7 +21,7 @@ const UserInfoCard = ({ userinfo }) => {
     }
     useEffect(() => {
         handleTgd()
-
+        setUserInfo(userinfo)
 
     }, [])
     if (tgd) {

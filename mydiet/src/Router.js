@@ -17,8 +17,10 @@ import colors from './styles/colors';
 import Login from './pages/auth/Login';
 import Sign from './pages/auth/Sign/Sign';
 import parseContentData from './utils/parseContentData';
-import Daily from './pages/Daily';
+import Daily from './pages/DailyMain/Daily';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import FoodInfo from './pages/DailyMain/FoodInfo/FoodInfo';
+import SelectedFood from './pages/DailyMain/SelectedFood/SelectedFood';
 
 
 const Stack = createNativeStackNavigator();
@@ -99,6 +101,21 @@ export default function App() {
     );
   }
 
+  const DailyStack = () => {
+    return (
+      <Stack.Navigator >
+        <Stack.Screen name="DailyMain" component={Daily} options={{ headerShown: false }} />
+        <Stack.Screen name="selectFoodPage" component={SelectedFood} options={{ headerShown: false }} />
+        <Stack.Screen name="FoodInfoPage" component={FoodInfo}
+          options={{
+            headerTintColor: colors.darkGreen,
+            headerTitle: ""
+          }}
+        />
+      </Stack.Navigator>
+    )
+  }
+
 
   function HomePage() {
     return (
@@ -112,7 +129,7 @@ export default function App() {
               <Icon name="supervised-user-circle" size={30} color="gray" />
             )
           }} />
-        <Tab.Screen name="Daily" component={Daily}
+        <Tab.Screen name="Daily" component={DailyStack}
           options={{
             tabBarActiveBackgroundColor: colors.tabColor,
             tabBarActiveTintColor: colors.darkGreen,

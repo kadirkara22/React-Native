@@ -1,14 +1,10 @@
 import { StyleSheet } from "react-native";
 import colors from "../../../styles/colors";
 export default StyleSheet.create({
-    modal: {
-        flex: 1,
-        backgroundColor: "white",
-        justifyContent: "flex-start",
-        margin: 0,
-        padding: 0
+    container: {
+        backgroundColor: "white"
     },
-    modal_header: {
+    header: {
         backgroundColor: "#dcedc8",
         height: 60,
         flexDirection: "row",
@@ -18,6 +14,7 @@ export default StyleSheet.create({
     header_left: {
         flex: 3,
         padding: 10,
+
 
     },
     name: {
