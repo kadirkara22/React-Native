@@ -15,6 +15,8 @@ const SelectedFood = ({ navigation, route }) => {
     const [error, setError] = useState(null)
     const [search, setSearch] = useState('')
 
+
+
     const { name } = route.params
 
     const formattedDate = format(new Date(), "eeee d", { locale: tr })
@@ -61,7 +63,7 @@ const SelectedFood = ({ navigation, route }) => {
 
 
     const handleNext = (food) => {
-        navigation.navigate("FoodInfoPage", { food })
+        navigation.navigate("FoodInfoPage", { food, name })
     }
 
     const renderFood = ({ item }) => <SearchFoodCard food={item} onPress={() => handleNext(item)} />
@@ -75,7 +77,10 @@ const SelectedFood = ({ navigation, route }) => {
                 </View>
 
                 <View style={styles.close_container}>
-                    <Text onPress={handleBackPage} style={styles.close}>İptal</Text>
+                    {
+
+                    }
+                    <Text onPress={handleBackPage} style={styles.close}>Geri</Text>
                 </View>
             </View>
             <View>
@@ -88,6 +93,9 @@ const SelectedFood = ({ navigation, route }) => {
                 {search && <Icon name="close" size={30} style={styles.close_icon} onPress={handleClose} />}
             </View>
             <View>
+                {
+                    loading && <Loading />
+                }
                 {
                     <FlatList
                         data={data.branded}
