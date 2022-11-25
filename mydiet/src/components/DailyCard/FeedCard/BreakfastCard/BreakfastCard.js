@@ -1,20 +1,61 @@
-import React, { useState, useContext } from 'react'
-import { View, Text, TouchableOpacity, FlatList } from 'react-native'
+import React, { useState, useContext,useEffect } from 'react'
+import { View, Text, TouchableOpacity, FlatList,Alert} from 'react-native'
+import {SwipeListView} from 'react-native-swipe-list-view';
+import Collapsible from 'react-native-collapsible';
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { FoodValueContext } from '../../../../context/FoodValueContext'
 import colors from '../../../../styles/colors'
 import FoodDetailCard from '../../FoodDetailCard'
 import styles from "./BreakfastCard.style"
 const BreakfastCard = ({ name, onNext }) => {
-    const { foodValue, breakFat, breakPro, breakCarb, breakTgd, breakCalori } = useContext(FoodValueContext)
+    const [isCollapsed,setIsCollapsed]=useState(true)
+  
+    const { breakfastValue, breakFat, breakPro, breakCarb, breakTgd, breakCalori,setBreakfastValue,
+    setBreakFat,setBreakPro,setBreakCarb,setBreakTgd,setBreakCalori} = useContext(FoodValueContext)
     const handleInputToggle = () => {
         onNext()
     }
-    console.log(foodValue)
-    const renderFoodDetail = ({ item }) => <FoodDetailCard food={item} />
+console.log(breakfastValue)
+
+const handleToggleCollapse=()=>{
+setIsCollapsed(!isCollapsed)
+}
+const handleDanger = (item) => {
+      Alert.alert(
+      `${item.food_name} silinecek`,
+      `${item.food_name} silmek istediğinize emin misiniz?`,
+      [
+        {
+          text: 'İptal',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: 'Sil',
+          onPress: () => {
+            const newFood = [...breakfastValue];
+            const index = breakfastValue.findIndex((v) => v.food_name === item.food_name);
+            newFood.splice(index, 1);
+            setBreakfastValue(newFood);
+            setBreakFat(breakFat-item.fat)
+            setBreakCarb(breakCarb-item.carbon)
+            setBreakPro(breakPro-item.protein)
+            setBreakTgd(breakTgd-item.foodTgd)
+            setBreakCalori(breakCalori-item.calori)
+          },
+          style: 'destructive',
+        },
+      ],
+      {cancelable: false},
+    );
+  };
+ 
+const backButtonWidth = 30;
+ const openWidth = backButtonWidth * 2;
+    const renderFoodDetail = ({ item,index }) => <FoodDetailCard food={item} styleCollapse={(index===breakfastValue.length-1) ? styles.collapsedlast : styles.containerFoodDetail}/>
     return (
         <>
-            <TouchableOpacity style={foodValue.length > 0 ? styles.container_foodValue : styles.container} onPress={handleInputToggle}>
+            <TouchableOpacity style={breakfastValue.length > 0 ? styles.container_foodValue : styles.container} onPress={handleInputToggle}>
                 <Text style={styles.title}>{name}</Text>
                 <View style={styles.container_right}>
                     <View style={styles.total_cal}>
@@ -30,22 +71,46 @@ const BreakfastCard = ({ name, onNext }) => {
                     <Icon name="plus" color={colors.darkGreen} size={30} />
                 </View>
             </TouchableOpacity>
-            {foodValue.length > 0 ?
-                <View style={styles.foodValue_container}>
+            {breakfastValue.length > 0 ?
+                <TouchableOpacity style={isCollapsed ? styles.foodValue_container : styles.foodValue_collapse} onPress={handleToggleCollapse}>
                     <Text style={styles.foodValue_text}>{breakFat.toString()}</Text>
-                    <Text style={styles.foodValue_text}>{breakPro.toString()}</Text>
                     <Text style={styles.foodValue_text}>{breakCarb.toString()}</Text>
+                    <Text style={styles.foodValue_text}>{breakPro.toString()}</Text>
                     <Text style={styles.foodValue_text}>%{breakTgd.toString()}</Text>
-                    <Icon name="arrow-down" size={20} style={styles.foodValue_icon} />
-                </View>
+                     {
+                        isCollapsed ?  <Icon name="arrow-down" size={20} style={styles.foodValue_icon} />
+                        :  <Icon name="arrow-up" size={20} style={styles.foodValue_icon} />
+                    }
+                    
+                </TouchableOpacity>
                 : null
             }
-
-            <FlatList
-                data={foodValue}
-                renderItem={renderFoodDetail}
-            />
-        </>
+                    {
+                    
+                    <Collapsible collapsed={isCollapsed} duration={400}>
+                        <SwipeListView
+                                    data={breakfastValue}
+                                    renderItem={renderFoodDetail}
+                                    keyExtractor={(_,index) => index.toString()}
+                                    renderHiddenItem={({item,index})=>(
+                                         <View style={index===breakfastValue.length-1 ? styles.lastrowBack : styles.rowBack}>
+                                        <TouchableOpacity
+                                        style={[styles.backRightBtn,index===breakfastValue.length-1 ? styles.lastdangerBtn : styles.dangerBtn]}
+                                        onPress={() => handleDanger(item)}>
+                                        <Text style={styles.backTextDanger}>Sil</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                    )}
+                                    leftOpenValue={openWidth}
+                                    rightOpenValue={-openWidth}
+                                    stopLeftSwipe={1}
+                                    stopRightSwipe={-openWidth}
+                                />
+                      
+                    </Collapsible>
+                    
+                    }
+                 </>
 
     )
 }

@@ -21,7 +21,6 @@ import Daily from './pages/DailyMain/Daily';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import FoodInfo from './pages/DailyMain/FoodInfo/FoodInfo';
 import SelectedFood from './pages/DailyMain/SelectedFood/SelectedFood';
-import FoodEdit from './pages/DailyMain/FoodEdit';
 
 
 const Stack = createNativeStackNavigator();
@@ -108,12 +107,6 @@ export default function App() {
         <Stack.Screen name="DailyMain" component={Daily} options={{ headerShown: false }} />
         <Stack.Screen name="selectFoodPage" component={SelectedFood} options={{ headerShown: false }} />
         <Stack.Screen name="FoodInfoPage" component={FoodInfo}
-          options={{
-            headerTintColor: colors.darkGreen,
-            headerTitle: ""
-          }}
-        />
-        <Stack.Screen name="FoodEditPage" component={FoodEdit}
           options={{
             headerTintColor: colors.darkGreen,
             headerTitle: ""

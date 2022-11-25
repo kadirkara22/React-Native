@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
-import styles from "./FoodDetailCard.style"
-const FoodDetailCard = ({ food,styleCollapse }) => {
+import styles from "./LunchDetailCard.style"
+const LunchDetailCard = ({ food,styleCollapse }) => {
    
     return (
         <TouchableOpacity style={styleCollapse}>
@@ -22,4 +22,4 @@ const FoodDetailCard = ({ food,styleCollapse }) => {
     )
 }
 
-export default FoodDetailCard
+export default LunchDetailCard
