@@ -11,13 +11,13 @@ const FoodInfo = ({ navigation, route }) => {
     const [protein, setProtein] = useState()
     const [carbon, setCarbon] = useState()
     const [calori, setCalori] = useState()
-    
+
     const { userInfo } = useContext(UserInfoContext)
 
     const { foodValue, setBreakFat, setBreakPro, setBreakCarb, setBreakTgd, setBreakCalori,
-     dinnerFat, setDinnerFat,dinnerPro, setDinnerPro,dinnerCarb,setDinnerCarb,dinnerTgd,
-     setDinnerTgd,setDinnerCalori,setLunchFat,setLunchPro,setLunchCarb,setLunchTgd,setLunchCalori,
-    breakfastValue,lunchValue,dinnerValue} = useContext(FoodValueContext)
+        dinnerFat, setDinnerFat, dinnerPro, setDinnerPro, dinnerCarb, setDinnerCarb, dinnerTgd,
+        setDinnerTgd, setDinnerCalori, setLunchFat, setLunchPro, setLunchCarb, setLunchTgd, setLunchCalori,
+        breakfastValue, lunchValue, dinnerValue, totalCountFood, setTotalCountFood, countTotal, setCountTotal } = useContext(FoodValueContext)
     const { food, name } = route.params;
     const foodTgd = Math.floor(food.nf_calories * 100 / userInfo.TGD)
 
@@ -45,7 +45,6 @@ const FoodInfo = ({ navigation, route }) => {
 
         values.push(foodContent)
     }
-
     const handleSaveFood = () => {
         const foodContent = {
             feed: name,
@@ -54,36 +53,61 @@ const FoodInfo = ({ navigation, route }) => {
             fat,
             protein,
             carbon,
-            foodTgd,
+            foodTgd
+        }
+
+
+
+        foodValue.push(foodContent)
+        if (foodContent.feed == "Kahvaltı") {
+            setBreakFat((prev) => prev + fat)
+            setBreakPro((prev) => prev + protein)
+            setBreakCarb((prev) => prev + carbon)
+            setBreakTgd((prev) => prev + foodTgd)
+            setBreakCalori((prev) => prev + Math.floor(food.nf_calories))
+
+            breakfastValue.push(foodContent)
+        } else if (foodContent.feed == "Öğle Yemeği") {
+            setLunchFat((prev) => prev + fat)
+            setLunchPro((prev) => prev + protein)
+            setLunchCarb((prev) => prev + carbon)
+            setLunchTgd((prev) => prev + foodTgd)
+            setLunchCalori((prev) => prev + Math.floor(food.nf_calories))
+
+            lunchValue.push(foodContent)
+        } else if (foodContent.feed == "Akşam Yemeği") {
+            setDinnerFat((prev) => prev + fat)
+            setDinnerPro((prev) => prev + protein)
+            setDinnerCarb((prev) => prev + carbon)
+            setDinnerTgd((prev) => prev + foodTgd)
+            setDinnerCalori((prev) => prev + Math.floor(food.nf_calories))
+
+            dinnerValue.push(foodContent)
+        }
+
+        const foodCount = {
+            food_name: food.brand_name,
+            calori: Math.floor(food.nf_calories),
+            count: 1
+        }
+
+        if (totalCountFood.length > 0) {
+            if (totalCountFood.find(item => item.food_name == foodCount.food_name)) {
+                const total = totalCountFood.map(item => item.food_name == foodCount.food_name ?
+                    { ...item, count: item.count + 1 } : item)
+                setTotalCountFood(total)
+
+            } else {
+                totalCountFood.push(foodCount)
+
+            }
+        } else {
+            totalCountFood.push(foodCount)
+
 
         }
-        foodValue.push(foodContent)
-        if(foodContent.feed=="Kahvaltı"){
-              setBreakFat((prev) => prev + fat)
-              setBreakPro((prev) => prev + protein)
-              setBreakCarb((prev) => prev + carbon)
-              setBreakTgd((prev) => prev + foodTgd)
-              setBreakCalori((prev) => prev + Math.floor(food.nf_calories))
-              
-            breakfastValue.push(foodContent)
-        }else if(foodContent.feed=="Öğle Yemeği"){
-            setLunchFat((prev) => prev + fat)
-              setLunchPro((prev) => prev + protein)
-              setLunchCarb((prev) => prev + carbon)
-              setLunchTgd((prev) => prev + foodTgd)
-              setLunchCalori((prev) => prev + Math.floor(food.nf_calories))
-             
-                 lunchValue.push(foodContent)
-        }else if(foodContent.feed=="Akşam Yemeği"){
-            setDinnerFat((prev) => prev + fat)
-              setDinnerPro((prev) => prev + protein)
-              setDinnerCarb((prev) => prev + carbon)
-              setDinnerTgd((prev) => prev + foodTgd)
-              setDinnerCalori((prev) => prev + Math.floor(food.nf_calories))
-            
-                   dinnerValue.push(foodContent)
-        }
-        
+
+
         navigation.goBack()
     }
 

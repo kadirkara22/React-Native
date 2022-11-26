@@ -6,7 +6,6 @@ import auth from "@react-native-firebase/auth"
 import database from "@react-native-firebase/database"
 import FlashMessage from "react-native-flash-message";
 import UserInfo from './pages/UserInfo';
-import Rapors from './pages/Rapors';
 import StartedInfo from './pages/StartedSetting/StartedInfo';
 import StartedGender from './pages/StartedSetting/StartedGender';
 import StartedLevel from './pages/StartedSetting/StartedLevel';
@@ -21,6 +20,7 @@ import Daily from './pages/DailyMain/Daily';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import FoodInfo from './pages/DailyMain/FoodInfo/FoodInfo';
 import SelectedFood from './pages/DailyMain/SelectedFood/SelectedFood';
+import Rapors from './pages/Rapors';
 
 
 const Stack = createNativeStackNavigator();
