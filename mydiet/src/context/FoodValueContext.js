@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 export const FoodValueContext = React.createContext();
 
@@ -8,6 +8,7 @@ const FoodValueContextProvider = (props) => {
     const [lunchValue, setLunchValue] = useState([])
     const [dinnerValue, setDinnerValue] = useState([])
     const [totalCountFood, setTotalCountFood] = useState([])
+    const [countTotal, setCountTotal] = useState(0)
 
     const [breakFat, setBreakFat] = useState(0)
     const [breakPro, setBreakPro] = useState(0)
@@ -34,7 +35,7 @@ const FoodValueContextProvider = (props) => {
         setDinnerTgd, dinnerCalori, setDinnerCalori,
         lunchFat, setLunchFat, lunchPro, setLunchPro, lunchCarb, setLunchCarb, lunchTgd,
         setLunchTgd, lunchCalori, setLunchCalori, breakfastValue, lunchValue, dinnerValue, setBreakfastValue,
-        setLunchValue, setDinnerValue, totalCountFood, setTotalCountFood
+        setLunchValue, setDinnerValue, totalCountFood, setTotalCountFood, countTotal, setCountTotal
     }
 
     return (

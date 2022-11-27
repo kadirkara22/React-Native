@@ -1,7 +1,5 @@
 import React, { useContext } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
-import auth from "@react-native-firebase/auth"
-import database from "@react-native-firebase/database"
 import { showMessage } from 'react-native-flash-message'
 import Button from '../../../components/Button'
 import styles from "./StartedLevel.style"

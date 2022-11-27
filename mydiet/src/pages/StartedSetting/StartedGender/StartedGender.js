@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react'
-import { View, Text, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
+import React, { useContext } from 'react'
+import { View, Text, TouchableOpacity } from 'react-native'
 import auth from "@react-native-firebase/auth"
 import { showMessage } from 'react-native-flash-message'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'

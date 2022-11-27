@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react'
-import { View, Text, TouchableOpacity, FlatList, Alert } from 'react-native'
+import React, { useState, useContext } from 'react'
+import { View, Text, TouchableOpacity, Alert } from 'react-native'
 import { SwipeListView } from 'react-native-swipe-list-view';
 import Collapsible from 'react-native-collapsible';
 import Icon from 'react-native-vector-icons/FontAwesome5'
@@ -11,7 +11,7 @@ const BreakfastCard = ({ name, onNext }) => {
     const [isCollapsed, setIsCollapsed] = useState(true)
 
     const { breakfastValue, breakFat, breakPro, breakCarb, breakTgd, breakCalori, setBreakfastValue,
-        setBreakFat, setBreakPro, setBreakCarb, setBreakTgd, setBreakCalori } = useContext(FoodValueContext)
+        setBreakFat, setBreakPro, setBreakCarb, setBreakTgd, setBreakCalori, countTotal, setCountTotal, totalCountFood, setTotalCountFood } = useContext(FoodValueContext)
     const handleInputToggle = () => {
         onNext()
     }
@@ -42,6 +42,17 @@ const BreakfastCard = ({ name, onNext }) => {
                         setBreakPro(breakPro - item.protein)
                         setBreakTgd(breakTgd - item.foodTgd)
                         setBreakCalori(breakCalori - item.calori)
+                        setCountTotal(countTotal - 1)
+
+                        const newTotalFood = [...totalCountFood];
+                        if (newTotalFood.find((v) => v.food_name === item.food_name)) {
+                            const newTotalCountFood = newTotalFood.map(v => v.food_name === item.food_name ?
+                                { ...v, count: v.count > 1 ? v.count - 1 : 0 } : v)
+                            setTotalCountFood(newTotalCountFood)
+
+
+                        }
+
                     },
                     style: 'destructive',
                 },
@@ -50,7 +61,7 @@ const BreakfastCard = ({ name, onNext }) => {
         );
     };
 
-    const backButtonWidth = 30;
+    const backButtonWidth = 27;
     const openWidth = backButtonWidth * 2;
     const renderFoodDetail = ({ item, index }) => <FoodDetailCard food={item} styleCollapse={(index === breakfastValue.length - 1) ? styles.collapsedlast : styles.containerFoodDetail} />
     return (

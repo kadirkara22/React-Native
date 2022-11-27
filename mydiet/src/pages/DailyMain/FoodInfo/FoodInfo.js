@@ -28,13 +28,13 @@ const FoodInfo = ({ navigation, route }) => {
         food.full_nutrients.forEach(item => {
             if (item.attr_id === 203) {
                 nutValue.push({ ...item })
-                setProtein(item.value)
+                setProtein(Math.floor(item.value))
             } else if (item.attr_id === 204) {
                 nutValue.push({ ...item })
-                setFat(item.value)
+                setFat(Math.floor(item.value))
             } else if (item.attr_id === 205) {
                 nutValue.push({ ...item })
-                setCarbon(item.value)
+                setCarbon(Math.floor(item.value))
             }
         })
 
@@ -65,7 +65,7 @@ const FoodInfo = ({ navigation, route }) => {
             setBreakCarb((prev) => prev + carbon)
             setBreakTgd((prev) => prev + foodTgd)
             setBreakCalori((prev) => prev + Math.floor(food.nf_calories))
-
+            setCountTotal((prev) => prev + 1)
             breakfastValue.push(foodContent)
         } else if (foodContent.feed == "Öğle Yemeği") {
             setLunchFat((prev) => prev + fat)
@@ -73,7 +73,7 @@ const FoodInfo = ({ navigation, route }) => {
             setLunchCarb((prev) => prev + carbon)
             setLunchTgd((prev) => prev + foodTgd)
             setLunchCalori((prev) => prev + Math.floor(food.nf_calories))
-
+            setCountTotal((prev) => prev + 1)
             lunchValue.push(foodContent)
         } else if (foodContent.feed == "Akşam Yemeği") {
             setDinnerFat((prev) => prev + fat)
@@ -81,13 +81,16 @@ const FoodInfo = ({ navigation, route }) => {
             setDinnerCarb((prev) => prev + carbon)
             setDinnerTgd((prev) => prev + foodTgd)
             setDinnerCalori((prev) => prev + Math.floor(food.nf_calories))
-
+            setCountTotal((prev) => prev + 1)
             dinnerValue.push(foodContent)
         }
 
         const foodCount = {
             food_name: food.brand_name,
             calori: Math.floor(food.nf_calories),
+            fat,
+            protein,
+            carbon,
             count: 1
         }
 

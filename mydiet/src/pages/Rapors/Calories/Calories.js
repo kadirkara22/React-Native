@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { View, Text, ScrollView } from 'react-native'
+import React, { useContext } from 'react'
+import { View, Text } from 'react-native'
 import CaloriFeedCard from '../../../components/RaporsCard/Calories'
 import FoodEatenCard from '../../../components/RaporsCard/FoodEatenCard'
 import { FoodValueContext } from '../../../context/FoodValueContext'

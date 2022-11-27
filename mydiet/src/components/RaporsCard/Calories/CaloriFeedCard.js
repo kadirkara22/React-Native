@@ -2,7 +2,6 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import styles from "./CaloriFeedCard.style"
 const CaloriFeedCard = ({ breakCalori, dinnerCalori, lunchCalori }) => {
-    const totalCalori = breakCalori + dinnerCalori + lunchCalori
     return (
         <View>
             <View style={styles.cal_title}>

@@ -1,8 +1,8 @@
 import React from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { Text, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import styles from "./Button.style"
-const Button = ({ onPress, iconName, theme, iconTheme, text,loading }) => {
+const Button = ({ onPress, iconName, theme, iconTheme, text, loading }) => {
 
     return (
         <TouchableOpacity onPress={onPress} style={styles[theme].container} disabled={loading}>

@@ -20,20 +20,28 @@ export default StyleSheet.create({
         borderBottomColor: "#c5e1a5"
     },
     left_title: {
-        flex: 4,
+        flex: 3,
         padding: 10,
         fontWeight: "bold",
-    },
-    count: {
-        flex: 1,
-        textAlign: "right",
-        padding: 7
 
     },
-    calori: {
+    carb: {
         flex: 1,
-        textAlign: "right",
-        padding: 7
+        textAlign: "center",
+        padding: 5,
+
+
+    },
+    fat: {
+        flex: 1,
+        textAlign: "center",
+        padding: 5
+    },
+    prot: {
+        flex: 1,
+        textAlign: "center",
+        padding: 5,
+
     },
     food_info: {
         flexDirection: "row",
@@ -42,18 +50,11 @@ export default StyleSheet.create({
         borderBottomColor: "#c5e1a5"
     },
     foodName: {
-        flex: 5,
+        flex: 2,
         color: "black",
         fontSize: 15
     },
-    food_count: {
-        flex: 1,
-        textAlign: "center",
-        color: "black",
-        fontSize: 15
-
-    },
-    food_calori: {
+    food_tvalue: {
         flex: 1,
         textAlign: "right",
         color: "black",
@@ -62,28 +63,23 @@ export default StyleSheet.create({
     },
     toplam_container: {
         flexDirection: "row",
-        padding: 15,
         borderBottomWidth: 1,
-        borderBottomColor: "#c5e1a5"
+        borderBottomColor: "#c5e1a5",
+        paddingVertical: 15
     },
     toplam: {
-        flex: 5,
+        flex: 3,
         fontSize: 18,
         fontWeight: "bold",
         color: "black",
+        paddingLeft: 15
     },
-    food_tcount: {
+    toplam_value: {
         flex: 1,
         textAlign: "center",
         color: "black",
         fontSize: 15,
         fontWeight: "bold",
     },
-    food_tcalori: {
-        flex: 1,
-        textAlign: "right",
-        color: "black",
-        fontSize: 15,
-        fontWeight: "bold",
-    },
+
 })

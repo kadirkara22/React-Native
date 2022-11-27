@@ -1,11 +1,11 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { View, Text } from 'react-native'
 import { FoodValueContext } from '../../../context/FoodValueContext'
 import styles from "./FoodEatenCard.style"
 const FoodEatenCard = () => {
 
-    const { totalCountFood, breakCalori, lunchCalori, dinnerCalori, countTotal, setCountTotal } = useContext(FoodValueContext)
-
+    const { totalCountFood, breakCalori, lunchCalori, dinnerCalori, countTotal } = useContext(FoodValueContext)
+    //console.log(totalCountFood)
     return (
         <View style={styles.container}>
             <Text style={styles.container_title}>Yenen Gıdalar</Text>
@@ -16,11 +16,11 @@ const FoodEatenCard = () => {
             </View>
             {
                 totalCountFood.map((item, index) => (
-                    <View style={styles.food_info} key={index}>
+                    item.count !== 0 && (<View style={styles.food_info} key={index}>
                         <Text style={styles.foodName}>{item.food_name}</Text>
                         <Text style={styles.food_count}>x{item.count}=</Text>
                         <Text style={styles.food_calori}>{item.count * item.calori}</Text>
-                    </View>
+                    </View>)
                 ))
             }
             <View style={styles.toplam_container}>
