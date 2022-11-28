@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { View, Image } from 'react-native'
 import auth from "@react-native-firebase/auth"
 import { Formik } from 'formik'
@@ -49,6 +49,7 @@ const Login = ({ navigation }) => {
             setLoading(false)
         }
     }
+
 
     return (
         <View style={styles.container}>

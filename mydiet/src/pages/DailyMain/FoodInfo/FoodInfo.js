@@ -46,6 +46,7 @@ const FoodInfo = ({ navigation, route }) => {
         values.push(foodContent)
     }
     const handleSaveFood = () => {
+
         const foodContent = {
             feed: name,
             food_name: food.brand_name,

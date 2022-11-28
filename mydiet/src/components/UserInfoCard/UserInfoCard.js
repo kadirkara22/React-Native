@@ -40,11 +40,11 @@ const UserInfoCard = ({ userinfo }) => {
             </View>
             <View style={styles.info_container}>
                 <Text style={styles.user_title}>Weight: </Text>
-                <Text style={styles.user_title}>{userinfo.weight}</Text>
+                <Text style={styles.user_title}>{userinfo.weight} kg</Text>
             </View>
             <View style={styles.info_container}>
                 <Text style={styles.user_title}>Height: </Text>
-                <Text style={styles.user_title}>{userinfo.height}</Text>
+                <Text style={styles.user_title}>{userinfo.height} cm</Text>
             </View>
             <View style={styles.tgd_container}>
                 <Text style={styles.tgd_title}>Tavsiye Edilen Günlük Değer</Text>
