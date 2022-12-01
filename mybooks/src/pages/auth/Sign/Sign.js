@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { View, Text } from 'react-native'
 import { Formik } from 'formik';
 import auth from "@react-native-firebase/auth"
+import database from "@react-native-firebase/database"
 import styles from "./Sign.style"
 import Input from '../../../components/Input';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -41,12 +42,24 @@ const Sign = ({ navigation }) => {
             setLoading(false)
         }
     }
+
+    const handleCreateUser=(formValues)=>{
+       handleFormSubmit(formValues)
+        const userObject = {
+          fullName:formValues.fullName,
+          email:formValues.email,
+          userName:formValues.userName,
+          date: new Date().toISOString(),
+         
+        }
+        database().ref('users/').push(userObject)
+    }
     return (
         <View style={styles.container}>
             <Formik
                 initialValues={{ fullName: '', email: '', userName: '', password: '', repassword: '' }}
                 validateOnMount={true}
-                onSubmit={handleFormSubmit}
+                onSubmit={handleCreateUser}
                 validationSchema={SignValidation}
             >
                 {({ handleChange, handleBlur, handleSubmit, values, errors, touched, isValid }) => (
@@ -100,7 +113,7 @@ const Sign = ({ navigation }) => {
                                 value={values.password}
                                 isSecure={!showPassword}
                             />
-                            <Icon name={showPassword ? "eye-off" : "eye"} size={32} color="black" style={styles.password_icon} onPress={() => setShowPassword(!showPassword)} />
+                           {values.password &&( <Icon name={showPassword ? "eye-off" : "eye"} size={32} color="black" style={styles.password_icon} onPress={() => setShowPassword(!showPassword)} />)}
                         </View>
                         {(touched.password && errors.password) && <Text style={styles.errors}>{errors.password}</Text>}
                         <View>
@@ -114,7 +127,7 @@ const Sign = ({ navigation }) => {
                                 value={values.repassword}
                                 isSecure={!showRepassword}
                             />
-                            <Icon name={showRepassword ? "eye-off" : "eye"} size={32} color="black" style={styles.password_icon} onPress={() => setShowrepassword(!showRepassword)} />
+                            {values.repassword && (<Icon name={showRepassword ? "eye-off" : "eye"} size={32} color="black" style={styles.password_icon} onPress={() => setShowrepassword(!showRepassword)} />)}
                         </View>
                         {(touched.repassword && errors.repassword) && <Text style={styles.errors}>{errors.repassword}</Text>}
                         <Button text="Kaydol" theme="primary" onPress={handleSubmit} loading={!isValid} />

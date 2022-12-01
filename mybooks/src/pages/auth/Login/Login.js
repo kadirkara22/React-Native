@@ -71,7 +71,7 @@ const Login = ({ navigation }) => {
                                 value={values.password}
                                 isSecure={!showPassword}
                             />
-                            <Icon name={showPassword ? "eye-off" : "eye"} size={32} color="black" style={styles.password_icon} onPress={() => setShowPassword(!showPassword)} />
+                           {values.password && (<Icon name={showPassword ? "eye-off" : "eye"} size={32} color="black" style={styles.password_icon} onPress={() => setShowPassword(!showPassword)} />)}
                         </View>
                         {(touched.password && errors.password) && <Text style={styles.errors}>{errors.password}</Text>}
                         <Button text="Giriş Yap" theme="primary" onPress={handleSubmit} loading={!isValid} />
