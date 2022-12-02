@@ -11,6 +11,7 @@ import Comment from './pages/Comment';
 import UserInfo from './pages/UserInfo';
 import Login from './pages/auth/Login';
 import Sign from './pages/auth/Sign';
+import SearchBook from './pages/SearchBook';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -20,7 +21,6 @@ export default function App() {
   useEffect(() => {
     auth().onAuthStateChanged(user => {
       setUserSession(!!user)
-
     })
   }, [])
 
@@ -33,10 +33,19 @@ export default function App() {
     )
   }
 
+  const HomeStack = () => {
+    return (
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="HomePage" component={Home} />
+        <Stack.Screen name="SearchBookPage" component={SearchBook} />
+      </Stack.Navigator>
+    )
+  }
+
   const MainStack = () => {
     return (
       <Tab.Navigator screenOptions={{ headerShown: false }}>
-        <Tab.Screen name="HomePage" component={Home}
+        <Tab.Screen name="HomeStack" component={HomeStack}
           options={{
             tabBarActiveBackgroundColor: "#f5f5f5",
             title: "",

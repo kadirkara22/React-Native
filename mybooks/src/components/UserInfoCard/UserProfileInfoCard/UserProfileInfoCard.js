@@ -1,16 +1,24 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { View, Text, TouchableOpacity, Alert, Image } from 'react-native'
+import database from "@react-native-firebase/database"
 import { launchImageLibrary } from 'react-native-image-picker';
+import { addYears, formatWithOptions } from 'date-fns/fp'
+import { tr } from 'date-fns/locale'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from "./UserProfileInfoCard.style"
+import { UserInfoContext } from '../../../context/UserInfoContext';
 
 const UserProfileInfoCard = () => {
-    const [backgroundProfileImage, setBackgroundProfieImage] = useState("")
-    const [profileImage, setProfieImage] = useState("")
 
+    const { userInfo, setBackgroundProfieImage, setProfieImage } = useContext(UserInfoContext)
+
+    const [{ backgroundProfileImage, profileImage, fullName, userName, date }] = userInfo
+    const formatedDate = [new Date(date)]
+    const dateToString = formatWithOptions({ locale: tr }, 'd MMMM yyyy')
+    const formattedDates = formatedDate.map(dateToString)
     const handleImage = (item) => {
         Alert.alert(
-            "Kapak fotoğrafını değiştir",
+            `${item} fotoğrafını değiştir`,
             "Fotoğraf",
             [
                 {
@@ -30,6 +38,8 @@ const UserProfileInfoCard = () => {
 
             }
         );
+
+
     }
 
     const pickImageFromCamera = (item) => {
@@ -40,7 +50,7 @@ const UserProfileInfoCard = () => {
                cameraType:"front",
                quality:1
            }
-   
+     
            const result = await launchImageLibrary(options);
            if (result?.assets) {
                console.log(result.assets)
@@ -50,28 +60,40 @@ const UserProfileInfoCard = () => {
         const options = {
             mediaType: 'photo'
         }
-        if (item == "backImage") {
+        if (item == "Kapak") {
             const result = await launchImageLibrary(options);
             if (result?.assets) {
                 setBackgroundProfieImage(result.assets[0].uri)
+                const [{ id }] = userInfo
+
+                database()
+                    .ref(`users/${id}/`)
+                    .update({ backgroundProfileImage: result.assets[0].uri })
                 return
             }
         }
-        if (item == "profileImage") {
+        if (item == "Profil") {
             const result = await launchImageLibrary(options);
             if (result?.assets) {
                 setProfieImage(result.assets[0].uri)
+                const [{ id }] = userInfo
+
+                database()
+                    .ref(`users/${id}/`)
+                    .update({ profileImage: result.assets[0].uri })
                 return
             }
         }
+
+
 
     }
 
     return (
         <View>
-            <TouchableOpacity onPress={() => handleImage("backImage")} style={styles.coverImage}>
+            <TouchableOpacity onPress={() => handleImage("Kapak")} style={styles.coverImage}>
                 {
-                    backgroundProfileImage !== "" ?
+                    backgroundProfileImage ?
                         <Image source={{ uri: backgroundProfileImage }}
                             style={styles.backgroundImage}
                             resizeMode={'cover'} />
@@ -80,9 +102,9 @@ const UserProfileInfoCard = () => {
                 }
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => handleImage("profileImage")} style={styles.profileImage}>
+            <TouchableOpacity onPress={() => handleImage("Profil")} style={styles.profileImage}>
                 {
-                    profileImage !== "" ?
+                    profileImage ?
                         <Image source={{ uri: profileImage }}
                             style={styles.profileImage_value}
                             resizeMode={'contain'}
@@ -92,9 +114,9 @@ const UserProfileInfoCard = () => {
                 }
             </TouchableOpacity>
             <View style={styles.info_container}>
-                <Text style={styles.fullname}>kadir kara</Text>
-                <Text style={styles.username}>@kadirkara22</Text>
-                <Text style={styles.date}>20 Nis 2022 tarihinde katıldı</Text>
+                <Text style={styles.fullname}>{fullName}</Text>
+                <Text style={styles.username}>{`@${userName}`}</Text>
+                <Text style={styles.date}>{formattedDates} tarihinde katıldı</Text>
                 <View style={styles.now_reading_container}>
                     <Text style={styles.now_reading_title}>Şu anda okuduğu kitap</Text>
                     <View style={styles.now_reading}>

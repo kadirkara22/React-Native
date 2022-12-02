@@ -1,7 +1,8 @@
 import React from 'react'
 import { View, Text, ScrollView } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import UserProfileInfoCard from '../../components/UserProfileInfoCard'
+import UserProfileInfoCard from "../../components/UserInfoCard/UserProfileInfoCard"
+import InfoValues from "../../components/UserInfoCard/InfoValues"
 import styles from "./UserInfo.style"
 const UserInfo = () => {
     return (
@@ -11,6 +12,7 @@ const UserInfo = () => {
                 <Icon name="logout" size={30} color="black" />
             </View>
             <UserProfileInfoCard />
+            <InfoValues />
         </ScrollView>
     )
 }
