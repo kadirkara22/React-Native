@@ -13,9 +13,9 @@ const UserInfoContextProvider = (props) => {
             const contentData = snapshot.val();
             const parsedData = parseContentData(contentData || {})
             setUserInfo(parsedData)
+            console.log(parsedData)
         })
     }, [])
-
     const methods = {
         userInfo, setUserInfo, backgroundProfileImage, setBackgroundProfieImage, profileImage, setProfieImage
     }

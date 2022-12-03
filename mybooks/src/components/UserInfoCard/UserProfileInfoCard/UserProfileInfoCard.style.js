@@ -30,7 +30,8 @@ export default StyleSheet.create({
         borderColor: "white"
     },
     info_container: {
-        padding: 15
+        paddingHorizontal: 15,
+        paddingTop: 15
     },
     fullname: {
         color: "black",
@@ -42,34 +43,5 @@ export default StyleSheet.create({
     date: {
         paddingVertical: 5
     },
-    now_reading_container: {
-        width: Dimensions.get("window").width * 0.5,
-        height: 100,
-
-    },
-    now_reading_title: {
-        fontWeight: "bold"
-    },
-    now_reading: {
-        flexDirection: "row",
-        alignItems: "center",
-        paddingVertical: 10
-    },
-    now_reading_image: {
-        width: 50,
-        height: 75,
-        borderRadius: 10,
-        backgroundColor: "yellow"
-    },
-    now_reading_info: {
-        paddingLeft: 10
-    },
-    now_reading_name: {
-        fontSize: 17
-    },
-    now_reading_author: {
-        fontSize: 13
-    },
-
 
 })

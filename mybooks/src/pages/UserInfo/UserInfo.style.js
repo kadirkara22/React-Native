@@ -14,6 +14,11 @@ export default StyleSheet.create({
         color: "black",
         fontSize: 17,
         fontWeight: "bold"
+    },
+    menu_container: {
+        flexDirection: "row",
+        paddingVertical: 10,
+        paddingHorizontal: 15
     }
 
 })

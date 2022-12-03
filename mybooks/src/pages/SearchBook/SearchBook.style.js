@@ -5,12 +5,22 @@ export default StyleSheet.create({
         flex: 1,
         backgroundColor: "white"
     },
+    input_container: {
+        flexDirection: "row"
+    },
     input: {
+        flex: 5,
         borderWidth: 1,
         margin: 10,
         paddingHorizontal: 10,
         borderRadius: 20,
-        backgroundColor: "#eeee",
+
         fontSize: 15
+    },
+    input_close: {
+        flex: 1,
+        fontSize: 20,
+        paddingVertical: 20,
+        color: "black",
     }
 })

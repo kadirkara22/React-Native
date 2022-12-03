@@ -17,10 +17,11 @@ const Login = ({ navigation }) => {
         navigation.navigate("SignPage")
     }
     const handleFormSubmit = async (formValues) => {
+        console.log(formValues)
         try {
             setLoading(true)
             await auth().signInWithEmailAndPassword(
-                formValues.usermail,
+                formValues.email,
                 formValues.password
             )
             showMessage({
@@ -71,7 +72,7 @@ const Login = ({ navigation }) => {
                                 value={values.password}
                                 isSecure={!showPassword}
                             />
-                           {values.password && (<Icon name={showPassword ? "eye-off" : "eye"} size={32} color="black" style={styles.password_icon} onPress={() => setShowPassword(!showPassword)} />)}
+                            {values.password && (<Icon name={showPassword ? "eye-off" : "eye"} size={32} color="black" style={styles.password_icon} onPress={() => setShowPassword(!showPassword)} />)}
                         </View>
                         {(touched.password && errors.password) && <Text style={styles.errors}>{errors.password}</Text>}
                         <Button text="Giriş Yap" theme="primary" onPress={handleSubmit} loading={!isValid} />

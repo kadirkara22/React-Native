@@ -12,6 +12,7 @@ import UserInfo from './pages/UserInfo';
 import Login from './pages/auth/Login';
 import Sign from './pages/auth/Sign';
 import SearchBook from './pages/SearchBook';
+import Book from './pages/Book';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -21,6 +22,7 @@ export default function App() {
   useEffect(() => {
     auth().onAuthStateChanged(user => {
       setUserSession(!!user)
+      console.log(user)
     })
   }, [])
 
@@ -35,9 +37,12 @@ export default function App() {
 
   const HomeStack = () => {
     return (
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="HomePage" component={Home} />
-        <Stack.Screen name="SearchBookPage" component={SearchBook} />
+      <Stack.Navigator >
+        <Stack.Screen name="HomePage" component={Home} options={{ headerShown: false }} />
+        <Stack.Screen name="SearchBookPage" component={SearchBook} options={{ headerShown: false }} />
+        <Stack.Screen name="SelectedBookPage" component={Book}
+          options={{ headerTitle: "" }}
+        />
       </Stack.Navigator>
     )
   }
@@ -82,8 +87,8 @@ export default function App() {
           <Stack.Screen name="AuthStack" component={AuthStack} />
           :
           <Stack.Screen name="MainStack" component={MainStack} />
-        }
 
+        }
 
       </Stack.Navigator>
       <FlashMessage position="top" />

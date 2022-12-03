@@ -3,17 +3,26 @@ import { View, Text, TextInput, FlatList } from 'react-native'
 import axios from "axios"
 import SearchBookCard from '../../components/HomeCard/SearchBookCard'
 import styles from "./SearchBook.style"
-const SearchBook = () => {
+const SearchBook = ({ navigation }) => {
+    const [loading, setLoading] = useState(true)
     const [text, setText] = useState("")
     const [searchBook, setSearchBook] = useState([])
 
+    const handleSelectedBook = (book) => {
+        navigation.navigate("SelectedBookPage", { book })
+    }
+    const handleBack = () => {
+        navigation.goBack()
+    }
+
     const fetch = async () => {
         try {
-            await axios.get(`https://www.googleapis.com/books/v1/volumes?q=' + text + '&key=AIzaSyBwyJg2Rh_c1jVZFOT8CylvPlL5UuGRFOI` + '&maxResults=40').then((response) => {
-                setData(response.data)
-                setLoading(false)
-                return response.data;
-            })
+            await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${text}&key=AIzaSyB5pmLZMauoUp5FBABaBYyerzG8o_YufB8&maxResults=10`)
+                .then((response) => {
+                    setSearchBook(response.data.items)
+                    setLoading(false)
+                    //return response.data;
+                })
 
         } catch (error) {
             if (error.response) {
@@ -32,21 +41,30 @@ const SearchBook = () => {
     }
     useEffect(() => {
         fetch()
-    }, [])
 
-    const renderSearch = ({ item }) => <SearchBookCard books={item} />
+    }, [text])
+    const renderSearch = ({ item }) => <SearchBookCard book={item} handleSelectedBook={() => handleSelectedBook(item)} />
     return (
         <View style={styles.container}>
-            <TextInput
-                style={styles.input}
-                placeholder="MyBooks'ta Ara"
-                value={text}
-                onChangeText={setText}
-            />
-            <FlatList
-                data={searchBook}
-                renderItem={renderSearch}
-            />
+            <View style={styles.input_container}>
+                <TextInput
+                    style={styles.input}
+                    placeholder="MyBooks'ta Ara"
+                    value={text}
+                    onChangeText={setText}
+                />
+                <Text style={styles.input_close} onPress={handleBack}>İptal</Text>
+            </View>
+            {
+                text ? <FlatList
+                    data={searchBook}
+                    renderItem={renderSearch}
+                />
+                    :
+                    <Text style={{ color: "black", textAlign: "center", fontSize: 16 }}>Yakınlarda aramanız yok</Text>
+            }
+
+
         </View>
     )
 }
