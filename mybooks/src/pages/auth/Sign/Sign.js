@@ -43,14 +43,16 @@ const Sign = ({ navigation }) => {
         }
     }
 
-    const handleCreateUser=(formValues)=>{
-       handleFormSubmit(formValues)
+    const handleCreateUser = (formValues) => {
+        handleFormSubmit(formValues)
         const userObject = {
-          fullName:formValues.fullName,
-          email:formValues.email,
-          userName:formValues.userName,
-          date: new Date().toISOString(),
-         
+            fullName: formValues.fullName,
+            email: formValues.email,
+            userName: formValues.userName,
+            profileImage: "",
+            backgroundProfileImage: "",
+            date: new Date().toISOString(),
+
         }
         database().ref('users/').push(userObject)
     }
@@ -113,7 +115,7 @@ const Sign = ({ navigation }) => {
                                 value={values.password}
                                 isSecure={!showPassword}
                             />
-                           {values.password &&( <Icon name={showPassword ? "eye-off" : "eye"} size={32} color="black" style={styles.password_icon} onPress={() => setShowPassword(!showPassword)} />)}
+                            {values.password && (<Icon name={showPassword ? "eye-off" : "eye"} size={32} color="black" style={styles.password_icon} onPress={() => setShowPassword(!showPassword)} />)}
                         </View>
                         {(touched.password && errors.password) && <Text style={styles.errors}>{errors.password}</Text>}
                         <View>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -13,18 +13,23 @@ import Login from './pages/auth/Login';
 import Sign from './pages/auth/Sign';
 import SearchBook from './pages/SearchBook';
 import Book from './pages/Book';
+import { UserInfoContext } from './context/UserInfoContext';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [userSession, setUserSession] = useState()
+  const { setUserMail, userMail } = useContext(UserInfoContext)
   useEffect(() => {
     auth().onAuthStateChanged(user => {
       setUserSession(!!user)
-      console.log(user)
+      const userMail = auth().currentUser?.email
+      setUserMail(userMail)
     })
+
   }, [])
+
 
   const AuthStack = () => {
     return (

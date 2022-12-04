@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { View, Text, ScrollView } from 'react-native'
 import auth from "@react-native-firebase/auth"
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -9,7 +9,11 @@ import MyLibrary from './MyLibrary'
 import Mypage from './Mypage'
 import MyComments from './MyComments'
 import MenuHeader from '../../components/UserInfoCard/MenuHeader'
+import { UserInfoContext } from '../../context/UserInfoContext'
 const UserInfo = () => {
+    const { userInfo } = useContext(UserInfoContext)
+    // const [{ fullName }] = userInfo
+    console.log(userInfo)
     const menus = [
         { name: "Kitaplık" },
         { name: "Duvar" },
@@ -22,7 +26,7 @@ const UserInfo = () => {
     return (
         <ScrollView style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.title}>{UserInfo.fullName}</Text>
+                <Text style={styles.title}>{userInfo[0]?.fullName}</Text>
                 <Icon name="logout" size={30} color="black" onPress={() => auth().signOut()} />
             </View>
             <UserProfileInfoCard />

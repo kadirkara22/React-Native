@@ -17,7 +17,6 @@ const Login = ({ navigation }) => {
         navigation.navigate("SignPage")
     }
     const handleFormSubmit = async (formValues) => {
-        console.log(formValues)
         try {
             setLoading(true)
             await auth().signInWithEmailAndPassword(

@@ -12,10 +12,10 @@ import ReadingCard from '../ReadingCard';
 
 const UserProfileInfoCard = () => {
 
-    const { userInfo, setBackgroundProfieImage, setProfieImage } = useContext(UserInfoContext)
+    const { userInfo, setBackgroundProfileImage, setProfileImage, backgroundProfileImageChange, profileImageChange } = useContext(UserInfoContext)
 
     const [{ backgroundProfileImage, profileImage, fullName, userName, date }] = userInfo
-
+    console.log(userInfo)
     const formatedDate = [new Date(date)]
     const dateToString = formatWithOptions({ locale: tr }, 'd MMMM yyyy')
     const formattedDates = formatedDate.map(dateToString)
@@ -68,7 +68,7 @@ const UserProfileInfoCard = () => {
         if (item == "Kapak") {
             const result = await launchImageLibrary(options);
             if (result?.assets) {
-                setBackgroundProfieImage(result.assets[0].uri)
+                setBackgroundProfileImage(result.assets[0].uri)
                 const [{ id }] = userInfo
 
                 database()
@@ -80,7 +80,7 @@ const UserProfileInfoCard = () => {
         if (item == "Profil") {
             const result = await launchImageLibrary(options);
             if (result?.assets) {
-                setProfieImage(result.assets[0].uri)
+                setProfileImage(result.assets[0].uri)
                 const [{ id }] = userInfo
 
                 database()
@@ -98,8 +98,8 @@ const UserProfileInfoCard = () => {
         <View>
             <TouchableOpacity onPress={() => handleImage("Kapak")} style={styles.coverImage}>
                 {
-                    backgroundProfileImage ?
-                        <Image source={{ uri: backgroundProfileImage }}
+                    backgroundProfileImage != "" ?
+                        <Image source={{ uri: backgroundProfileImageChange !== "" ? backgroundProfileImageChange : backgroundProfileImage }}
                             style={styles.backgroundImage}
                             resizeMode={'cover'} />
                         :
@@ -109,8 +109,8 @@ const UserProfileInfoCard = () => {
 
             <TouchableOpacity onPress={() => handleImage("Profil")} style={styles.profileImage}>
                 {
-                    profileImage ?
-                        <Image source={{ uri: profileImage }}
+                    profileImage != "" ?
+                        <Image source={{ uri: profileImageChange !== "" ? profileImageChange : profileImage }}
                             style={styles.profileImage_value}
                             resizeMode={'contain'}
                         />
