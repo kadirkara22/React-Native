@@ -18,25 +18,25 @@ const SelectCategory = ({ book }) => {
         if (title == "willread") {
             const newReference = database().ref(`users/${id}/willread`).push();
             newReference
-                .set({ book: book.volumeInfo })
+                .set({ book })
                 .then(() => console.log('Data updated.'));
         }
         if (title == "read") {
             const newReference = database().ref(`users/${id}/read`).push();
             newReference
-                .set({ book: book.volumeInfo })
+                .set({ book })
                 .then(() => console.log('Data updated.'));
         }
         if (title == "reading") {
             const newReference = database().ref(`users/${id}/reading`).push();
             newReference
-                .set({ book: book.volumeInfo })
+                .set({ book })
                 .then(() => console.log('Data updated.'));
         }
         if (title == "favori") {
             const newReference = database().ref(`users/${id}/favori`).push();
             newReference
-                .set({ book: book.volumeInfo })
+                .set({ book })
                 .then(() => console.log('Data updated.'));
         }
         if (title == "myLibrary") {

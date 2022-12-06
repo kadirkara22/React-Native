@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import database from "@react-native-firebase/database"
-import auth from "@react-native-firebase/auth"
 import parseContentData from '../utils/parseContentData'
 export const UserInfoContext = React.createContext();
 
@@ -14,17 +13,22 @@ const UserInfoContextProvider = (props) => {
         database().ref('users/').on('value', snapshot => {
             const contentData = snapshot.val();
             const parsedData = parseContentData(contentData || {})
-            setUserInfo(parsedData)
-            /*  for (var i = 0; i < parsedData.length; i++) {
-                 if (parsedData[i].email === userMail) {
-                     userInfo[0] = parsedData[i]
-                     console.log(parsedData[i])
-                 }
-             } */
+            for (var i = 0; i < parsedData.length; i++) {
+                if (parsedData[i].email === userMail) {
+                    //console.log(parsedData)
+                    userInfo[0] = parsedData[i]
+                    setBackgroundProfileImage(parsedData[i].backgroundProfileImage)
+                    setProfileImage(parsedData[i].profileImage)
+
+                }
+            }
         })
-    }, [])
+
+    }, [userMail])
+
     const methods = {
-        userInfo, setUserInfo, userMail, setUserMail, backgroundProfileImageChange, setBackgroundProfileImage, profileImageChange, setProfileImage
+        userInfo, setUserInfo, userMail, setUserMail,
+        backgroundProfileImageChange, setBackgroundProfileImage, profileImageChange, setProfileImage
     }
 
     return (

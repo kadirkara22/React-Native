@@ -12,10 +12,11 @@ import ReadingCard from '../ReadingCard';
 
 const UserProfileInfoCard = () => {
 
-    const { userInfo, setBackgroundProfileImage, setProfileImage, backgroundProfileImageChange, profileImageChange } = useContext(UserInfoContext)
+    const { userInfo, backgroundProfileImageChange, profileImageChange, setBackgroundProfileImage, setProfileImage } = useContext(UserInfoContext)
+
 
     const [{ backgroundProfileImage, profileImage, fullName, userName, date }] = userInfo
-    console.log(userInfo)
+
     const formatedDate = [new Date(date)]
     const dateToString = formatWithOptions({ locale: tr }, 'd MMMM yyyy')
     const formattedDates = formatedDate.map(dateToString)
@@ -50,16 +51,16 @@ const UserProfileInfoCard = () => {
     const pickImageFromCamera = (item) => {
         Alert.alert("tasarlanmadı", "lütfen galerinizden bir fotoğraf seçiniz")
         /*    const options = {
-               mediaType: 'photo',
-               saveToPhotos:false,
-               cameraType:"front",
-               quality:1
-           }
-     
-           const result = await launchImageLibrary(options);
-           if (result?.assets) {
-               console.log(result.assets)
-           } */
+            mediaType: 'photo',
+            saveToPhotos:false,
+            cameraType:"front",
+            quality:1
+        }
+        
+        const result = await launchImageLibrary(options);
+        if (result?.assets) {
+            console.log(result.assets)
+        } */
     }
     const pickImageFromGalery = async (item) => {
         const options = {
@@ -68,7 +69,7 @@ const UserProfileInfoCard = () => {
         if (item == "Kapak") {
             const result = await launchImageLibrary(options);
             if (result?.assets) {
-                setBackgroundProfileImage(result.assets[0].uri)
+                //setBackgroundProfileImage(result.assets[0].uri)
                 const [{ id }] = userInfo
 
                 database()
@@ -80,7 +81,7 @@ const UserProfileInfoCard = () => {
         if (item == "Profil") {
             const result = await launchImageLibrary(options);
             if (result?.assets) {
-                setProfileImage(result.assets[0].uri)
+                //setProfileImage(result.assets[0].uri)
                 const [{ id }] = userInfo
 
                 database()
@@ -93,6 +94,7 @@ const UserProfileInfoCard = () => {
 
 
     }
+
 
     return (
         <View>

@@ -14,18 +14,18 @@ import Sign from './pages/auth/Sign';
 import SearchBook from './pages/SearchBook';
 import Book from './pages/Book';
 import { UserInfoContext } from './context/UserInfoContext';
+import UserValues from './pages/UserInfo/UserValues';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [userSession, setUserSession] = useState()
-  const { setUserMail, userMail } = useContext(UserInfoContext)
+  const { setUserMail } = useContext(UserInfoContext)
   useEffect(() => {
     auth().onAuthStateChanged(user => {
       setUserSession(!!user)
-      const userMail = auth().currentUser?.email
-      setUserMail(userMail)
+      setUserMail(user?.email)
     })
 
   }, [])
@@ -42,12 +42,19 @@ export default function App() {
 
   const HomeStack = () => {
     return (
-      <Stack.Navigator >
-        <Stack.Screen name="HomePage" component={Home} options={{ headerShown: false }} />
-        <Stack.Screen name="SearchBookPage" component={SearchBook} options={{ headerShown: false }} />
-        <Stack.Screen name="SelectedBookPage" component={Book}
-          options={{ headerTitle: "" }}
-        />
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="HomePage" component={Home} />
+        <Stack.Screen name="SearchBookPage" component={SearchBook} />
+        <Stack.Screen name="SelectedBookPage" component={Book} />
+      </Stack.Navigator>
+    )
+  }
+
+  const UserInfoStack = () => {
+    return (
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="UserInfoPage" component={UserInfo} />
+        <Stack.Screen name="UserValuesPage" component={UserValues} />
       </Stack.Navigator>
     )
   }
@@ -73,7 +80,7 @@ export default function App() {
             )
           }}
         />
-        <Tab.Screen name="UserInfoPage" component={UserInfo}
+        <Tab.Screen name="UserInfoStack" component={UserInfoStack}
           options={{
             tabBarActiveBackgroundColor: "#f5f5f5",
             title: "",

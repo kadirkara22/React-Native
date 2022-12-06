@@ -7,13 +7,13 @@ const BookCardHeader = ({ book }) => {
     return (
         <View style={styles.container}>
             {
-                book.volumeInfo.imageLinks ? <Image source={{ uri: book.volumeInfo.imageLinks.thumbnail }} style={styles.image} />
+                book.imageLinks ? <Image source={{ uri: book.imageLinks.thumbnail }} style={styles.image} />
                     :
                     <View style={styles.icon_image}><Icon name="book" size={40} /></View>
             }
             <View style={styles.info_title}>
-                <Text style={styles.title}>{`${book.volumeInfo.title.length > 25 ? book.volumeInfo.title.slice(0, 28) + '...' : book.volumeInfo.title} `}</Text>
-                <Text style={styles.authors}>{book.volumeInfo.authors}</Text>
+                <Text style={styles.title}>{`${book.title.length > 25 ? book.title.slice(0, 28) + '...' : book.title} `}</Text>
+                <Text style={styles.authors}>{`${book.authors.length > 2 ? book.authors.slice(0, 2) + '...' : book.authors}`}</Text>
             </View>
 
         </View>

@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { View, Text } from 'react-native'
 import auth from "@react-native-firebase/auth"
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import HomeHeader from '../../components/HomeCard/HomeHeader'
 import styles from "./Home.style"
+
 const Home = ({ navigation }) => {
+
     const searchbook = () => {
         navigation.navigate("SearchBookPage")
     }

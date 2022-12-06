@@ -43,7 +43,7 @@ const SearchBook = ({ navigation }) => {
         fetch()
 
     }, [text])
-    const renderSearch = ({ item }) => <SearchBookCard book={item} handleSelectedBook={() => handleSelectedBook(item)} />
+    const renderSearch = ({ item }) => <SearchBookCard book={item} handleSelectedBook={() => handleSelectedBook(item.volumeInfo)} />
     return (
         <View style={styles.container}>
             <View style={styles.input_container}>

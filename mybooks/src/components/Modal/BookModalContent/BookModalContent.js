@@ -15,10 +15,10 @@ const BookModalContent = ({ visible, onClose, onSend, book, onSelectCategory }) 
             onBackButtonPress={onClose}>
             <View style={styles.container}>
                 {
-                    book.volumeInfo.imageLinks ? <Image source={{ uri: book.volumeInfo.imageLinks?.thumbnail }} style={styles.image} />
+                    book.imageLinks ? <Image source={{ uri: book.imageLinks?.thumbnail }} style={styles.image} />
                         : <View style={styles.icon_image}><Icon name="book" size={40} /></View>
                 }
-                <Text style={styles.title}>{book.volumeInfo.title}</Text>
+                <Text style={styles.title}>{book.title}</Text>
                 <View style={styles.button_container}>
                     <Button text="Okuyacağım" theme="selectCategory" onPress={() => onSelectCategory("willread")} />
                     <Button text="Okudum" theme="selectCategory" onPress={() => onSelectCategory("read")} />

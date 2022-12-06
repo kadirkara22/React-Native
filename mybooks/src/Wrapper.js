@@ -1,13 +1,15 @@
 import React from 'react'
 import Router from './Router'
 import UserInfoContextProvider from './context/UserInfoContext'
+import BookContextProvider from './context/BookContext'
+
 
 export default () => {
     return (
         <UserInfoContextProvider>
-
-            <Router />
-
+            <BookContextProvider>
+                <Router />
+            </BookContextProvider>
         </UserInfoContextProvider>
     )
 }

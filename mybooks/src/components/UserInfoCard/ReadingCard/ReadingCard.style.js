@@ -22,10 +22,17 @@ export default StyleSheet.create({
         width: 50,
         height: 75,
         borderRadius: 10,
-        backgroundColor: "yellow"
     },
     now_reading_info: {
         paddingHorizontal: 5
+    },
+    icon_image: {
+        width: 50,
+        height: 75,
+        borderRadius: 10,
+        backgroundColor: "#eeee",
+        justifyContent: "center",
+        alignItems: "center"
     },
     now_reading_name: {
 

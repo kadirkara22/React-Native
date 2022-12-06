@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { View, Text, ScrollView } from 'react-native'
 import auth from "@react-native-firebase/auth"
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -10,10 +10,10 @@ import Mypage from './Mypage'
 import MyComments from './MyComments'
 import MenuHeader from '../../components/UserInfoCard/MenuHeader'
 import { UserInfoContext } from '../../context/UserInfoContext'
-const UserInfo = () => {
+
+const UserInfo = ({ navigation }) => {
     const { userInfo } = useContext(UserInfoContext)
-    // const [{ fullName }] = userInfo
-    console.log(userInfo)
+    const [{ fullName }] = userInfo
     const menus = [
         { name: "Kitaplık" },
         { name: "Duvar" },
@@ -23,14 +23,22 @@ const UserInfo = () => {
     const handleMenuClick = (name) => {
         setActive(name)
     }
+
+    const handleSelectedBook = (book, page) => {
+        navigation.navigate("SelectedBookPage", { book, page })
+    }
+    const handleSelectValue = (select) => {
+        navigation.navigate("UserValuesPage", { select })
+    }
+
     return (
         <ScrollView style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.title}>{userInfo[0]?.fullName}</Text>
+                <Text style={styles.title}>{fullName}</Text>
                 <Icon name="logout" size={30} color="black" onPress={() => auth().signOut()} />
             </View>
             <UserProfileInfoCard />
-            <InfoValues />
+            <InfoValues handleSelectValue={handleSelectValue} />
             <View style={styles.menu_container}>
                 {
                     menus.map(({ name }) => (
@@ -39,7 +47,7 @@ const UserInfo = () => {
                 }
             </View>
             {
-                active === "Kitaplık" ? <MyLibrary />
+                active === "Kitaplık" ? <MyLibrary userInfo={userInfo} handleSelectedBook={handleSelectedBook} />
                     : active === "Duvar" ? <Mypage />
                         : <MyComments />
 
