@@ -1,21 +1,19 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import auth from "@react-native-firebase/auth"
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import UserProfileInfoCard from "../../components/UserInfoCard/UserProfileInfoCard"
-import InfoValues from "../../components/UserInfoCard/InfoValues"
-import styles from "./UserInfo.style"
-import MyLibrary from './MyLibrary'
-import Mypage from './Mypage'
-import MyComments from './MyComments'
-import MenuHeader from '../../components/UserInfoCard/MenuHeader'
-import { UserInfoContext } from '../../context/UserInfoContext'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import UserProfileInfoCard from "../../../components/UserInfoCard/UserProfileInfoCard"
+import InfoValues from "../../../components/UserInfoCard/InfoValues"
+import styles from "./ShowSelectUser.style"
+import MyLibrary from '../MyLibrary'
+import Mypage from '../Mypage'
+import MyComments from '../MyComments'
+import MenuHeader from '../../../components/UserInfoCard/MenuHeader'
+import { UserInfoContext } from '../../../context/UserInfoContext'
 
-const UserInfo = ({ navigation }) => {
-    const { userInfo } = useContext(UserInfoContext)
-
-
-
+const UserInfo = ({ navigation, route }) => {
+    const { userInfo, previousUser } = route.params
+    console.log(route.params)
     const menus = [
         { name: "Kitaplık" },
         { name: "Duvar" },
@@ -30,15 +28,16 @@ const UserInfo = ({ navigation }) => {
         navigation.navigate("SelectedBookPage", { book, page })
     }
     const handleSelectValue = (select) => {
-        navigation.navigate("UserValuesPage", { userInfo, select })
+        navigation.navigate("UserValuesPage", { userInfo, select, previousUser })
     }
-
+    const handleBackPage = () => {
+        navigation.navigate("UserValuesPage", { userInfo: previousUser })
+    }
     return (
-        <ScrollView style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.title}>{userInfo[0].fullName}</Text>
-                <Icon name="logout" size={30} color="black" onPress={() => auth().signOut()} />
-            </View>
+        <ScrollView style={styles.container} >
+            <TouchableOpacity style={styles.header} onPress={handleBackPage}>
+                <Icon name="keyboard-arrow-left" size={30} color="black" />
+            </TouchableOpacity>
             <UserProfileInfoCard userInfo={userInfo} />
             <InfoValues handleSelectValue={handleSelectValue} />
             <View style={styles.menu_container}>

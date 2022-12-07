@@ -12,7 +12,7 @@ const SelectCategory = ({ book }) => {
     const handleInputToggle = () => {
         setInputModalVisible(!inputModalVisible)
     }
-    console.log(book)
+
     const handlelistWillRead = (title) => {
         const [{ id }] = userInfo
         if (title == "willread") {

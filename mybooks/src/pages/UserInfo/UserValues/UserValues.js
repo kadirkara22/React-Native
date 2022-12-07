@@ -9,8 +9,9 @@ import { UserInfoContext } from '../../../context/UserInfoContext'
 
 import styles from "./UserValues.style"
 const UserValues = ({ navigation, route }) => {
-    const { userInfo } = useContext(UserInfoContext)
-    const { select } = route.params
+    const { userMail } = useContext(UserInfoContext)
+    const { select, userInfo, previousUser } = route.params
+    console.log(route.params)
     const menus = [
         { name: "Takip Edilen" },
         { name: "Takipçileri" },
@@ -21,7 +22,18 @@ const UserValues = ({ navigation, route }) => {
         setActive(name)
     }
     const handleBack = () => {
-        navigation.goBack()
+        if (userInfo[0].email === userMail) {
+            navigation.navigate("UserInfoPage")
+            return
+        }
+
+        navigation.navigate("ShowSelectUserPage", { userInfo, previousUser })
+
+
+    }
+    const handleUserPage = (user) => {
+        navigation.navigate("ShowSelectUserPage", { userInfo: user, select, previousUser: userInfo })
+
     }
 
     return (
@@ -49,7 +61,7 @@ const UserValues = ({ navigation, route }) => {
                 active === "Takip Edilen" ? <FollowedsCard />
                     : active === "Takipçileri" ? <FollowersCard />
                         :
-                        <TotalUsersCard />
+                        <TotalUsersCard userInfo={userInfo} handleUserPage={handleUserPage} />
             }
 
 

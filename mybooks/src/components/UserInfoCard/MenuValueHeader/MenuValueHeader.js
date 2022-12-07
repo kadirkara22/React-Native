@@ -5,7 +5,7 @@ const MenuValueHeader = ({ name, active, handleMenuClick }) => {
     const isActive = active === name;
     return (
         <View style={styles.container}>
-            <Text style={isActive ? styles.isActive : styles.myprofile} onPress={() => handleMenuClick(name)}>{name}</Text>
+            <Text style={isActive ? styles.isActive : styles.title} onPress={() => handleMenuClick(name)}>{name}</Text>
 
         </View>
     )

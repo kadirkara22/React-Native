@@ -10,10 +10,9 @@ import { UserInfoContext } from '../../../context/UserInfoContext';
 import parseContentData from '../../../utils/parseContentData';
 import ReadingCard from '../ReadingCard';
 
-const UserProfileInfoCard = () => {
+const UserProfileInfoCard = ({ userInfo }) => {
 
-    const { userInfo, backgroundProfileImageChange, profileImageChange, setBackgroundProfileImage, setProfileImage } = useContext(UserInfoContext)
-
+    const { backgroundProfileImageChange, profileImageChange, setBackgroundProfileImage, setProfileImage } = useContext(UserInfoContext)
 
     const [{ backgroundProfileImage, profileImage, fullName, userName, date }] = userInfo
 
@@ -101,7 +100,7 @@ const UserProfileInfoCard = () => {
             <TouchableOpacity onPress={() => handleImage("Kapak")} style={styles.coverImage}>
                 {
                     backgroundProfileImage != "" ?
-                        <Image source={{ uri: backgroundProfileImageChange !== "" ? backgroundProfileImageChange : backgroundProfileImage }}
+                        <Image source={{ uri: backgroundProfileImage !== "" ? backgroundProfileImage : backgroundProfileImageChange }}
                             style={styles.backgroundImage}
                             resizeMode={'cover'} />
                         :
@@ -112,7 +111,7 @@ const UserProfileInfoCard = () => {
             <TouchableOpacity onPress={() => handleImage("Profil")} style={styles.profileImage}>
                 {
                     profileImage != "" ?
-                        <Image source={{ uri: profileImageChange !== "" ? profileImageChange : profileImage }}
+                        <Image source={{ uri: profileImage !== "" ? profileImage : profileImageChange }}
                             style={styles.profileImage_value}
                             resizeMode={'contain'}
                         />

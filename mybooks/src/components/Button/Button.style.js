@@ -101,4 +101,42 @@ export default {
 
         }
     }),
+    follow: StyleSheet.create({
+        container: {
+            ...base_style.container,
+            paddingVertical: 10,
+            marginRight: 10,
+            paddingHorizontal: 20,
+            backgroundColor: "#039be5",
+            borderRadius: 30
+
+        },
+        title: {
+            ...base_style.title,
+            fontSize: 17,
+            color: "white",
+            fontWeight: "bold"
+
+        }
+    }),
+    unfollow: StyleSheet.create({
+        container: {
+            ...base_style.container,
+            paddingVertical: 10,
+            marginRight: 10,
+            paddingHorizontal: 20,
+            backgroundColor: "#eeeee",
+            borderRadius: 30
+
+        },
+        title: {
+            ...base_style.title,
+            fontSize: 17,
+            color: "black",
+            fontWeight: "bold"
+
+        }
+    }),
+
+
 }

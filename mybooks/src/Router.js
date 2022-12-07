@@ -15,6 +15,7 @@ import SearchBook from './pages/SearchBook';
 import Book from './pages/Book';
 import { UserInfoContext } from './context/UserInfoContext';
 import UserValues from './pages/UserInfo/UserValues';
+import ShowSelectUser from './pages/UserInfo/ShowSelectUser';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -55,6 +56,7 @@ export default function App() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="UserInfoPage" component={UserInfo} />
         <Stack.Screen name="UserValuesPage" component={UserValues} />
+        <Stack.Screen name="ShowSelectUserPage" component={ShowSelectUser} />
       </Stack.Navigator>
     )
   }

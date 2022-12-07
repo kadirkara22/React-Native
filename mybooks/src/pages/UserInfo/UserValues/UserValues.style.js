@@ -24,7 +24,8 @@ export default StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 30,
-        marginRight: 10
+        marginRight: 10,
+        resizeMode: "contain"
     },
     fullName: {
         color: "black",
@@ -33,10 +34,9 @@ export default StyleSheet.create({
     },
     menu_container: {
         flexDirection: "row",
-        paddingVertical: 10,
-        paddingHorizontal: 15,
         borderBottomWidth: 1,
         borderBottomColor: "#e0e0e0",
+
 
     }
 

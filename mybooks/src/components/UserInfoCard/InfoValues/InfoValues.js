@@ -19,7 +19,7 @@ const InfoValues = ({ handleSelectValue }) => {
                 <Text style={styles.value}>4</Text>
                 <Text style={styles.followers}> Takipçi</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.container_info} onPress={handleSelectValue}>
+            <TouchableOpacity style={styles.container_info} onPress={() => { }}>
                 <Text style={styles.value}>10</Text>
                 <Text style={styles.comments}> Yorum</Text>
             </TouchableOpacity>
