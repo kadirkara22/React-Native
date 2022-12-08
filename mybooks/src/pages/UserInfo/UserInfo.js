@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { View, Text, ScrollView } from 'react-native'
 import auth from "@react-native-firebase/auth"
+import database from "@react-native-firebase/database"
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import UserProfileInfoCard from "../../components/UserInfoCard/UserProfileInfoCard"
 import InfoValues from "../../components/UserInfoCard/InfoValues"
@@ -13,8 +14,6 @@ import { UserInfoContext } from '../../context/UserInfoContext'
 
 const UserInfo = ({ navigation }) => {
     const { userInfo } = useContext(UserInfoContext)
-
-
 
     const menus = [
         { name: "Kitaplık" },
@@ -30,16 +29,37 @@ const UserInfo = ({ navigation }) => {
         navigation.navigate("SelectedBookPage", { book, page })
     }
     const handleSelectValue = (select) => {
-        navigation.navigate("UserValuesPage", { userInfo, select })
+        navigation.navigate("UserValuesPage", { userInfo, select, handlefollowedUser })
     }
 
+
+
+    const handlefollowedUser = (followUser) => {
+        handleFollow(followUser)
+        handlefollower(followUser)
+    }
+
+    const handleFollow = (followed) => {
+        const [{ id }] = userInfo
+        const newReference = database().ref(`users/${id}/followeds`).push();
+        newReference
+            .set({ followed })
+            .then(() => console.log('Data updated.'));
+    }
+    const handlefollower = (follower) => {
+        const [{ id }] = follower
+        const newReference = database().ref(`users/${id}/followers`).push();
+        newReference
+            .set({ follower })
+            .then(() => console.log('Data updated.'));
+    }
     return (
         <ScrollView style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.title}>{userInfo[0].fullName}</Text>
+                <Text style={styles.title}>{userInfo && userInfo[0].fullName}</Text>
                 <Icon name="logout" size={30} color="black" onPress={() => auth().signOut()} />
             </View>
-            <UserProfileInfoCard userInfo={userInfo} />
+            <UserProfileInfoCard userInfo={userInfo} handleSelectedBook={handleSelectedBook} />
             <InfoValues handleSelectValue={handleSelectValue} />
             <View style={styles.menu_container}>
                 {

@@ -12,8 +12,9 @@ import MenuHeader from '../../../components/UserInfoCard/MenuHeader'
 import { UserInfoContext } from '../../../context/UserInfoContext'
 
 const UserInfo = ({ navigation, route }) => {
-    const { userInfo, previousUser } = route.params
-    console.log(route.params)
+    const { user, userInfo, mainUser } = route.params
+    console.log(mainUser)
+
     const menus = [
         { name: "Kitaplık" },
         { name: "Duvar" },
@@ -28,17 +29,19 @@ const UserInfo = ({ navigation, route }) => {
         navigation.navigate("SelectedBookPage", { book, page })
     }
     const handleSelectValue = (select) => {
-        navigation.navigate("UserValuesPage", { userInfo, select, previousUser })
+
+        navigation.push("UserValuesPage", { select, userInfo: user, mainUser: !mainUser ? userInfo : mainUser })
+
     }
     const handleBackPage = () => {
-        navigation.navigate("UserValuesPage", { userInfo: previousUser })
+        navigation.goBack()
     }
     return (
         <ScrollView style={styles.container} >
             <TouchableOpacity style={styles.header} onPress={handleBackPage}>
                 <Icon name="keyboard-arrow-left" size={30} color="black" />
             </TouchableOpacity>
-            <UserProfileInfoCard userInfo={userInfo} />
+            <UserProfileInfoCard userInfo={user} />
             <InfoValues handleSelectValue={handleSelectValue} />
             <View style={styles.menu_container}>
                 {
@@ -48,7 +51,7 @@ const UserInfo = ({ navigation, route }) => {
                 }
             </View>
             {
-                active === "Kitaplık" ? <MyLibrary userInfo={userInfo} handleSelectedBook={handleSelectedBook} />
+                active === "Kitaplık" ? <MyLibrary userInfo={user} handleSelectedBook={handleSelectedBook} />
                     : active === "Duvar" ? <Mypage />
                         : <MyComments />
 

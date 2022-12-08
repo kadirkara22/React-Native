@@ -4,7 +4,7 @@ import database from "@react-native-firebase/database"
 import styles from "./TotalUsersCard.style"
 import parseContentData from '../../../utils/parseContentData'
 import UsersCard from './UsersCard'
-const TotalUsersCard = ({ userInfo, handleUserPage }) => {
+const TotalUsersCard = ({ userInfo, handleUserPage, handlefollowedUser }) => {
     const [userList, setUserList] = useState([])
 
 
@@ -21,7 +21,7 @@ const TotalUsersCard = ({ userInfo, handleUserPage }) => {
     }, [])
 
 
-    const renderUsers = ({ item }) => <UsersCard user={item} handleUserPage={handleUserPage} />
+    const renderUsers = ({ item }) => <UsersCard user={item} handleUserPage={handleUserPage} handlefollowedUser={handlefollowedUser} />
     return (
         <View>
             <FlatList

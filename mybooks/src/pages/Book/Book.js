@@ -1,7 +1,8 @@
 import React from 'react'
-import { TouchableOpacity, View } from 'react-native'
+import { ScrollView, TouchableOpacity, View } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import BookCardHeader from '../../components/BookCard/BookCardHeader'
+import BookInfo from '../../components/BookCard/BookInfo'
 import SelectCategory from '../../components/BookCard/SelectCategory'
 import styles from "./Book.style"
 const Book = ({ route, navigation }) => {
@@ -14,13 +15,14 @@ const Book = ({ route, navigation }) => {
         navigation.goBack()
     }
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <TouchableOpacity style={styles.arrow_back} onPress={handleBack}>
                 <Icon name="keyboard-arrow-left" size={30} color="black" />
             </TouchableOpacity>
             <BookCardHeader book={book} />
             <SelectCategory book={book} />
-        </View>
+            <BookInfo book={book} />
+        </ScrollView>
     )
 }
 

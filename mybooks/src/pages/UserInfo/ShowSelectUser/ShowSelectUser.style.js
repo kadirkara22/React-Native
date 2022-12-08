@@ -9,6 +9,7 @@ export default StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         padding: 10,
+
     },
     title: {
         color: "black",

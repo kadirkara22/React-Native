@@ -10,7 +10,7 @@ import { UserInfoContext } from '../../../context/UserInfoContext';
 import parseContentData from '../../../utils/parseContentData';
 import ReadingCard from '../ReadingCard';
 
-const UserProfileInfoCard = ({ userInfo }) => {
+const UserProfileInfoCard = ({ userInfo, handleSelectedBook }) => {
 
     const { backgroundProfileImageChange, profileImageChange, setBackgroundProfileImage, setProfileImage } = useContext(UserInfoContext)
 
@@ -124,7 +124,7 @@ const UserProfileInfoCard = ({ userInfo }) => {
                 <Text style={styles.username}>{`@${userName}`}</Text>
                 <Text style={styles.date}>{formattedDates} tarihinde katıldı</Text>
                 <Text style={styles.now_reading_title}>Şu anda okuduğu kitap</Text>
-                <ReadingCard userInfo={userInfo} />
+                <ReadingCard userInfo={userInfo} handleSelectedBook={handleSelectedBook} />
             </View>
 
         </View>

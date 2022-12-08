@@ -1,17 +1,19 @@
 import React, { useContext, useState } from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import FollowedsCard from '../../../components/UserInfoCard/FollowedsCard'
-import FollowersCard from '../../../components/UserInfoCard/FollowersCard'
+import database from "@react-native-firebase/database"
 import MenuValueHeader from '../../../components/UserInfoCard/MenuValueHeader/MenuValueHeader'
 import TotalUsersCard from '../../../components/UserInfoCard/TotalUsersCard'
 import { UserInfoContext } from '../../../context/UserInfoContext'
 
 import styles from "./UserValues.style"
+
+import TotalFollowersCard from '../../../components/UserInfoCard/TotalFollowersCard'
+import TotalFollowedsCard from '../../../components/UserInfoCard/TotalFollowedsCard'
 const UserValues = ({ navigation, route }) => {
-    const { userMail } = useContext(UserInfoContext)
-    const { select, userInfo, previousUser } = route.params
-    console.log(route.params)
+
+    const { select, userInfo, mainUser, handlefollowedUser } = route.params
+
     const menus = [
         { name: "Takip Edilen" },
         { name: "Takipçileri" },
@@ -22,19 +24,16 @@ const UserValues = ({ navigation, route }) => {
         setActive(name)
     }
     const handleBack = () => {
-        if (userInfo[0].email === userMail) {
-            navigation.navigate("UserInfoPage")
-            return
-        }
-
-        navigation.navigate("ShowSelectUserPage", { userInfo, previousUser })
+        navigation.goBack()
 
 
     }
     const handleUserPage = (user) => {
-        navigation.navigate("ShowSelectUserPage", { userInfo: user, select, previousUser: userInfo })
+        navigation.push("ShowSelectUserPage", { user, select, userInfo, mainUser })
+
 
     }
+
 
     return (
         <View style={styles.container}>
@@ -58,10 +57,10 @@ const UserValues = ({ navigation, route }) => {
                 }
             </View>
             {
-                active === "Takip Edilen" ? <FollowedsCard />
-                    : active === "Takipçileri" ? <FollowersCard />
+                active === "Takip Edilen" ? <TotalFollowedsCard userInfo={userInfo} />
+                    : active === "Takipçileri" ? <TotalFollowersCard handlefollowedUser={handlefollowedUser} userInfo={userInfo} />
                         :
-                        <TotalUsersCard userInfo={userInfo} handleUserPage={handleUserPage} />
+                        <TotalUsersCard userInfo={userInfo} handleUserPage={handleUserPage} handlefollowedUser={handlefollowedUser} />
             }
 
 
