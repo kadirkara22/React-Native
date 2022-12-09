@@ -6,6 +6,7 @@ import parseContentData from '../../../utils/parseContentData'
 import UsersCard from './UsersCard'
 const TotalUsersCard = ({ userInfo, handleUserPage, handlefollowedUser }) => {
     const [userList, setUserList] = useState([])
+    const [followedsList, setFollowedsList] = useState([])
 
 
     useEffect(() => {
@@ -21,7 +22,19 @@ const TotalUsersCard = ({ userInfo, handleUserPage, handlefollowedUser }) => {
     }, [])
 
 
-    const renderUsers = ({ item }) => <UsersCard user={item} handleUserPage={handleUserPage} handlefollowedUser={handlefollowedUser} />
+
+    useEffect(() => {
+        const [{ id }] = userInfo
+        database().ref(`users/${id}/followeds`).on('value', snapshot => {
+            const contentData = snapshot.val();
+            const parsedData = parseContentData(contentData || {})
+            setFollowedsList(parsedData)
+            //console.log(parsedData)
+        })
+    }, [])
+
+
+    const renderUsers = ({ item }) => <UsersCard user={item} handleUserPage={handleUserPage} handlefollowedUser={handlefollowedUser} followedsList={followedsList} />
     return (
         <View>
             <FlatList

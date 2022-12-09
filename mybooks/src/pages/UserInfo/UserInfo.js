@@ -29,30 +29,12 @@ const UserInfo = ({ navigation }) => {
         navigation.navigate("SelectedBookPage", { book, page })
     }
     const handleSelectValue = (select) => {
-        navigation.navigate("UserValuesPage", { userInfo, select, handlefollowedUser })
+        navigation.navigate("UserValuesPage", { userInfo, select })
     }
 
 
 
-    const handlefollowedUser = (followUser) => {
-        handleFollow(followUser)
-        handlefollower(followUser)
-    }
 
-    const handleFollow = (followed) => {
-        const [{ id }] = userInfo
-        const newReference = database().ref(`users/${id}/followeds`).push();
-        newReference
-            .set({ followed })
-            .then(() => console.log('Data updated.'));
-    }
-    const handlefollower = (follower) => {
-        const [{ id }] = follower
-        const newReference = database().ref(`users/${id}/followers`).push();
-        newReference
-            .set({ follower })
-            .then(() => console.log('Data updated.'));
-    }
     return (
         <ScrollView style={styles.container}>
             <View style={styles.header}>
@@ -60,7 +42,7 @@ const UserInfo = ({ navigation }) => {
                 <Icon name="logout" size={30} color="black" onPress={() => auth().signOut()} />
             </View>
             <UserProfileInfoCard userInfo={userInfo} handleSelectedBook={handleSelectedBook} />
-            <InfoValues handleSelectValue={handleSelectValue} />
+            <InfoValues handleSelectValue={handleSelectValue} userInfo={userInfo} />
             <View style={styles.menu_container}>
                 {
                     menus.map(({ name }) => (

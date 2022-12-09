@@ -1,12 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import database from "@react-native-firebase/database"
 import styles from "./UsersCard.style"
 import Button from "../../../Button"
-const UsersCard = ({ user, handleUserPage, handlefollowedUser }) => {
-    const [followed, setFollowed] = useState(false)
+const UsersCard = ({ user, handleUserPage, handlefollowedUser, followedsList }) => {
+    const [isFollowed, setIsFollowed] = useState({})
 
 
+
+    const userFollowedUser = (user) => {
+        handlefollowedUser(user)
+
+
+    }
 
     return (
         <View style={styles.container}>
@@ -17,7 +23,7 @@ const UsersCard = ({ user, handleUserPage, handlefollowedUser }) => {
                     <Text style={styles.username}>@{user.userName}</Text>
                 </View>
             </TouchableOpacity>
-            <Button text="Takip Et" theme={followed ? "unfollow" : "follow"} onPress={() => handlefollowedUser([user])} />
+            <Button text={user?.isfollowed ? "Takiptesin" : "Takip Et"} theme={user?.isfollowed ? "follow" : "unfollow"} onPress={() => userFollowedUser([user])} />
         </View>
     )
 }

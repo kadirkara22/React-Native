@@ -26,8 +26,30 @@ const UserInfoContextProvider = (props) => {
 
     }, [userMail])
 
+    const handlefollowedUser = (followUser) => {
+        handleFollow(followUser)
+        handlefollower(followUser)
+    }
+
+    const handleFollow = (followed) => {
+        const [{ id }] = userInfo
+        const [followedUser] = followed
+        const newReference = database().ref(`users/${id}/followeds`).push();
+        newReference
+            .set({ followedUser, followed: true })
+            .then(() => console.log('Data updated.'));
+    }
+    const handlefollower = (follower) => {
+        const [followerUser] = userInfo
+        const newReference = database().ref(`users/${follower[0].id}/followers`).push();
+        newReference
+            .set({ followerUser })
+            .then(() => console.log('Data updated.'));
+    }
+
+
     const methods = {
-        userInfo, setUserInfo, userMail, setUserMail,
+        userInfo, handlefollowedUser, setUserInfo, userMail, setUserMail,
         backgroundProfileImageChange, setBackgroundProfileImage, profileImageChange, setProfileImage
     }
 

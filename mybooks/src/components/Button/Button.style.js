@@ -125,7 +125,7 @@ export default {
             paddingVertical: 10,
             marginRight: 10,
             paddingHorizontal: 20,
-            backgroundColor: "#eeeee",
+            backgroundColor: "#e0e0e0",
             borderRadius: 30
 
         },

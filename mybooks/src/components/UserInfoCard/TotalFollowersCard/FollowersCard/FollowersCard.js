@@ -4,16 +4,22 @@ import Button from '../../../Button'
 import styles from "./FollowersCard.style"
 const FollowersCard = ({ handlefollowedUser, handleUserPage, user }) => {
     const [followed, setFollowed] = useState(false)
+
+    const userFollowedUser = (user) => {
+        handlefollowedUser(user)
+        setFollowed(true)
+    }
+
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={() => handleUserPage([user])} style={styles.container_touch}>
-                <Image source={{ uri: user.fol.profileImage }} style={styles.image} />
+            <TouchableOpacity onPress={() => handleUserPage([user?.followerUser])} style={styles.container_touch}>
+                <Image source={{ uri: user?.followerUser?.profileImage }} style={styles.image} />
                 <View style={styles.info}>
-                    <Text style={styles.fullname}>{user.fullName}</Text>
-                    <Text style={styles.username}>@{user.userName}</Text>
+                    <Text style={styles.fullname}>{user?.followerUser?.fullName}</Text>
+                    <Text style={styles.username}>@{user?.followerUser?.userName}</Text>
                 </View>
             </TouchableOpacity>
-            <Button text="Takip Et" theme={followed ? "unfollow" : "follow"} onPress={() => handlefollowedUser(user)} />
+            <Button text="Takip Et" theme={followed ? "unfollow" : "follow"} onPress={() => userFollowedUser([user])} />
         </View>
     )
 }

@@ -42,7 +42,7 @@ const UserInfo = ({ navigation, route }) => {
                 <Icon name="keyboard-arrow-left" size={30} color="black" />
             </TouchableOpacity>
             <UserProfileInfoCard userInfo={user} />
-            <InfoValues handleSelectValue={handleSelectValue} />
+            <InfoValues handleSelectValue={handleSelectValue} userInfo={user} />
             <View style={styles.menu_container}>
                 {
                     menus.map(({ name }) => (

@@ -11,8 +11,8 @@ import styles from "./UserValues.style"
 import TotalFollowersCard from '../../../components/UserInfoCard/TotalFollowersCard'
 import TotalFollowedsCard from '../../../components/UserInfoCard/TotalFollowedsCard'
 const UserValues = ({ navigation, route }) => {
-
-    const { select, userInfo, mainUser, handlefollowedUser } = route.params
+    const { handlefollowedUser } = useContext(UserInfoContext)
+    const { select, userInfo, mainUser } = route.params
 
     const menus = [
         { name: "Takip Edilen" },
@@ -57,8 +57,8 @@ const UserValues = ({ navigation, route }) => {
                 }
             </View>
             {
-                active === "Takip Edilen" ? <TotalFollowedsCard userInfo={userInfo} />
-                    : active === "Takipçileri" ? <TotalFollowersCard handlefollowedUser={handlefollowedUser} userInfo={userInfo} />
+                active === "Takip Edilen" ? <TotalFollowedsCard userInfo={userInfo} handleUserPage={handleUserPage} />
+                    : active === "Takipçileri" ? <TotalFollowersCard handlefollowedUser={handlefollowedUser} userInfo={userInfo} handleUserPage={handleUserPage} />
                         :
                         <TotalUsersCard userInfo={userInfo} handleUserPage={handleUserPage} handlefollowedUser={handlefollowedUser} />
             }
