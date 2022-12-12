@@ -6,12 +6,14 @@ export default StyleSheet.create({
         marginHorizontal: 5,
         justifyContent: "center",
         alignItems: "center",
+
     },
     container_touch: {
         flex: 1,
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
+
     },
     image: {
         width: 80,

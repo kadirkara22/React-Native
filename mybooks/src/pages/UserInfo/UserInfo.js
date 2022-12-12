@@ -38,7 +38,7 @@ const UserInfo = ({ navigation }) => {
     return (
         <ScrollView style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.title}>{userInfo && userInfo[0].fullName}</Text>
+                <Text style={styles.title}>{userInfo[0].fullName}</Text>
                 <Icon name="logout" size={30} color="black" onPress={() => auth().signOut()} />
             </View>
             <UserProfileInfoCard userInfo={userInfo} handleSelectedBook={handleSelectedBook} />

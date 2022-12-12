@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 import styles from "./FollowedsCard.style"
 import Button from "../../../Button"
 const FollowedsCard = ({ user, handleUserPage }) => {
-    console.log(user)
+
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={() => handleUserPage([user?.followedUser])} style={styles.container_touch}>

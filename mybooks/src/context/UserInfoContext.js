@@ -9,6 +9,7 @@ const UserInfoContextProvider = (props) => {
     const [backgroundProfileImageChange, setBackgroundProfileImage] = useState("")
     const [profileImageChange, setProfileImage] = useState("")
 
+
     useEffect(() => {
         database().ref('users/').on('value', snapshot => {
             const contentData = snapshot.val();
@@ -26,7 +27,12 @@ const UserInfoContextProvider = (props) => {
 
     }, [userMail])
 
+
+
+
+
     const handlefollowedUser = (followUser) => {
+
         handleFollow(followUser)
         handlefollower(followUser)
     }
@@ -50,7 +56,8 @@ const UserInfoContextProvider = (props) => {
 
     const methods = {
         userInfo, handlefollowedUser, setUserInfo, userMail, setUserMail,
-        backgroundProfileImageChange, setBackgroundProfileImage, profileImageChange, setProfileImage
+        backgroundProfileImageChange, setBackgroundProfileImage, profileImageChange, setProfileImage,
+
     }
 
     return (

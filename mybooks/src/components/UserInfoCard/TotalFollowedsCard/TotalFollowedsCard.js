@@ -4,19 +4,7 @@ import database from "@react-native-firebase/database"
 import parseContentData from '../../../utils/parseContentData'
 import FollowedsCard from './FollowedsCard'
 
-const TotalFollowedsCard = ({ userInfo, handleUserPage }) => {
-    const [followedsList, setFollowedsList] = useState([])
-
-
-    useEffect(() => {
-        const [{ id }] = userInfo
-        database().ref(`users/${id}/followeds`).on('value', snapshot => {
-            const contentData = snapshot.val();
-            const parsedData = parseContentData(contentData || {})
-            setFollowedsList(parsedData)
-            //console.log(parsedData)
-        })
-    }, [])
+const TotalFollowedsCard = ({ userInfo, handleUserPage, followedsList, followersList }) => {
 
 
     const renderUsers = ({ item }) => <FollowedsCard user={item} handleUserPage={handleUserPage} />

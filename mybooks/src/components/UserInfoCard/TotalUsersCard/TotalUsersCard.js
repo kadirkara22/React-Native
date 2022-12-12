@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { View, Text, FlatList } from 'react-native'
 import database from "@react-native-firebase/database"
 import styles from "./TotalUsersCard.style"
 import parseContentData from '../../../utils/parseContentData'
 import UsersCard from './UsersCard'
-const TotalUsersCard = ({ userInfo, handleUserPage, handlefollowedUser }) => {
+import { UserInfoContext } from '../../../context/UserInfoContext'
+const TotalUsersCard = ({ userInfo, handleUserPage, handlefollowedUser, followedsList, followersList }) => {
     const [userList, setUserList] = useState([])
-    const [followedsList, setFollowedsList] = useState([])
 
 
     useEffect(() => {
@@ -21,20 +21,7 @@ const TotalUsersCard = ({ userInfo, handleUserPage, handlefollowedUser }) => {
 
     }, [])
 
-
-
-    useEffect(() => {
-        const [{ id }] = userInfo
-        database().ref(`users/${id}/followeds`).on('value', snapshot => {
-            const contentData = snapshot.val();
-            const parsedData = parseContentData(contentData || {})
-            setFollowedsList(parsedData)
-            //console.log(parsedData)
-        })
-    }, [])
-
-
-    const renderUsers = ({ item }) => <UsersCard user={item} handleUserPage={handleUserPage} handlefollowedUser={handlefollowedUser} followedsList={followedsList} />
+    const renderUsers = ({ item }) => <UsersCard user={item} handleUserPage={handleUserPage} handlefollowedUser={handlefollowedUser} followedsList={followedsList} userInfo={userInfo} followersList={followersList} />
     return (
         <View>
             <FlatList

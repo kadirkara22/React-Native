@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import database from "@react-native-firebase/database"
@@ -10,7 +10,11 @@ import styles from "./UserValues.style"
 
 import TotalFollowersCard from '../../../components/UserInfoCard/TotalFollowersCard'
 import TotalFollowedsCard from '../../../components/UserInfoCard/TotalFollowedsCard'
+import parseContentData from '../../../utils/parseContentData'
 const UserValues = ({ navigation, route }) => {
+    const [followedsList, setFollowedsList] = useState([])
+    const [followersList, setFollowersList] = useState([])
+
     const { handlefollowedUser } = useContext(UserInfoContext)
     const { select, userInfo, mainUser } = route.params
 
@@ -33,7 +37,26 @@ const UserValues = ({ navigation, route }) => {
 
 
     }
+    useEffect(() => {
+        const [{ id }] = userInfo
+        database().ref(`users/${id}/followeds`).on('value', snapshot => {
+            const contentData = snapshot.val();
+            const parsedData = parseContentData(contentData || {})
+            setFollowedsList(parsedData)
 
+        })
+    }, [])
+
+
+    useEffect(() => {
+        const [{ id }] = userInfo
+        database().ref(`users/${id}/followers`).on('value', snapshot => {
+            const contentData = snapshot.val();
+            const parsedData = parseContentData(contentData || {})
+            setFollowersList(parsedData)
+            //console.log(parsedData)
+        })
+    }, [])
 
     return (
         <View style={styles.container}>
@@ -57,12 +80,11 @@ const UserValues = ({ navigation, route }) => {
                 }
             </View>
             {
-                active === "Takip Edilen" ? <TotalFollowedsCard userInfo={userInfo} handleUserPage={handleUserPage} />
-                    : active === "Takipçileri" ? <TotalFollowersCard handlefollowedUser={handlefollowedUser} userInfo={userInfo} handleUserPage={handleUserPage} />
+                active === "Takip Edilen" ? <TotalFollowedsCard userInfo={userInfo} handleUserPage={handleUserPage} followedsList={followedsList} followersList={followersList} />
+                    : active === "Takipçileri" ? <TotalFollowersCard handlefollowedUser={handlefollowedUser} userInfo={userInfo} handleUserPage={handleUserPage} followedsList={followedsList} followersList={followersList} />
                         :
-                        <TotalUsersCard userInfo={userInfo} handleUserPage={handleUserPage} handlefollowedUser={handlefollowedUser} />
+                        <TotalUsersCard userInfo={userInfo} handleUserPage={handleUserPage} handlefollowedUser={handlefollowedUser} followedsList={followedsList} followersList={followersList} />
             }
-
 
 
 
