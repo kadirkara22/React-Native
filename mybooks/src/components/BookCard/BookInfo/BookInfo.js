@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import styles from "./BookInfo.style"
 const BookInfo = ({ book }) => {
-    console.log(book)
+   
     return (
         <View style={styles.container}>
             <Text style={styles.container_title}>Hakkında</Text>

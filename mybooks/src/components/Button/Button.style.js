@@ -85,19 +85,63 @@ export default {
 
         }
     }),
-    icon_button: StyleSheet.create({
+    seclectedCategory: StyleSheet.create({
         container: {
             ...base_style.container,
             alignItems: "center",
             paddingVertical: 10,
             paddingHorizontal: 20,
-            alignSelf: "center"
+            backgroundColor: "#039be5",
+            alignSelf: "center",
+            borderRadius: 20,
+        
+        },
+        title: {
+            ...base_style.title,
+            color: "white",
+            fontSize: 16,
+            fontWeight:"bold"
+
+
+        }
+    }),
+     falseCategory: StyleSheet.create({
+        container: {
+            ...base_style.container,
+            alignItems: "center",
+            paddingVertical: 10,
+            paddingHorizontal: 20,
+            backgroundColor: "#e0e0e0",
+            alignSelf: "center",
+            borderRadius: 20,
+            borderWidth: 1,
+            borderColor: "#e0e0e0",
+        },
+        title: {
+            ...base_style.title,
+            color: "#eeee",
+            fontSize: 15,
+          
+
+        }
+    }),
+    icon_button: StyleSheet.create({
+        container: {
+            ...base_style.container,
+            flex:1,
+            alignItems: "center",
+            paddingVertical: 10,
+            paddingHorizontal: 35,
+            alignSelf: "center",
+           
+    
+           
 
         },
         title: {
             ...base_style.title,
             fontSize: 15,
-            color: "black"
+            color: "black",
 
         }
     }),
@@ -140,3 +184,4 @@ export default {
 
 
 }
+

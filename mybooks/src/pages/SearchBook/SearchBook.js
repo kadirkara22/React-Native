@@ -14,10 +14,10 @@ const SearchBook = ({ navigation }) => {
     const handleBack = () => {
         navigation.goBack()
     }
-
+ 
     const fetch = async () => {
         try {
-            await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${text}&key=AIzaSyB5pmLZMauoUp5FBABaBYyerzG8o_YufB8&maxResults=10`)
+            await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${text}&key=AIzaSyB5pmLZMauoUp5FBABaBYyerzG8o_YufB8&maxResults=15`)
                 .then((response) => {
                     setSearchBook(response.data.items)
                     setLoading(false)

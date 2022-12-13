@@ -17,6 +17,7 @@ export default StyleSheet.create({
         width: 70,
         height: 100,
         borderRadius: 10,
+
     },
     icon_image: {
         width: 70,
@@ -42,6 +43,8 @@ export default StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
         paddingVertical: 10,
+        
+       
     }
 
 })

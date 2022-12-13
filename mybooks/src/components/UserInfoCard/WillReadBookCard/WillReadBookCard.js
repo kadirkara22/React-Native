@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect,useContext } from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import database from "@react-native-firebase/database"
 import Icon from 'react-native-vector-icons/FontAwesome'
 import parseContentData from '../../../utils/parseContentData'
+import { BookContext } from '../../../context/BookContext'
 import styles from "./WillReadBookCard.style"
 const WillReadBookCard = ({ userInfo, handleSelectedBook }) => {
-    const [willReadBook, setWillReadBook] = useState([])
+   const { willReadBook, setWillReadBook } = useContext(BookContext)
     useEffect(() => {
         const [{ id }] = userInfo
         database().ref(`users/${id}/willread`).on('value', snapshot => {
             const contentData = snapshot.val();
             const parsedData = parseContentData(contentData || {})
             setWillReadBook(parsedData)
-            //console.log(parsedData)
-
+        
         })
     }, [])
 

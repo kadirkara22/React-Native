@@ -4,9 +4,12 @@ export const BookContext = React.createContext();
 const BookContextProvider = (props) => {
     const [readBook, setReadBook] = useState([])
     const [favoriBook, setFavoriBook] = useState([])
-
+    const [myLibraryBook, setMyLibrary] = useState([])
+    const [readingBook, setReadingBook] = useState([])
+     const [willReadBook, setWillReadBook] = useState([])
     const methods = {
-        readBook, setReadBook, favoriBook, setFavoriBook
+        readBook, setReadBook, favoriBook, setFavoriBook,myLibraryBook,
+         setMyLibrary,readingBook, setReadingBook,willReadBook, setWillReadBook
     }
 
     return (

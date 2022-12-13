@@ -15,7 +15,7 @@ const UsersCard = ({ user, handleUserPage, handlefollowedUser, followedsList, fo
         const index = followedsList.findIndex(item => item.followedUser.email === followedUser.email)
         if (index < 0) {
             handlefollowedUser(user)
-
+ 
 
         } else {
             handleDeleteFollowed(followedUser)
