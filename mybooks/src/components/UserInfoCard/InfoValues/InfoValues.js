@@ -26,7 +26,7 @@ const InfoValues = ({ handleSelectValue, userInfo }) => {
             const contentData = snapshot.val();
             const parsedData = parseContentData(contentData || {})
             setFollowersList(parsedData)
-            console.log(parsedData)
+            //console.log(parsedData)
         })
     }, [])
 

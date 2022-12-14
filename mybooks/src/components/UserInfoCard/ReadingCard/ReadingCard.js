@@ -23,7 +23,7 @@ const ReadingCard = ({ userInfo, handleSelectedBook }) => {
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.now_reading_container}>
             {
                 readingBook.map(item => (
-                    <TouchableOpacity style={styles.now_reading} key={item.id} onPress={() => handleSelectedBook(item.book, "UserInfoPage")}>
+                    <TouchableOpacity style={styles.now_reading} key={item.id} onPress={() => handleSelectedBook(item.book)}>
                         {
                             item.book.imageLinks?.thumbnail ?
 

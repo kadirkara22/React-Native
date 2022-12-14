@@ -11,22 +11,22 @@ import MyComments from '../MyComments'
 import MenuHeader from '../../../components/UserInfoCard/MenuHeader'
 import { UserInfoContext } from '../../../context/UserInfoContext'
 
-const UserInfo = ({ navigation, route }) => {
+const ShowSelectUser = ({ navigation, route }) => {
     const { user, userInfo, mainUser } = route.params
-    console.log(mainUser)
 
+console.log(route.params)
     const menus = [
         { name: "Kitaplık" },
         { name: "Duvar" },
         { name: "Yorumlar" },
-    ]
+    ] 
     const [active, setActive] = useState("Kitaplık")
     const handleMenuClick = (name) => {
         setActive(name)
-    }
-
-    const handleSelectedBook = (book, page) => {
-        navigation.navigate("SelectedBookPage", { book, page })
+    } 
+ 
+    const handleSelectedBook = (book) => {
+        navigation.navigate("SelectedBookPage", { book, page:"ShowSelectUserPage" })
     }
     const handleSelectValue = (select) => {
 
@@ -61,4 +61,4 @@ const UserInfo = ({ navigation, route }) => {
     )
 }
 
-export default UserInfo
+export default ShowSelectUser

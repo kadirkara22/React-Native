@@ -25,8 +25,8 @@ const UserInfo = ({ navigation }) => {
         setActive(name)
     }
 
-    const handleSelectedBook = (book, page) => {
-        navigation.navigate("SelectedBookPage", { book, page })
+    const handleSelectedBook = (book) => {
+        navigation.navigate("SelectedBookPage", { book, page:"UserInfoPage" })
     }
     const handleSelectValue = (select) => {
         navigation.navigate("UserValuesPage", { userInfo, select })

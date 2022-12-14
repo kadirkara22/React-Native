@@ -14,7 +14,6 @@ export default StyleSheet.create({
         margin: 10,
         paddingHorizontal: 10,
         borderRadius: 20,
-
         fontSize: 15
     },
     input_close: {

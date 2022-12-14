@@ -94,18 +94,18 @@ export default {
             backgroundColor: "#039be5",
             alignSelf: "center",
             borderRadius: 20,
-        
+
         },
         title: {
             ...base_style.title,
             color: "white",
             fontSize: 16,
-            fontWeight:"bold"
+            fontWeight: "bold"
 
 
         }
     }),
-     falseCategory: StyleSheet.create({
+    falseCategory: StyleSheet.create({
         container: {
             ...base_style.container,
             alignItems: "center",
@@ -121,21 +121,21 @@ export default {
             ...base_style.title,
             color: "#eeee",
             fontSize: 15,
-          
+
 
         }
     }),
     icon_button: StyleSheet.create({
         container: {
             ...base_style.container,
-            flex:1,
+            flex: 1,
             alignItems: "center",
             paddingVertical: 10,
             paddingHorizontal: 35,
             alignSelf: "center",
-           
-    
-           
+
+
+
 
         },
         title: {
@@ -177,6 +177,79 @@ export default {
             ...base_style.title,
             fontSize: 17,
             color: "black",
+            fontWeight: "bold"
+
+        }
+    }),
+
+    bookInfo: StyleSheet.create({
+        container: {
+            ...base_style.container,
+            paddingVertical: 10,
+            marginRight: 10,
+            paddingHorizontal: 20,
+            backgroundColor: "#e0e0e0",
+            borderRadius: 30
+
+        },
+        title: {
+            ...base_style.title,
+            fontSize: 17,
+            fontWeight: "bold"
+
+        }
+    }),
+    darkbookInfo: StyleSheet.create({
+        container: {
+            ...base_style.container,
+            paddingVertical: 10,
+            marginRight: 10,
+            paddingHorizontal: 20,
+            backgroundColor: "black",
+            borderRadius: 30
+
+        },
+        title: {
+            ...base_style.title,
+            fontSize: 17,
+            color: "white",
+            fontWeight: "bold"
+
+        }
+    }),
+    bookRaf: StyleSheet.create({
+        container: {
+            ...base_style.container,
+            paddingVertical: 10,
+            marginRight: 10,
+            paddingHorizontal: 20,
+            backgroundColor: "#e0e0e0",
+            borderRadius: 30
+
+        },
+        title: {
+            ...base_style.title,
+            fontSize: 17,
+
+            fontWeight: "bold"
+
+        }
+    }),
+
+    darkbookRaf: StyleSheet.create({
+        container: {
+            ...base_style.container,
+            paddingVertical: 10,
+            marginRight: 10,
+            paddingHorizontal: 20,
+            backgroundColor: "black",
+            borderRadius: 30
+
+        },
+        title: {
+            ...base_style.title,
+            fontSize: 17,
+            color: "white",
             fontWeight: "bold"
 
         }

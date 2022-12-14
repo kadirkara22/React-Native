@@ -9,10 +9,10 @@ const Book = ({ route, navigation }) => {
     const { book, page } = route.params
 
     const handleBack = () => {
-        if (page) {
+       if (page) {
             navigation.navigate(page)
         }
-        navigation.goBack()
+        navigation.goBack() 
     }
     return (
         <ScrollView style={styles.container}>

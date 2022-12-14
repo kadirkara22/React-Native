@@ -17,6 +17,7 @@ const UserValues = ({ navigation, route }) => {
 
     const { handlefollowedUser } = useContext(UserInfoContext)
     const { select, userInfo, mainUser } = route.params
+console.log(route.params)
 
     const menus = [
         { name: "Takip Edilen" },

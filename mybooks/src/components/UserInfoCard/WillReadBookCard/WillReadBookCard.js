@@ -28,23 +28,23 @@ const WillReadBookCard = ({ userInfo, handleSelectedBook }) => {
                     willReadBook.length < 10 ?
                         willReadBook.map(item => (
                             item.book.imageLinks?.thumbnail ?
-                                <TouchableOpacity onPress={() => handleSelectedBook(item.book, "UserInfoPage")} key={item.id}>
+                                <TouchableOpacity onPress={() => handleSelectedBook(item.book)} key={item.id}>
                                     <Image source={{ uri: item.book.imageLinks.thumbnail }} style={styles.image} />
                                 </TouchableOpacity>
                                 :
-                                <TouchableOpacity onPress={() => handleSelectedBook(item.book, "UserInfoPage")} key={item.id}>
+                                <TouchableOpacity onPress={() => handleSelectedBook(item.book)} key={item.id}>
                                     <View style={styles.icon_image}><Icon name="book" size={40} /></View>
                                 </TouchableOpacity>
-
-                        ))
+ 
+                        )) 
                         :
                         willReadBook.slice(0, 10).map(item => (
                             item.book.imageLinks?.thumbnail ?
-                                <TouchableOpacity onPress={() => handleSelectedBook(item.book, "UserInfoPage")} key={item.id}>
+                                <TouchableOpacity onPress={() => handleSelectedBook(item.book)} key={item.id}>
                                     <Image source={{ uri: item.book.imageLinks.thumbnail }} style={styles.image} />
                                 </TouchableOpacity>
                                 :
-                                <TouchableOpacity onPress={() => handleSelectedBook(item.book, "UserInfoPage")} key={item.id}>
+                                <TouchableOpacity onPress={() => handleSelectedBook(item.book)} key={item.id}>
                                     <View style={styles.icon_image}><Icon name="book" size={40} /></View>
                                 </TouchableOpacity>
                         ))
@@ -53,7 +53,7 @@ const WillReadBookCard = ({ userInfo, handleSelectedBook }) => {
             </View>
 
         </View>
-    )
+    ) 
 }
 
 export default WillReadBookCard

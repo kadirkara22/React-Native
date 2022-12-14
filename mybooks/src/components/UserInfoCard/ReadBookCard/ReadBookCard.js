@@ -29,22 +29,22 @@ const ReadBookCard = ({ userInfo, handleSelectedBook }) => {
                     readBook.length < 10 ?
                         readBook.map(item => (
                             item.book.imageLinks?.thumbnail ?
-                                <TouchableOpacity onPress={() => handleSelectedBook(item.book, "UserInfoPage")} key={item.id}>
+                                <TouchableOpacity onPress={() => handleSelectedBook(item.book)} key={item.id}>
                                     <Image source={{ uri: item.book.imageLinks.thumbnail }} style={styles.image} />
                                 </TouchableOpacity>
                                 :
-                                <TouchableOpacity onPress={() => handleSelectedBook(item.book, "UserInfoPage")} key={item.id}>
+                                <TouchableOpacity onPress={() => handleSelectedBook(item.book)} key={item.id}>
                                     <View style={styles.icon_image}><Icon name="book" size={40} /></View>
                                 </TouchableOpacity>
                         ))
                         :
                         readBook.slice(0, 10).map(item => (
                             item.book.imageLinks?.thumbnail ?
-                                <TouchableOpacity onPress={() => handleSelectedBook(item.book, "UserInfoPage")} key={item.id}>
+                                <TouchableOpacity onPress={() => handleSelectedBook(item.book)} key={item.id}>
                                     <Image source={{ uri: item.book.imageLinks.thumbnail }} style={styles.image} />
                                 </TouchableOpacity>
                                 :
-                                <TouchableOpacity onPress={() => handleSelectedBook(item.book, "UserInfoPage")} key={item.id}>
+                                <TouchableOpacity onPress={() => handleSelectedBook(item.book)} key={item.id}>
                                     <View style={styles.icon_image}><Icon name="book" size={40} /></View>
                                 </TouchableOpacity>
                         ))
