@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { View, Text } from 'react-native'
+import { BookContext } from '../../../../context/BookContext'
+import FavoriCard from './FavoriCard'
 
-const FavoriReadBookCard = () => {
+const FavoriReadBookCard = ({ handleBookToggle, bookModalVisible }) => {
+    const { favoriBook } = useContext(BookContext)
+
     return (
         <View>
-            <Text>FavoriReadBookCard</Text>
+            {
+                favoriBook.map(item => (
+                    <FavoriCard favoribook={item} key={item.id} handleBookToggle={handleBookToggle} bookModalVisible={bookModalVisible} />
+                ))
+            }
         </View>
     )
+
 }
 
 export default FavoriReadBookCard

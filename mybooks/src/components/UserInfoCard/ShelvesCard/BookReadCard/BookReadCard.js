@@ -1,17 +1,17 @@
 import React, { useContext } from 'react'
-import { View, Text, FlatList } from 'react-native'
+import { View } from 'react-native'
 import { BookContext } from '../../../../context/BookContext'
 import ReadCard from './ReadCard'
 
-const BookReadCard = () => {
+const BookReadCard = ({ handleBookToggle, bookModalVisible }) => {
     const { readBook } = useContext(BookContext)
-    const renderBook = ({ item }) => <ReadCard readbook={item} />
     return (
         <View>
-            <FlatList
-                data={readBook}
-                renderItem={renderBook}
-            />
+            {
+                readBook.map(item => (
+                    <ReadCard readbook={item} key={item.id} handleBookToggle={handleBookToggle} bookModalVisible={bookModalVisible} />
+                ))
+            }
         </View>
     )
 }

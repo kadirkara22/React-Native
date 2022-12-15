@@ -8,7 +8,7 @@ export default StyleSheet.create({
     image: {
         width: Dimensions.get("window").width / 5,
         height: Dimensions.get("window").height / 6,
-        borderRadius: 7,
+        borderRadius: 7
     },
     icon_image: {
         width: Dimensions.get("window").width / 5,
@@ -28,7 +28,7 @@ export default StyleSheet.create({
         color: "black",
         fontSize: 20,
         fontWeight: "bold",
-        paddingVertical: 5
+        paddingVertical: 10
     },
     authors: {
         fontSize: 17,

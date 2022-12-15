@@ -254,6 +254,58 @@ export default {
 
         }
     }),
+    wallread: StyleSheet.create({
+        container: {
+            ...base_style.container,
+            paddingVertical: 5,
+            marginRight: 10,
+            paddingHorizontal: 20,
+            backgroundColor: "#e0e0e0",
+            borderRadius: 30,
+            marginTop: 10,
+            width: Dimensions.get("window").width / 2.5,
+            alignItems: "center"
+
+        },
+        title: {
+            ...base_style.title,
+            fontSize: 17,
+            fontWeight: "bold"
+
+        }
+    }),
+    wallfavori: StyleSheet.create({
+        container: {
+            ...base_style.container,
+            backgroundColor: "#f5f5f5",
+            borderRadius: 20,
+            width: 50,
+            height: 35,
+            alignItems: "center",
+            marginRight: 10
+
+        },
+        title: {
+            ...base_style.title,
+
+
+        }
+    }),
+    wallcommon: StyleSheet.create({
+        container: {
+            ...base_style.container,
+            backgroundColor: "#f5f5f5",
+            borderRadius: 20,
+            width: 50,
+            height: 35,
+            alignItems: "center"
+        },
+        title: {
+            ...base_style.title,
+
+
+        }
+    }),
 
 
 }

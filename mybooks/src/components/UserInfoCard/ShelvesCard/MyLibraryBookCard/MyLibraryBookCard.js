@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { View, Text } from 'react-native'
+import { BookContext } from '../../../../context/BookContext'
+import MyLibraryCard from './MyLibraryCard'
 
 const MyLibraryBookCard = () => {
+    const { myLibraryBook } = useContext(BookContext)
     return (
         <View>
-            <Text>MyLibraryBookCard</Text>
+            {
+                myLibraryBook.map(item => (
+                    <MyLibraryCard mylibrarybook={item} key={item.id} />
+                ))
+            }
         </View>
     )
 }

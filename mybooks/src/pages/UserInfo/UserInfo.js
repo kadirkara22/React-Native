@@ -26,7 +26,7 @@ const UserInfo = ({ navigation }) => {
     }
 
     const handleSelectedBook = (book) => {
-        navigation.navigate("SelectedBookPage", { book, page:"UserInfoPage" })
+        navigation.navigate("SelectedBookPage", { book, page: "UserInfoPage" })
     }
     const handleSelectValue = (select) => {
         navigation.navigate("UserValuesPage", { userInfo, select })
@@ -36,7 +36,7 @@ const UserInfo = ({ navigation }) => {
 
 
     return (
-        <ScrollView style={styles.container}>
+        <ScrollView style={styles.container} >
             <View style={styles.header}>
                 <Text style={styles.title}>{userInfo[0].fullName}</Text>
                 <Icon name="logout" size={30} color="black" onPress={() => auth().signOut()} />

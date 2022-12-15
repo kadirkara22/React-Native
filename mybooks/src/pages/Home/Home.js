@@ -1,9 +1,8 @@
-import React, { useContext, useEffect } from 'react'
-import { View, Text } from 'react-native'
-import auth from "@react-native-firebase/auth"
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import React from 'react'
+import { View, } from 'react-native'
 import HomeHeader from '../../components/HomeCard/HomeHeader'
 import styles from "./Home.style"
+import TotalWall from '../../components/HomeCard/TotalWall'
 
 const Home = ({ navigation }) => {
 
@@ -13,7 +12,7 @@ const Home = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <HomeHeader onPress={searchbook} />
-            <Icon name="logout" size={30} color="black" onPress={() => auth().signOut()} />
+            <TotalWall />
         </View>
     )
 }

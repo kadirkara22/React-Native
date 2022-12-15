@@ -1,10 +1,17 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React, { useContext } from 'react'
+import { View } from 'react-native'
+import { BookContext } from '../../../../context/BookContext'
+import NowBookCard from './NowBookCard'
 
-const NowReadBookCard = () => {
+const NowReadBookCard = ({ handleBookToggle, bookModalVisible }) => {
+    const { readingBook } = useContext(BookContext)
     return (
         <View>
-            <Text>NowReadBookCard</Text>
+            {
+                readingBook.map(item => (
+                    <NowBookCard readingbook={item} key={item.id} handleBookToggle={handleBookToggle} bookModalVisible={bookModalVisible} />
+                ))
+            }
         </View>
     )
 }

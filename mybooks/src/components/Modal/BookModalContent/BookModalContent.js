@@ -1,80 +1,79 @@
-import React,{useContext,useState,useEffect} from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { View, Text, Image } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Modal from "react-native-modal";
 import Button from '../../Button';
 import { BookContext } from '../../../context/BookContext'
 import styles from "./BookModalContent.style"
-const BookModalContent = ({ visible, onClose, onSend, book,onSelectCategory,newReadBook,setNewReadBook,newReadingBook,setNewReadingBook,newWillReadBook,setNewWillReadBook }) => {
-const { favoriBook,myLibraryBook,readBook,readingBook,willReadBook} = useContext(BookContext)
-const [newFavoriBook,setNewFavoriBook]=useState()
-const [newMyLibraryBook,setNewMyLibraryBook]=useState()
+const BookModalContent = ({ visible, onClose, onSend, book, onSelectCategory }) => {
+    const { favoriBook, myLibraryBook, readBook, readingBook, willReadBook, newReadBook, setNewReadBook, newReadingBook, setNewReadingBook, newWillReadBook, setNewWillReadBook } = useContext(BookContext)
+    const [newFavoriBook, setNewFavoriBook] = useState()
+    const [newMyLibraryBook, setNewMyLibraryBook] = useState()
 
+    useEffect(() => {
+        const index = favoriBook.findIndex(item => item.book.title === book.title)
+        if (index < 0) {
+            setNewFavoriBook(book)
 
-useEffect(()=>{
-const index=favoriBook.findIndex(item=>item.book.title===book.title)
-if(index<0){
-   setNewFavoriBook(book)
-   
-}else{
-const newfavori=favoriBook.find(item=>item.book.title===book.title)
-  setNewFavoriBook(newfavori)
+        } else {
+            const newfavori = favoriBook.find(item => item.book.title === book.title)
+            setNewFavoriBook(newfavori)
 
-}
+        }
 
-},[favoriBook])
+    }, [favoriBook])
 
-useEffect(()=>{
-const index=myLibraryBook.findIndex(item=>item.book.title===book.title)
-if(index<0){
-   setNewMyLibraryBook(book)
-   
-}else{
-const newLibraryBook=myLibraryBook.find(item=>item.book.title===book.title)
-setNewMyLibraryBook(newLibraryBook)
+    useEffect(() => {
+        const index = myLibraryBook.findIndex(item => item.book.title === book.title)
+        if (index < 0) {
+            setNewMyLibraryBook(book)
 
-}
+        } else {
+            const newLibraryBook = myLibraryBook.find(item => item.book.title === book.title)
+            setNewMyLibraryBook(newLibraryBook)
 
-},[myLibraryBook])
+        }
 
-useEffect(()=>{
-const index=readBook.findIndex(item=>item.book.title===book.title)
-if(index<0){
-   setNewReadBook(book)
-   
-}else{
-const newReadBook=readBook.find(item=>item.book.title===book.title)
-setNewReadBook(newReadBook)
+    }, [myLibraryBook])
 
-}
+    useEffect(() => {
+        const index = readBook.findIndex(item => item.book.title === book.title)
+        if (index < 0) {
+            setNewReadBook(book)
 
-},[readBook])
+        } else {
+            const newReadBook = readBook.find(item => item.book.title === book.title)
+            setNewReadBook(newReadBook)
 
-useEffect(()=>{
-const index=readingBook.findIndex(item=>item.book.title===book.title)
-if(index<0){
-   setNewReadingBook(book)
-   
-}else{
-const newReadingBook=readingBook.find(item=>item.book.title===book.title)
-setNewReadingBook(newReadingBook)
+        }
 
-}
+    }, [readBook])
 
-},[readingBook])
+    useEffect(() => {
+        const index = readingBook.findIndex(item => item.book.title === book.title)
+        if (index < 0) {
+            setNewReadingBook(book)
 
-useEffect(()=>{
-const index=willReadBook.findIndex(item=>item.book.title===book.title)
-if(index<0){
-   setNewWillReadBook(book)
-   
-}else{
-const newReadingBook=willReadBook.find(item=>item.book.title===book.title)
-setNewWillReadBook(newReadingBook)
+        } else {
+            const newReadingBook = readingBook.find(item => item.book.title === book.title)
+            setNewReadingBook(newReadingBook)
 
-}
+        }
 
-},[willReadBook])
+    }, [readingBook])
+
+    useEffect(() => {
+        const index = willReadBook.findIndex(item => item.book.title === book.title)
+        if (index < 0) {
+            setNewWillReadBook(book)
+
+        } else {
+            const newReadingBook = willReadBook.find(item => item.book.title === book.title)
+            setNewWillReadBook(newReadingBook)
+
+        }
+
+    }, [willReadBook])
     return (
         <Modal style={styles.modal}
             isVisible={visible}
@@ -98,7 +97,7 @@ setNewWillReadBook(newReadingBook)
                     <Button text="Kütüphanem" iconName={newMyLibraryBook?.book?.isMyLibrary ? "check-bold" : "plus"} theme="icon_button" onPress={() => onSelectCategory("myLibrary")} />
                 </View>
             </View>
- 
+
         </Modal>
     )
 }
