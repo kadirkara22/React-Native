@@ -279,7 +279,7 @@ export default {
             ...base_style.container,
             backgroundColor: "#f5f5f5",
             borderRadius: 20,
-            width: 50,
+            width: 60,
             height: 35,
             alignItems: "center",
             marginRight: 10
@@ -296,7 +296,7 @@ export default {
             ...base_style.container,
             backgroundColor: "#f5f5f5",
             borderRadius: 20,
-            width: 50,
+            width: 60,
             height: 35,
             alignItems: "center"
         },

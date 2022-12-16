@@ -4,7 +4,7 @@ import styles from "./Comment.style"
 const Comment = () => {
     return (
         <View>
-            <Text>Comment</Text>
+            <Text>Comment1</Text>
         </View>
     )
 }

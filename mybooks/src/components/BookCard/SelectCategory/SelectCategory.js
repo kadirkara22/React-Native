@@ -23,10 +23,11 @@ const SelectCategory = ({ book }) => {
             const indexReading = readingBook.findIndex(item => item.book.title === book.title)
 
 
+
             if (index < 0) {
                 const newReference = database().ref(`users/${id}/willread`).push();
                 newReference
-                    .set({ book: { ...book, isWillRead: true, isReading: false, isRead: false, date: new Date().toISOString(), userName, fullName, profileImage } })
+                    .set({ book: { ...book, isFavori: false, favoriCount: 0, isWillRead: true, isReading: false, isRead: false, date: new Date().toISOString(), userName, fullName, profileImage, userid: id } })
                     .then(() => console.log('Data updated.'));
 
                 if (indexRead > -1) {
@@ -59,7 +60,7 @@ const SelectCategory = ({ book }) => {
             if (index < 0) {
                 const newReference = database().ref(`users/${id}/read`).push();
                 newReference
-                    .set({ book: { ...book, isRead: true, isReading: false, isWillRead: false, date: new Date().toISOString(), userName, fullName, profileImage } })
+                    .set({ book: { ...book, isFavori: false, favoriCount: 0, isRead: true, isReading: false, isWillRead: false, date: new Date().toISOString(), userName, fullName, profileImage, userid: id } })
                     .then(() => console.log('Data updated.'));
                 if (indexWillRead > -1) {
                     const deleteWillReadBook = willReadBook.find(item => item.book.title === book.title)
@@ -87,7 +88,7 @@ const SelectCategory = ({ book }) => {
             if (index < 0) {
                 const newReference = database().ref(`users/${id}/reading`).push();
                 newReference
-                    .set({ book: { ...book, isReading: true, isRead: false, isWillRead: false, date: new Date().toISOString(), userName, fullName, profileImage } })
+                    .set({ book: { ...book, isFavori: false, favoriCount: 0, isReading: true, isRead: false, isWillRead: false, date: new Date().toISOString(), userName, fullName, profileImage, userid: id } })
                     .then(() => console.log('Data updated.'));
 
                 if (indexWillRead > -1) {

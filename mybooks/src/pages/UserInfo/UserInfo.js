@@ -33,7 +33,10 @@ const UserInfo = ({ navigation }) => {
     }
 
 
+    const handlesendComment = (book) => {
 
+        navigation.navigate("SendCommentPage", { book })
+    }
 
     return (
         <ScrollView style={styles.container} >
@@ -52,7 +55,7 @@ const UserInfo = ({ navigation }) => {
             </View>
             {
                 active === "Kitaplık" ? <MyLibrary userInfo={userInfo} handleSelectedBook={handleSelectedBook} />
-                    : active === "Duvar" ? <Mypage />
+                    : active === "Duvar" ? <Mypage handlesendComment={handlesendComment} />
                         : <MyComments />
 
             }

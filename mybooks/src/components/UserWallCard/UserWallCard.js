@@ -5,8 +5,8 @@ import { formatDistance, parseISO } from 'date-fns'
 import { tr } from "date-fns/locale"
 import styles from "./UserWallCard.style"
 import Button from '../Button'
-const UserWallCard = ({ wall }) => {
-    console.log(wall)
+const UserWallCard = ({ wall, handleFavoriCount, handlesendComment }) => {
+
 
     const formattedDate = formatDistance(parseISO(wall.book.date), new Date(), {
         addSuffix: true,
@@ -41,8 +41,12 @@ const UserWallCard = ({ wall }) => {
                 </View>
             </View>
             <View style={styles.button_container}>
-                <Button text="" theme="wallfavori" iconName={!wall?.book?.isFavori ? "cards-heart" : "cards-heart-outline"} color={wall?.book?.isFavori ? null : "#d50000"} />
-                <Button text="" theme="wallcommon" iconName="comment-outline" />
+                {wall?.book?.isFavori ? <Text style={styles.button_favori_title}>{`${wall?.book?.favoriCount} beğeni`}</Text> : null}
+                <View style={styles.button_container_button}>
+                    <Button text="" theme="wallfavori" iconName={wall?.book?.isFavori ? "cards-heart" : "cards-heart-outline"} color={wall?.book?.isFavori ? "#d50000" : null} onPress={() => handleFavoriCount(wall)} />
+                    <Button text="" theme="wallcommon" iconName="comment-outline" onPress={() => handlesendComment(wall)} />
+                </View>
+
             </View>
         </View>
     )

@@ -17,8 +17,10 @@ export default StyleSheet.create({
     },
     menu_container: {
         flexDirection: "row",
-        paddingVertical: 10,
-        paddingHorizontal: 15
+        paddingTop: 10,
+        paddingHorizontal: 15,
+        borderBottomColor: "#bdbdbd",
+        borderBottomWidth: 1
     }
 
 })

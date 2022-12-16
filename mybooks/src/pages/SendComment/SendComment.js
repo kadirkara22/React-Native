@@ -1,14 +1,12 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-
-const TotalWall = () => {
-
+const SendComment = () => {
     return (
         <View>
-            <Text>wall</Text>
+            <Text>send</Text>
         </View>
     )
 }
 
-export default TotalWall
+export default SendComment

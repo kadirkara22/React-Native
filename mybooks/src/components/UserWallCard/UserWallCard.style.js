@@ -4,9 +4,9 @@ export default StyleSheet.create({
     container: {
         borderBottomWidth: 1,
         borderBottomColor: "#bdbdbd",
-        height: deviceSize.height / 2.3,
+        height: deviceSize.height / 2.1,
         marginHorizontal: 10,
-        paddingVertical: 15
+        paddingTop: 15
     },
     image: {
         width: 70,
@@ -39,6 +39,7 @@ export default StyleSheet.create({
     },
     date: {
         fontSize: 16,
+
     },
 
     desc: {
@@ -49,7 +50,7 @@ export default StyleSheet.create({
         borderColor: "#bdbdbd",
         flexDirection: "row",
         borderRadius: 10,
-        marginVertical: 10
+        marginTop: 10
     },
     image_book: {
         width: 100,
@@ -79,7 +80,17 @@ export default StyleSheet.create({
         paddingBottom: 5
     },
     button_container: {
-        flexDirection: "row",
+        flex: 1,
+        flexDirection: "column",
+        paddingTop: 5,
+        paddingLeft: 5,
+    },
+    button_container_button: {
+        flexDirection: "row"
+    },
+    button_favori_title: {
+        fontWeight: "bold",
+        paddingVertical: 5
     }
 
 })
