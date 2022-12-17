@@ -306,6 +306,24 @@ export default {
 
         }
     }),
+    send_button: StyleSheet.create({
+        container: {
+            ...base_style.container,
+            backgroundColor: "#1976d2",
+            borderRadius: 20,
+            width: 80,
+            height: 35,
+            alignItems: "center",
+            justifyContent: "center",
+            marginRight: 15
+        },
+        title: {
+            ...base_style.title,
+            color: "white",
+            fontWeight: "bold"
+
+        }
+    }),
 
 
 }

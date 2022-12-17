@@ -54,11 +54,12 @@ export default function App() {
 
   const UserInfoStack = () => {
     return (
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="UserInfoPage" component={UserInfo} />
-        <Stack.Screen name="SendCommentPage" component={SendComment} />
-        <Stack.Screen name="UserValuesPage" component={UserValues} />
-        <Stack.Screen name="ShowSelectUserPage" component={ShowSelectUser} />
+      <Stack.Navigator >
+        <Stack.Screen name="UserInfoPage" component={UserInfo} options={{ headerShown: false }} />
+
+        <Stack.Screen name="UserValuesPage" component={UserValues} options={{ headerShown: false }} />
+
+        <Stack.Screen name="ShowSelectUserPage" component={ShowSelectUser} options={{ headerShown: false }} />
       </Stack.Navigator>
     )
   }
@@ -98,12 +99,20 @@ export default function App() {
   }
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator >
         {!userSession ?
-          <Stack.Screen name="AuthStack" component={AuthStack} />
+          <Stack.Screen name="AuthStack" component={AuthStack} options={{ headerShown: false }} />
           :
-          <Stack.Screen name="MainStack" component={MainStack} />
+          <>
+            <Stack.Screen name="MainStack" component={MainStack} options={{ headerShown: false }} />
+            <Stack.Screen name="SendCommentPage" component={SendComment}
+              options={{
+                title: "Gönderi",
+                headerTitleAlign: 'center',
 
+              }}
+            />
+          </>
         }
 
       </Stack.Navigator>

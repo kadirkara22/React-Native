@@ -22,7 +22,10 @@ const BookContextProvider = (props) => {
         setUserTotalWall(userWall)
     }, [readingBook, willReadBook, readBook])
 
+    const handleShare = (item, text) => {
+        console.log(item)
 
+    }
 
     const handleFavoriCount = (item) => {
 
@@ -66,7 +69,7 @@ const BookContextProvider = (props) => {
         readBook, setReadBook, favoriBook, setFavoriBook, myLibraryBook,
         setMyLibrary, readingBook, setReadingBook, willReadBook, setWillReadBook,
         newReadBook, setNewReadBook, newReadingBook, setNewReadingBook, newWillReadBook, setNewWillReadBook,
-        userTotalWall, handleFavoriCount
+        userTotalWall, handleFavoriCount, handleShare
     }
 
     return (
