@@ -1,10 +1,26 @@
 import React, { useState } from 'react'
 import { View, Text, Image, TextInput } from 'react-native'
+import { formatDistance, parseISO } from 'date-fns'
+import { tr } from "date-fns/locale"
 import Button from '../Button'
 import styles from "./CommentInput.style"
-const CommentInput = ({ userInfo, handleShare, book }) => {
-    const [text, setText] = useState("")
-    const [{ profileImage }] = userInfo
+const CommentInput = ({ userInfo, handleShare, book, text, setText }) => {
+
+    const [{ profileImage, userName, fullName, id }] = userInfo
+
+    const formattedDate = formatDistance(parseISO(new Date().toISOString()), new Date(), {
+        addSuffix: true,
+        locale: tr,
+    })
+
+    const commentItem = {
+        text,
+        userName,
+        fullName,
+        profileImage,
+        userid: id,
+        date: formattedDate
+    }
 
 
 
@@ -23,7 +39,7 @@ const CommentInput = ({ userInfo, handleShare, book }) => {
             {
                 text !== "" ?
                     <View style={styles.bottom_container}>
-                        <Button text="Paylaş" theme="send_button" onPress={() => handleShare(book, text)} />
+                        <Button text="Paylaş" theme="send_button" onPress={() => handleShare(book, commentItem)} />
                     </View>
                     : null
             }

@@ -5,7 +5,8 @@ export default StyleSheet.create({
     input_container: {
         flexDirection: "column",
         backgroundColor: "#eeeeee",
-        paddingBottom: 5
+        paddingBottom: 5,
+
 
 
     },

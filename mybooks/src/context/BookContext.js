@@ -3,6 +3,7 @@ import database from "@react-native-firebase/database"
 export const BookContext = React.createContext();
 
 const BookContextProvider = (props) => {
+    const [text, setText] = useState("")
     const [readBook, setReadBook] = useState([])
     const [favoriBook, setFavoriBook] = useState([])
     const [myLibraryBook, setMyLibrary] = useState([])
@@ -13,7 +14,7 @@ const BookContextProvider = (props) => {
     const [newReadingBook, setNewReadingBook] = useState()
     const [newWillReadBook, setNewWillReadBook] = useState()
     const [favoriCount, setFavoriCount] = useState(0)
-
+    const [readingCommentBook, setReadingCommentBook] = useState([])
     useEffect(() => {
         const userWall = readBook.concat(readingBook, willReadBook)
         userWall.sort(function (a, b) {
@@ -22,8 +23,15 @@ const BookContextProvider = (props) => {
         setUserTotalWall(userWall)
     }, [readingBook, willReadBook, readBook])
 
-    const handleShare = (item, text) => {
-        console.log(item)
+    const handleShare = (bookItem, item) => {
+
+        const newReference = database().ref(`users/${item.userid}/reading/${bookItem.id}/book/comment`).push();
+        newReference
+            .set({ comment: item })
+            .then(() => console.log('Data updated.'));
+
+
+        setText("")
 
     }
 
@@ -69,7 +77,7 @@ const BookContextProvider = (props) => {
         readBook, setReadBook, favoriBook, setFavoriBook, myLibraryBook,
         setMyLibrary, readingBook, setReadingBook, willReadBook, setWillReadBook,
         newReadBook, setNewReadBook, newReadingBook, setNewReadingBook, newWillReadBook, setNewWillReadBook,
-        userTotalWall, handleFavoriCount, handleShare
+        userTotalWall, handleFavoriCount, handleShare, text, setText, readingCommentBook, setReadingCommentBook
     }
 
     return (

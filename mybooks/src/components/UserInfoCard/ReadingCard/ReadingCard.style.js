@@ -8,7 +8,7 @@ export default StyleSheet.create({
 
     },
     now_reading_title: {
-        fontWeight: "bold"
+        fontWeight: "bold",
     },
     now_reading: {
         flexDirection: "row",
