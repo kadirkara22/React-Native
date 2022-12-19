@@ -23,3 +23,17 @@
 #### book shelves
 
 <img src="./assets/mybooks21.png" width="200"><img src="./assets/mybooks29.png" width="200"><img src="./assets/mybooks22.png" width="200">
+
+## Tools & Resources
+
+- React-navigation
+- axios
+- React Native Firebase auth
+- React Native Firebase Real-Time-database
+- React-Native-vector-icons
+- react-native-modal
+- date-fns
+- formik
+- react-native-flash-message
+- react-native-image-picker
+- yup
