@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { View, Text, FlatList } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { View, FlatList } from 'react-native'
 import database from "@react-native-firebase/database"
 import styles from "./TotalUsersCard.style"
 import parseContentData from '../../../utils/parseContentData'
 import UsersCard from './UsersCard'
-import { UserInfoContext } from '../../../context/UserInfoContext'
+
 const TotalUsersCard = ({ userInfo, handleUserPage, handlefollowedUser, followedsList, followersList }) => {
     const [userList, setUserList] = useState([])
 

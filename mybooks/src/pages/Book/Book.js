@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, TouchableOpacity, View } from 'react-native'
+import { ScrollView, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import BookCardHeader from '../../components/BookCard/BookCardHeader'
 import BookInfo from '../../components/BookCard/BookInfo'
@@ -9,10 +9,10 @@ const Book = ({ route, navigation }) => {
     const { book, page } = route.params
 
     const handleBack = () => {
-       if (page) {
+        if (page) {
             navigation.navigate(page)
         }
-        navigation.goBack() 
+        navigation.goBack()
     }
     return (
         <ScrollView style={styles.container}>

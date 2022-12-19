@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { View, Text, Image, TextInput } from 'react-native'
+import React from 'react'
+import { View, Image, TextInput } from 'react-native'
 import { formatDistance, parseISO } from 'date-fns'
 import { tr } from "date-fns/locale"
 import Button from '../Button'

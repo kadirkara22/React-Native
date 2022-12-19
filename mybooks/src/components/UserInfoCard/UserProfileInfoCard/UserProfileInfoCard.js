@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { View, Text, TouchableOpacity, Alert, Image } from 'react-native'
 import database from "@react-native-firebase/database"
 import { launchImageLibrary } from 'react-native-image-picker';
@@ -7,7 +7,6 @@ import { tr } from 'date-fns/locale'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from "./UserProfileInfoCard.style"
 import { UserInfoContext } from '../../../context/UserInfoContext';
-import parseContentData from '../../../utils/parseContentData';
 import ReadingCard from '../ReadingCard';
 
 const UserProfileInfoCard = ({ userInfo, handleSelectedBook }) => {

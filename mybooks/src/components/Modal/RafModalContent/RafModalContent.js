@@ -1,8 +1,6 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'
 import Modal from "react-native-modal";
-import Button from '../../Button';
 import { BookContext } from '../../../context/BookContext'
 import styles from "./RafModalContent.style"
 const RafModalContent = ({ visible, onClose, onSelectRaf }) => {

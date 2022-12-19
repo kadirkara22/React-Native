@@ -4,7 +4,7 @@ import database from "@react-native-firebase/database"
 import { BookContext } from '../../../context/BookContext'
 import styles from "./InfoValues.style"
 import parseContentData from '../../../utils/parseContentData'
-const InfoValues = ({ handleSelectValue, userInfo }) => {
+const InfoValues = ({ handleSelectValue, userInfo, userComment }) => {
     const { readBook } = useContext(BookContext)
     const [followedsList, setFollowedsList] = useState([])
     const [followersList, setFollowersList] = useState([])
@@ -38,15 +38,15 @@ const InfoValues = ({ handleSelectValue, userInfo }) => {
                 <Text style={styles.book}> Kitap</Text>
             </View>
             <TouchableOpacity style={styles.container_info} onPress={() => handleSelectValue("Takip Edilen")}>
-                <Text style={styles.value}>{followedsList.length}</Text>
+                <Text style={styles.value}>{followedsList?.length}</Text>
                 <Text style={styles.followeds}> Takip edilen</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.container_info} onPress={() => handleSelectValue("Takipçileri")}>
-                <Text style={styles.value}>{followersList.length}</Text>
+                <Text style={styles.value}>{followersList?.length}</Text>
                 <Text style={styles.followers}> Takipçi</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.container_info} onPress={() => { }}>
-                <Text style={styles.value}>10</Text>
+                <Text style={styles.value}>{userComment?.length}</Text>
                 <Text style={styles.comments}> Yorum</Text>
             </TouchableOpacity>
 

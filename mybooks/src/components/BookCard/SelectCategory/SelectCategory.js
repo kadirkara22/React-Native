@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import database from '@react-native-firebase/database'
 import { UserInfoContext } from '../../../context/UserInfoContext'
 import { BookContext } from '../../../context/BookContext'

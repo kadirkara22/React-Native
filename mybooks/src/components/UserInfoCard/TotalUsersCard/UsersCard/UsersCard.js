@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, Image, TouchableOpacity, Alert } from 'react-native'
-import database from "@react-native-firebase/database"
+
 import styles from "./UsersCard.style"
 import Button from "../../../Button"
-import parseContentData from '../../../../utils/parseContentData'
-const UsersCard = ({ user, handleUserPage, handlefollowedUser, followedsList, followersList, userInfo }) => {
+
+const UsersCard = ({ user, handleUserPage, handlefollowedUser, followedsList }) => {
     const [followed, setFollowed] = useState(false)
     const [follower, setFollower] = useState()
 
@@ -15,7 +15,7 @@ const UsersCard = ({ user, handleUserPage, handlefollowedUser, followedsList, fo
         const index = followedsList.findIndex(item => item.followedUser.email === followedUser.email)
         if (index < 0) {
             handlefollowedUser(user)
- 
+
 
         } else {
             handleDeleteFollowed(followedUser)

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import { BookContext } from '../../../../context/BookContext'
 import MyLibraryCard from './MyLibraryCard'
 

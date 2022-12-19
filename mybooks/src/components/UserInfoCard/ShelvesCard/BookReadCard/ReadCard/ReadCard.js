@@ -1,9 +1,9 @@
-import React, { useState, useContext } from 'react'
+import React from 'react'
 import { View, Text, Image } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Button from '../../../../Button'
 import styles from "./ReadCard.style"
-const ReadCard = ({ readbook, handleBookToggle, bookModalVisible }) => {
+const ReadCard = ({ readbook, handleBookToggle }) => {
 
     return (
         <View style={styles.container}>

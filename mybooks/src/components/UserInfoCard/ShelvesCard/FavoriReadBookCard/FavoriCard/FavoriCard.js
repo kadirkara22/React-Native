@@ -1,8 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React from 'react'
 import { View, Text, Image } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { BookContext } from '../../../../../context/BookContext'
-import Button from '../../../../Button'
 import styles from "./FavoriCard.style"
 const FavoriCard = ({ favoribook }) => {
 

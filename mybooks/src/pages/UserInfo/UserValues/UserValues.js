@@ -5,9 +5,7 @@ import database from "@react-native-firebase/database"
 import MenuValueHeader from '../../../components/UserInfoCard/MenuValueHeader/MenuValueHeader'
 import TotalUsersCard from '../../../components/UserInfoCard/TotalUsersCard'
 import { UserInfoContext } from '../../../context/UserInfoContext'
-
 import styles from "./UserValues.style"
-
 import TotalFollowersCard from '../../../components/UserInfoCard/TotalFollowersCard'
 import TotalFollowedsCard from '../../../components/UserInfoCard/TotalFollowedsCard'
 import parseContentData from '../../../utils/parseContentData'
@@ -17,7 +15,7 @@ const UserValues = ({ navigation, route }) => {
 
     const { handlefollowedUser } = useContext(UserInfoContext)
     const { select, userInfo, mainUser } = route.params
-console.log(route.params)
+    console.log(route.params)
 
     const menus = [
         { name: "Takip Edilen" },

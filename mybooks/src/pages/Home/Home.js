@@ -1,19 +1,24 @@
 import React from 'react'
-import { View, } from 'react-native'
+import { ScrollView } from 'react-native'
 import HomeHeader from '../../components/HomeCard/HomeHeader'
 import styles from "./Home.style"
 import TotalWall from '../../components/HomeCard/TotalWall'
+
 
 const Home = ({ navigation }) => {
 
     const searchbook = () => {
         navigation.navigate("SearchBookPage")
     }
+    const handlesendComment = (book) => {
+
+        navigation.navigate("SendCommentPage", { book })
+    }
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <HomeHeader onPress={searchbook} />
-            <TotalWall />
-        </View>
+            <TotalWall handlesendComment={handlesendComment} />
+        </ScrollView>
     )
 }
 

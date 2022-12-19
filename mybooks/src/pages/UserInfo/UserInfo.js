@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { View, Text, ScrollView } from 'react-native'
 import auth from "@react-native-firebase/auth"
-import database from "@react-native-firebase/database"
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import UserProfileInfoCard from "../../components/UserInfoCard/UserProfileInfoCard"
 import InfoValues from "../../components/UserInfoCard/InfoValues"
@@ -11,9 +10,11 @@ import Mypage from './Mypage'
 import MyComments from './MyComments'
 import MenuHeader from '../../components/UserInfoCard/MenuHeader'
 import { UserInfoContext } from '../../context/UserInfoContext'
+import { BookContext } from '../../context/BookContext'
 
 const UserInfo = ({ navigation }) => {
     const { userInfo } = useContext(UserInfoContext)
+    const { userComment } = useContext(BookContext)
 
     const menus = [
         { name: "Kitaplık" },
@@ -45,7 +46,7 @@ const UserInfo = ({ navigation }) => {
                 <Icon name="logout" size={30} color="black" onPress={() => auth().signOut()} />
             </View>
             <UserProfileInfoCard userInfo={userInfo} handleSelectedBook={handleSelectedBook} />
-            <InfoValues handleSelectValue={handleSelectValue} userInfo={userInfo} />
+            <InfoValues handleSelectValue={handleSelectValue} userInfo={userInfo} userComment={userComment} />
             <View style={styles.menu_container}>
                 {
                     menus.map(({ name }) => (
@@ -56,7 +57,7 @@ const UserInfo = ({ navigation }) => {
             {
                 active === "Kitaplık" ? <MyLibrary userInfo={userInfo} handleSelectedBook={handleSelectedBook} />
                     : active === "Duvar" ? <Mypage handlesendComment={handlesendComment} />
-                        : <MyComments />
+                        : <MyComments userComment={userComment} />
 
             }
 

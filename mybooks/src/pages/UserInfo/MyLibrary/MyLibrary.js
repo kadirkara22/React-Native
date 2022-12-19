@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import FavoriCard from '../../../components/UserInfoCard/FavoriCard'
 import MyLibraryCard from '../../../components/UserInfoCard/MyLibraryCard/MyLibraryCard'
 import ReadBookCard from '../../../components/UserInfoCard/ReadBookCard'

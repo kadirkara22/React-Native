@@ -1,6 +1,5 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
-import auth from "@react-native-firebase/auth"
+import React, { useState } from 'react'
+import { View, ScrollView, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import UserProfileInfoCard from "../../../components/UserInfoCard/UserProfileInfoCard"
 import InfoValues from "../../../components/UserInfoCard/InfoValues"
@@ -14,19 +13,19 @@ import { UserInfoContext } from '../../../context/UserInfoContext'
 const ShowSelectUser = ({ navigation, route }) => {
     const { user, userInfo, mainUser } = route.params
 
-console.log(route.params)
+    console.log(route.params)
     const menus = [
         { name: "Kitaplık" },
         { name: "Duvar" },
         { name: "Yorumlar" },
-    ] 
+    ]
     const [active, setActive] = useState("Kitaplık")
     const handleMenuClick = (name) => {
         setActive(name)
-    } 
- 
+    }
+
     const handleSelectedBook = (book) => {
-        navigation.navigate("SelectedBookPage", { book, page:"ShowSelectUserPage" })
+        navigation.navigate("SelectedBookPage", { book, page: "ShowSelectUserPage" })
     }
     const handleSelectValue = (select) => {
 

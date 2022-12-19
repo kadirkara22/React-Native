@@ -1,10 +1,11 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import styles from "./MyComments.style"
-const MyComments = () => {
+const MyComments = ({ userComment }) => {
+
     return (
         <View>
-            <Text>My comments</Text>
+            <Text></Text>
         </View>
     )
 }

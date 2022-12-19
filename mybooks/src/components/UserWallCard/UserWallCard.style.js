@@ -6,7 +6,8 @@ export default StyleSheet.create({
         borderBottomColor: "#bdbdbd",
         height: deviceSize.height / 2.1,
         marginHorizontal: 10,
-        paddingTop: 15
+        paddingTop: 15,
+
     },
     image: {
         width: 70,

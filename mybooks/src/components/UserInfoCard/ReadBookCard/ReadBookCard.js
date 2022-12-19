@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import database from "@react-native-firebase/database"
 import Icon from 'react-native-vector-icons/FontAwesome'

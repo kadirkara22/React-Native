@@ -8,7 +8,7 @@ const UserInfoContextProvider = (props) => {
     const [userMail, setUserMail] = useState("")
     const [backgroundProfileImageChange, setBackgroundProfileImage] = useState("")
     const [profileImageChange, setProfileImage] = useState("")
-
+    const [totalUserWallBook, setTotalUserWallBook] = useState([])
 
     useEffect(() => {
         database().ref('users/').on('value', snapshot => {
@@ -16,7 +16,7 @@ const UserInfoContextProvider = (props) => {
             const parsedData = parseContentData(contentData || {})
             for (var i = 0; i < parsedData.length; i++) {
                 if (parsedData[i].email === userMail) {
-                    //console.log(parsedData)
+                    setTotalUserWallBook(parsedData)
                     userInfo[0] = parsedData[i]
                     setBackgroundProfileImage(parsedData[i].backgroundProfileImage)
                     setProfileImage(parsedData[i].profileImage)
@@ -57,6 +57,7 @@ const UserInfoContextProvider = (props) => {
     const methods = {
         userInfo, handlefollowedUser, setUserInfo, userMail, setUserMail,
         backgroundProfileImageChange, setBackgroundProfileImage, profileImageChange, setProfileImage,
+        totalUserWallBook
 
     }
 

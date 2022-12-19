@@ -1,12 +1,19 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React, { useContext, useEffect } from 'react'
+import { View } from 'react-native'
+import { BookContext } from '../../../context/BookContext'
+import UserWallCard from '../../UserWallCard'
 
 
-const TotalWall = () => {
+const TotalWall = ({ handlesendComment }) => {
+    const { userTotalWall, handleFavoriCount } = useContext(BookContext)
 
     return (
         <View>
-            <Text>wall</Text>
+            {
+                userTotalWall.map((item, i) => (
+                    <UserWallCard wall={item} key={i} handleFavoriCount={handleFavoriCount} handlesendComment={handlesendComment} />
+                ))
+            }
         </View>
     )
 }

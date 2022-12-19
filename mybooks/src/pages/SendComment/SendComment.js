@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from 'react'
-import { View, TextInput, Image, ScrollView } from 'react-native'
+import React, { useContext } from 'react'
+import { ScrollView } from 'react-native'
 import styles from "./SendComment.style"
 
 import UserWallCard from '../../components/UserWallCard'
@@ -9,7 +9,7 @@ import CommentInput from '../../components/CommentInput'
 import { BookContext } from '../../context/BookContext'
 const SendComment = ({ navigation, route }) => {
     const { userInfo } = useContext(UserInfoContext)
-    const { handleShare, text, setText, handleFavoriCount, readingCommentBook, setReadingCommentBook } = useContext(BookContext)
+    const { handleShare, text, setText, handleFavoriCount, readingCommentBook, setReadingCommentBook, readCommentBook, setReadCommentBook, willreadCommentBook, setWillReadCommentBook } = useContext(BookContext)
     const { book } = route.params
 
     const handlesendComment = (book) => {
@@ -20,8 +20,8 @@ const SendComment = ({ navigation, route }) => {
     return (
         <>
             <ScrollView style={styles.container}>
-                <UserWallCard wall={book} handleFavoriCount={handleFavoriCount} handlesendComment={handlesendComment} readingCommentBook={readingCommentBook} />
-                <CommentList book={book} readingCommentBook={readingCommentBook} setReadingCommentBook={setReadingCommentBook} />
+                <UserWallCard wall={book} handleFavoriCount={handleFavoriCount} handlesendComment={handlesendComment} />
+                <CommentList book={book} readingCommentBook={readingCommentBook} setReadingCommentBook={setReadingCommentBook} readCommentBook={readCommentBook} setReadCommentBook={setReadCommentBook} willreadCommentBook={willreadCommentBook} setWillReadCommentBook={setWillReadCommentBook} />
             </ScrollView>
             <CommentInput userInfo={userInfo} handleShare={handleShare} book={book} text={text} setText={setText} />
         </>

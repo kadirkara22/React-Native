@@ -15,23 +15,54 @@ const BookContextProvider = (props) => {
     const [newWillReadBook, setNewWillReadBook] = useState()
     const [favoriCount, setFavoriCount] = useState(0)
     const [readingCommentBook, setReadingCommentBook] = useState([])
+    const [readCommentBook, setReadCommentBook] = useState([])
+    const [willreadCommentBook, setWillReadCommentBook] = useState([])
+    const [userComment, setUserComment] = useState([])
     useEffect(() => {
         const userWall = readBook.concat(readingBook, willReadBook)
         userWall.sort(function (a, b) {
             return a.book.date > b.book.date ? -1 : a.book.date > b.book.date ? 1 : 0
         })
+
         setUserTotalWall(userWall)
     }, [readingBook, willReadBook, readBook])
 
+
+
     const handleShare = (bookItem, item) => {
+        if (bookItem.book.isReading) {
+            const newReference = database().ref(`users/${item.userid}/reading/${bookItem.id}/book/comment`).push();
+            newReference
+                .set({ comment: item })
+                .then(() => console.log('Data updated.'));
 
-        const newReference = database().ref(`users/${item.userid}/reading/${bookItem.id}/book/comment`).push();
-        newReference
-            .set({ comment: item })
-            .then(() => console.log('Data updated.'));
+            database().ref(`users/${item.userid}/reading/${bookItem.id}/book`)
+                .update({ commentCount: bookItem.book.commentCount + 1 })
+
+            setText("")
+        }
+        if (bookItem.book.isRead) {
+            const newReference = database().ref(`users/${item.userid}/read/${bookItem.id}/book/comment`).push();
+            newReference
+                .set({ comment: item })
+                .then(() => console.log('Data updated.'));
+            database().ref(`users/${item.userid}/read/${bookItem.id}/book`)
+                .update({ commentCount: bookItem.book.commentCount + 1 })
+
+            setText("")
+        }
+        if (bookItem.book.isWillRead) {
+            const newReference = database().ref(`users/${item.userid}/willread/${bookItem.id}/book/comment`).push();
+            newReference
+                .set({ comment: item, })
+                .then(() => console.log('Data updated.'));
+            database().ref(`users/${item.userid}/willread/${bookItem.id}/book`)
+                .update({ commentCount: bookItem.book.commentCount + 1 })
 
 
-        setText("")
+            setText("")
+        }
+
 
     }
 
@@ -77,7 +108,8 @@ const BookContextProvider = (props) => {
         readBook, setReadBook, favoriBook, setFavoriBook, myLibraryBook,
         setMyLibrary, readingBook, setReadingBook, willReadBook, setWillReadBook,
         newReadBook, setNewReadBook, newReadingBook, setNewReadingBook, newWillReadBook, setNewWillReadBook,
-        userTotalWall, handleFavoriCount, handleShare, text, setText, readingCommentBook, setReadingCommentBook
+        userTotalWall, handleFavoriCount, handleShare, text, setText, readingCommentBook, setReadingCommentBook,
+        readCommentBook, setReadCommentBook, willreadCommentBook, setWillReadCommentBook, userComment
     }
 
     return (

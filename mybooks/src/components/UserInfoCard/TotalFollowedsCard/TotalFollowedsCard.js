@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { View, Text, FlatList } from 'react-native'
-import database from "@react-native-firebase/database"
-import parseContentData from '../../../utils/parseContentData'
+import React from 'react'
+import { View, FlatList } from 'react-native'
+
 import FollowedsCard from './FollowedsCard'
 
-const TotalFollowedsCard = ({ userInfo, handleUserPage, followedsList, followersList }) => {
+const TotalFollowedsCard = ({ handleUserPage, followedsList }) => {
 
 
     const renderUsers = ({ item }) => <FollowedsCard user={item} handleUserPage={handleUserPage} />
