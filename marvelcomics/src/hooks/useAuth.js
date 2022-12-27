@@ -8,6 +8,7 @@ export function useAuth() {
     useEffect(() => {
         auth().onAuthStateChanged(user => {
             if (user) {
+                console.log(user)
                 setUser(user)
             } else {
                 setUser(undefined)

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Formik } from 'formik'
 import { View, Text, Image } from 'react-native'
 import { showMessage } from 'react-native-flash-message'
@@ -8,6 +8,7 @@ import Input from '../../../components/Input'
 import Button from '../../../components/Button'
 const Login = ({ navigation }) => {
     const [loading, setLoading] = useState(false)
+
     const handleSignUp = () => {
         navigation.navigate("SignPage")
     }
@@ -34,7 +35,7 @@ const Login = ({ navigation }) => {
                 {({ handleChange, handleSubmit, values, errors, touched, isValid }) => (
                     <View style={styles.input_container}>
                         <Input
-                            style={styles.input}
+                            style={(touched.email && errors.email) ? styles.input_erros : styles.input}
                             placeholder="Username or Email Address"
                             placeholderTextColor="gray"
                             onChangeText={handleChange('email')}
@@ -42,12 +43,13 @@ const Login = ({ navigation }) => {
                         />
                         {(touched.email && errors.email) && <Text style={styles.errors}>{errors.email}</Text>}
                         <Input
-                            style={styles.input}
+                            style={(touched.password && errors.password) ? styles.input_erros : styles.input}
                             placeholderTextColor="gray"
                             placeholder="Password"
                             onChangeText={handleChange('password')}
                             value={values.password}
                             isSecure
+
                         />
                         {(touched.password && errors.password) && <Text style={styles.errors}>{errors.password}</Text>}
                         <Button text="LOGIN" theme="primary" loading={!isValid} onPress={handleSubmit} />

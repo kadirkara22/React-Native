@@ -43,6 +43,19 @@ export default {
 
         }
     }),
+        tertiary: StyleSheet.create({
+        container: {
+            ...base_style.container,
+        },
+        title: {
+            ...base_style.title,
+            color: "red",
+            fontSize: 18,
+            textDecorationLine:"underline"
+
+
+        }
+    }),
 
 
 

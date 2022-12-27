@@ -1,22 +1,48 @@
 import React, { useState } from 'react'
 import { Formik } from 'formik'
-import { View, Text, Image, TextInput } from 'react-native'
+import { View, Text, Image } from 'react-native'
+import auth from "@react-native-firebase/auth"
 import { showMessage } from 'react-native-flash-message'
-import LoginValidation from '../../../validations/LoginValidation'
+import SignValidation from '../../../validations/SignValidation'
+import authErrorMessageParser from '../../../utils/authErrorMessageParser';
 import styles from "./Sign.style"
 import Input from '../../../components/Input'
 import Button from '../../../components/Button'
+import CheckBox from '@react-native-community/checkbox';
 
 const Sign = ({ navigation }) => {
     const [loading, setLoading] = useState(false)
-    const [showPassword, setShowPassword] = useState(false)
+    const [toggleCheckBox, setToggleCheckBox] = useState(false)
     const handleLogin = () => {
         navigation.goBack()
     }
 
-    const handleFormSubmit = (formValues) => {
+    const handleFormSubmit = async (formValues) => {
         console.log(formValues)
+        try {
+            setLoading(true)
+            await auth().createUserWithEmailAndPassword(
+                formValues.email,
+                formValues.password,
+
+            )
+            showMessage({
+                message: "Kullanıcı oluşturuldu",
+                type: "success",
+            });
+            navigation.navigate("LoginPage")
+            setLoading(false)
+        } catch (error) {
+            console.log(error)
+            showMessage({
+                message: authErrorMessageParser(error.code),
+                type: "info",
+            });
+            setLoading(false)
+        }
     }
+
+
     return (
 
         <View style={styles.container}>
@@ -29,66 +55,68 @@ const Sign = ({ navigation }) => {
             </View>
             <Text style={styles.title}>CREATE YOUR ACCOUNT</Text>
             <Formik
-                initialValues={{ firstName: '', email: '', lastName: '', password: '', birthday: '' }}
+                initialValues={{ firstName: '', email: '', lastName: '', password: '' }}
                 validateOnMount={true}
                 onSubmit={handleFormSubmit}
-                validationSchema={LoginValidation}
+                validationSchema={SignValidation}
             >
-                {({ handleChange, handleSubmit, values, errors, touched, isValid }) => (
+                {({ handleChange, handleBlur, handleSubmit, values, errors, touched, isValid }) => (
                     <View style={styles.input_container}>
                         <Input
-                            style={styles.input}
+                            style={(touched.firstName && errors.firstName) ? styles.input_erros : styles.input}
                             placeholder="First Name"
                             placeholderTextColor="gray"
                             onChangeText={handleChange('firstName')}
                             value={values.firstName}
+                            onBlur={handleBlur('firstName')}
                         />
                         {(touched.firstName && errors.firstName) && <Text style={styles.errors}>{errors.firstName}</Text>}
                         <Input
-                            style={styles.input}
+                            style={(touched.lastName && errors.lastName) ? styles.input_erros : styles.input}
                             placeholderTextColor="gray"
                             placeholder="Last Name"
                             onChangeText={handleChange('lastName')}
                             value={values.lastName}
-                            isSecure
+                            onBlur={handleBlur('lastName')}
                         />
                         {(touched.lastName && errors.lastName) && <Text style={styles.errors}>{errors.lastName}</Text>}
                         <Input
-                            style={styles.input}
+                            style={(touched.email && errors.email) ? styles.input_erros : styles.input}
                             placeholderTextColor="gray"
                             placeholder="Email Address"
                             onChangeText={handleChange('email')}
                             value={values.email}
-                            isSecure
+                            onBlur={handleBlur('email')}
                         />
                         {(touched.email && errors.email) && <Text style={styles.errors}>{errors.email}</Text>}
                         <Input
-                            style={styles.input}
+                            style={(touched.password && errors.password) ? styles.input_erros : styles.input}
                             placeholderTextColor="gray"
                             placeholder="Password"
                             onChangeText={handleChange('password')}
+                            onBlur={handleBlur('password')}
                             value={values.password}
-                            isSecure
+                            isSecure={!toggleCheckBox}
                         />
                         {(touched.password && errors.password) && <Text style={styles.errors}>{errors.password}</Text>}
+                        <View style={styles.show_container}>
+                            <CheckBox
+                                disabled={false}
+                                value={toggleCheckBox}
+                                onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                            />
+                            <Text>Show password</Text>
+                        </View>
 
-                        <Input
-                            style={styles.input}
-                            placeholderTextColor="gray"
-                            placeholder="Birth Day mm/dd/yyyy"
-                            onChangeText={handleChange('birthday')}
-                            value={values.birthday}
-                            isSecure
-                        />
-                        {(touched.birthday && errors.birthday) && <Text style={styles.errors}>{errors.birthday}</Text>}
                         <Button text="CREATE ACCOUNT" theme="primary" loading={!isValid} onPress={handleSubmit} />
-
+                        <View style={styles.footer_container}>
+                            <Text style={styles.already_text}>Already have an account?</Text>
+                            <Button text="Login" theme="tertiary" loading={loading} onPress={handleLogin} />
+                        </View>
                     </View>
                 )}
             </Formik>
-            {/* <View style={styles.footer_container}>
-                <Button text="CREATE AN" theme="secondary" loading={loading} onPress={handleSignUp} />
-            </View> */}
+
         </View>
 
     )

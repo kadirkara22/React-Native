@@ -4,7 +4,7 @@ import { View, Text } from 'react-native'
 const MainStack = () => {
     return (
         <View>
-            <Text>user</Text>
+            <Text>user1</Text>
         </View>
     )
 }

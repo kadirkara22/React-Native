@@ -41,7 +41,7 @@ export default StyleSheet.create({
     input: {
         borderWidth: 1,
         marginHorizontal: 30,
-        marginTop: 20,
+        marginTop: 10,
         borderRadius: 7,
         paddingLeft: 15,
         borderColor: "#bdbdbd"
@@ -50,13 +50,30 @@ export default StyleSheet.create({
         color: "red",
         fontWeight: "bold",
         fontSize: 14,
+        marginLeft: 30
 
     },
-    show_input: {
+    input_erros: {
         borderWidth: 1,
-        borderColor: "#bdbdbd",
-        width: 30,
-        height: 30
+        marginHorizontal: 30,
+        marginTop: 10,
+        borderRadius: 7,
+        paddingLeft: 15,
+        borderColor: "red"
+    },
+    show_container: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginHorizontal: 30,
+        marginTop: 10
+    },
+    footer_container: {
+        flexDirection: "row",
+        justifyContent: "center",
+    },
+    already_text: {
+        fontSize: 18,
+        paddingHorizontal: 5
     }
 
 })

@@ -49,7 +49,16 @@ export default StyleSheet.create({
         color: "red",
         fontWeight: "bold",
         fontSize: 14,
+        marginLeft: 30
 
+    },
+    input_erros: {
+        borderWidth: 1,
+        marginHorizontal: 30,
+        marginTop: 10,
+        borderRadius: 7,
+        paddingLeft: 15,
+        borderColor: "red"
     },
     need_title: {
         color: "red",
