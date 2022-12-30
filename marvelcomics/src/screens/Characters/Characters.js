@@ -5,18 +5,15 @@ import CharacterCard from '../../components/CharacterCard'
 import Loading from '../../components/Loading'
 import useFetch from '../../hooks/useFetch'
 import styles from "./Characters.style"
-const Characters = ({ search }) => {
-    const { data, loading } = useFetch(
-        search === ''
-            ? `${Config.API_URL}/characters`
-            : `${Config.API_URL}/characters?nameStartsWith=${search}`
-    )
+const Characters = ({ url }) => {
 
+    const { data, loading } = useFetch(url)
     const renderData = ({ item }) => <CharacterCard character={item} />
 
     if (loading) {
         return <Loading />;
     }
+    
     return (
         <View style={styles.container}>
             <FlatList

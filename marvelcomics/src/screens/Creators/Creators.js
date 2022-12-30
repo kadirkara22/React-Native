@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, FlatList } from 'react-native'
 import Config from 'react-native-config'
-import ComicsCard from '../../components/ComicsCard'
+import CreatorCard from '../../components/CreatorCard'
 import Loading from '../../components/Loading'
 import useFetch from '../../hooks/useFetch'
-import styles from "./Comics.style"
-const Comics = ({ url }) => {
-   
+import styles from "./Creators.style"
+const Createors = ({ url }) => {
+
     const { data, loading } = useFetch(url)
-    const renderData = ({ item }) => <ComicsCard comics={item} />
+    const renderData = ({ item }) => <CreatorCard creator={item} />
 
     if (loading) {
         return <Loading />;
@@ -27,4 +27,4 @@ const Comics = ({ url }) => {
     )
 }
 
-export default Comics
+export default Createors

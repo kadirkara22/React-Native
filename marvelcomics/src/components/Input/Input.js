@@ -1,7 +1,8 @@
 import React from 'react'
 import { View, TextInput } from 'react-native'
 import styles from "./Input.style"
-const Input = ({ placeholder, onChangeText, value, isSecure, placeholderTextColor, style }) => {
+const Input = ({onSubmitEditing,returnKeyType, placeholder, onChangeText, value, isSecure, placeholderTextColor, style }) => {
+    
     return (
         <View style={styles.container}>
             <TextInput
@@ -13,6 +14,8 @@ const Input = ({ placeholder, onChangeText, value, isSecure, placeholderTextColo
                 placeholderTextColor={placeholderTextColor}
                 secureTextEntry={isSecure}
                 style={style}
+                onSubmitEditing={onSubmitEditing}
+                returnKeyType={returnKeyType}
             />
         </View>
     )
