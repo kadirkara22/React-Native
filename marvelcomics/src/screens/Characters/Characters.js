@@ -5,10 +5,13 @@ import CharacterCard from '../../components/CharacterCard'
 import Loading from '../../components/Loading'
 import useFetch from '../../hooks/useFetch'
 import styles from "./Characters.style"
-const Characters = ({ url }) => {
+const Characters = ({ url,handleCharSelect }) => {
 
     const { data, loading } = useFetch(url)
-    const renderData = ({ item }) => <CharacterCard character={item} />
+
+
+
+    const renderData = ({ item }) => <CharacterCard character={item} onSelect={() => handleCharSelect(item.id)} />
 
     if (loading) {
         return <Loading />;

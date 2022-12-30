@@ -12,7 +12,7 @@ import Stories from '../Stories/Stories'
 import Comics from '../Comics/Comics'
 import MyList from '../MyList'
 import styles from "./Home.style"
-const Home = () => {
+const Home = ({navigation}) => {
     const [text, setText] = useState("")
     const [urlChar, setUrlChar] = useState(`${Config.API_URL}/characters`)
     const [urlComics, setUrlComics] = useState(`${Config.API_URL}/comics`)
@@ -81,6 +81,10 @@ setUrlSeries( `${Config.API_URL}/series?titleStartsWith=${e.nativeEvent.text}`)
     }
          
 }
+
+const handleCharSelect = id => {
+    navigation.navigate('CharactersDetail', {id});
+  };
     return (
         <View style={styles.contianer}>
             <Header menus={menus} handleMenuClick={handleMenuClick} active={active} />
@@ -98,7 +102,7 @@ setUrlSeries( `${Config.API_URL}/series?titleStartsWith=${e.nativeEvent.text}`)
 
             {
                 active === "Home" ? <MyList />
-                    : active === "Characters" ? <Characters url={urlChar} />
+                    : active === "Characters" ? <Characters url={urlChar} handleCharSelect={handleCharSelect}/>
                         : active==="Comics" ? <Comics url={urlComics} />
                         :active==="Creators" ? <Creators url={urlCreators} />
                         :active==="Events" ? <Events url={urlEvents} />
