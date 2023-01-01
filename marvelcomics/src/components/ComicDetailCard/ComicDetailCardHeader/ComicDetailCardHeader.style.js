@@ -1,7 +1,7 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet,Dimensions } from "react-native";
 
 export default StyleSheet.create({
-    character_image: {
+ character_image: {
         width: Dimensions.get("window").width,
         height: Dimensions.get("window").height / 3,
         resizeMode: "cover"
@@ -9,24 +9,12 @@ export default StyleSheet.create({
     character_info: {
         backgroundColor: "black"
     },
-    favori_container: {
-        flexDirection: "row",
-        alignItems: "center",
-        paddingVertical: 5,
-        paddingHorizontal: 20
-    },
-    favori_icon: {
-        color: "white"
-    },
-    icon: {
-        color: "white"
-    },
     name: {
         color: "white",
         paddingLeft: 20,
         fontWeight: "bold",
         fontSize: 20,
-
+        paddingTop: 10,
 
     },
     description: {

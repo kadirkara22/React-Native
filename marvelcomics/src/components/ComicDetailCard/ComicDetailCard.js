@@ -1,10 +1,10 @@
 import React from 'react'
-import { View, Text, Image } from 'react-native'
-import styles from "./CharacterDetailCard.style"
-const CharacterDetailCard = ({ item }) => {
-
+import { View, Text,Image} from 'react-native'
+import styles from "./ComicDetailCard.style"
+const ComicDetailCard = ({item}) => {
+    console.log(item)
     return (
-        <View style={styles.container}>
+           <View style={styles.container}>
          
                 <Image
                     style={styles.image}
@@ -22,4 +22,4 @@ const CharacterDetailCard = ({ item }) => {
     )
 }
 
-export default CharacterDetailCard
+export default ComicDetailCard

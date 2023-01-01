@@ -7,6 +7,7 @@ import styles from "./CharacterDetail.style"
 import CharacterDetailCard from '../../../components/CharacterDetailCard'
 import CharDetailCardHeader from '../../../components/CharacterDetailCard/CharDetailCardHeader/CharDetailCardHeader'
 const CharacterDetail = ({ navigation, route }) => {
+
   const { id } = route.params
 
   const { data, loading } = useFetch(`${Config.API_URL}/characters/${id}`)
@@ -14,7 +15,6 @@ const CharacterDetail = ({ navigation, route }) => {
   const { data: dataEvents } = useFetch(`${Config.API_URL}/characters/${id}/events`);
   const { data: dataSeries } = useFetch(`${Config.API_URL}/characters/${id}/series`);
   const { data: dataStories } = useFetch(`${Config.API_URL}/characters/${id}/stories`);
-
 
   const sections = [
     {
@@ -43,6 +43,9 @@ const CharacterDetail = ({ navigation, route }) => {
   const handleBack = () => {
     navigation.goBack()
   }
+  const handleAllShow = (data, name, title) => {
+    navigation.navigate("ShowAllItemPage", { data, name, title })
+  }
   return (
     <View style={styles.container}>
       <View style={styles.container_header}>
@@ -56,7 +59,14 @@ const CharacterDetail = ({ navigation, route }) => {
         renderSectionHeader={({ section }) => (
           <>
 
-            {section.title !== 'Character' ? <Text style={styles.sectionHeader}>{section.title}</Text> : null}
+            {
+              section.title !== 'Character' ?
+                <View style={styles.sectionHeader_container}>
+                  <Text style={styles.sectionHeader}>{section.title}</Text>
+                  <Text style={styles.seeAll_button} onPress={() => handleAllShow(section.data, data[0]?.name, section.title)}>See All</Text>
+                </View>
+                : null
+            }
             <FlatList
               data={section.data}
               horizontal

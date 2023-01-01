@@ -21,5 +21,10 @@ export default StyleSheet.create({
         position: "absolute",
         marginLeft: 20,
         color: "black"
+    },
+    icon_close: {
+        position: "absolute",
+        color: "black",
+        marginLeft: 350,
     }
 })

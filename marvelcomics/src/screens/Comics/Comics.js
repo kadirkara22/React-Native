@@ -5,10 +5,10 @@ import ComicsCard from '../../components/ComicsCard'
 import Loading from '../../components/Loading'
 import useFetch from '../../hooks/useFetch'
 import styles from "./Comics.style"
-const Comics = ({ url }) => {
+const Comics = ({ url,handleComicsSelect }) => {
    
     const { data, loading } = useFetch(url)
-    const renderData = ({ item }) => <ComicsCard comics={item} />
+    const renderData = ({ item }) => <ComicsCard comics={item}  onSelect={() => handleComicsSelect(item.id)} />
 
     if (loading) {
         return <Loading />;
