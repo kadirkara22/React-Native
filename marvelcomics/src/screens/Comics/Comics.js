@@ -1,19 +1,18 @@
-import React, { useState } from 'react'
-import { View, Text, FlatList } from 'react-native'
-import Config from 'react-native-config'
+import React from 'react'
+import { View, FlatList } from 'react-native'
 import ComicsCard from '../../components/ComicsCard'
 import Loading from '../../components/Loading'
 import useFetch from '../../hooks/useFetch'
 import styles from "./Comics.style"
-const Comics = ({ url,handleComicsSelect }) => {
-   
+const Comics = ({ url, handleComicsSelect }) => {
+
     const { data, loading } = useFetch(url)
-    const renderData = ({ item }) => <ComicsCard comics={item}  onSelect={() => handleComicsSelect(item.id)} />
+    const renderData = ({ item }) => <ComicsCard comics={item} onSelect={() => handleComicsSelect(item.id)} />
 
     if (loading) {
         return <Loading />;
     }
-    
+
     return (
         <View style={styles.container}>
             <FlatList

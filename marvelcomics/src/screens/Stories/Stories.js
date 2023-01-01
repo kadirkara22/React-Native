@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { View, Text, FlatList } from 'react-native'
-import Config from 'react-native-config'
+import React from 'react'
+import { View, FlatList } from 'react-native'
 import StoriesCard from '../../components/StoriesCard'
 import Loading from '../../components/Loading'
 import useFetch from '../../hooks/useFetch'
@@ -9,11 +8,11 @@ const Stories = ({ url }) => {
 
     const { data, loading } = useFetch(url)
     const renderData = ({ item }) => <StoriesCard stories={item} />
-console.log(data)
+
     if (loading) {
         return <Loading />;
     }
-    
+
     return (
         <View style={styles.container}>
             <FlatList

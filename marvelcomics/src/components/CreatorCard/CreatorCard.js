@@ -1,10 +1,9 @@
 import React from 'react'
 import { View, Text, Image } from 'react-native'
-import Loading from '../Loading'
 import styles from "./CreatorCard.style"
 
-const ComicsCard = ({creator }) => {
- 
+const ComicsCard = ({ creator }) => {
+
     return (
         <View style={styles.container}>
 

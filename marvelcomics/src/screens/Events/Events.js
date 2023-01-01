@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { View, Text, FlatList } from 'react-native'
-import Config from 'react-native-config'
+import React from 'react'
+import { View, FlatList } from 'react-native'
 import EventCard from '../../components/EventCard'
 import Loading from '../../components/Loading'
 import useFetch from '../../hooks/useFetch'
@@ -13,7 +12,7 @@ const Events = ({ url }) => {
     if (loading) {
         return <Loading />;
     }
-    
+
     return (
         <View style={styles.container}>
             <FlatList

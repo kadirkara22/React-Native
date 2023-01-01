@@ -1,9 +1,8 @@
 import React from 'react'
-import { View, Text, Image,TouchableOpacity } from 'react-native'
-import Loading from '../Loading'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 import styles from "./CharacterCard.style"
 
-const CharacterCard = ({ character,onSelect}) => {
+const CharacterCard = ({ character, onSelect }) => {
 
     return (
         <TouchableOpacity style={styles.container} onPress={onSelect}>

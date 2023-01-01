@@ -1,10 +1,9 @@
 import React from 'react'
 import { View, Text, Image } from 'react-native'
-import Loading from '../Loading'
 import styles from "./SeriesCard.style"
 
-const SeriesCard = ({series }) => {
- 
+const SeriesCard = ({ series }) => {
+
     return (
         <View style={styles.container}>
 

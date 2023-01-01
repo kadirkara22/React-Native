@@ -1,5 +1,6 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { Formik } from 'formik'
+import auth from "@react-native-firebase/auth"
 import { View, Text, Image } from 'react-native'
 import { showMessage } from 'react-native-flash-message'
 import LoginValidation from '../../../validations/LoginValidation'
@@ -13,8 +14,23 @@ const Login = ({ navigation }) => {
         navigation.navigate("SignPage")
     }
 
-    const handleFormSubmit = (formValues) => {
-        console.log(formValues)
+    const handleFormSubmit = async (formValues) => {
+        try {
+            setLoading(true)
+            await auth().signInWithEmailAndPassword(formValues.email, formValues.password)
+            showMessage({
+                message: "başarılı şekilde giriş yapıldı",
+                type: "success",
+            });
+            setLoading(false)
+        } catch (error) {
+
+            showMessage({
+                message: authErrorMessageParser(error.code),
+                type: "danger",
+            });
+            setLoading(false)
+        }
     }
     return (
         <View style={styles.container}>

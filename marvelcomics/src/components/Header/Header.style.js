@@ -6,10 +6,12 @@ export default StyleSheet.create({
         backgroundColor: "black"
     },
     title: {
+        flex: 1,
         color: "white",
         textAlign: "center",
         fontSize: 22,
-        paddingVertical: 5
+        paddingVertical: 5,
+
     },
     title_container: {
         flexDirection: "row",
@@ -20,5 +22,10 @@ export default StyleSheet.create({
         borderRadius: 10
 
     },
+    header_top: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginHorizontal: 5,
+    }
 
 })

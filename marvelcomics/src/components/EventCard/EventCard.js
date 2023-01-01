@@ -1,10 +1,9 @@
 import React from 'react'
 import { View, Text, Image } from 'react-native'
-import Loading from '../Loading'
 import styles from "./EventCard.style"
 
-const EventCard = ({event }) => {
- 
+const EventCard = ({ event }) => {
+
     return (
         <View style={styles.container}>
 
