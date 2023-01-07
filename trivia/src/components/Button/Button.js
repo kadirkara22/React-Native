@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import styles from "./Button.style"
-const Button = ({ labelText, handleOnPress, isPrimary = true, ...more }) => {
+const Button = ({ labelText, theme, handleOnPress, ...more }) => {
     return (
         <TouchableOpacity style={styles[theme].container}
             onPress={handleOnPress}

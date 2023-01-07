@@ -13,17 +13,21 @@ export default {
         ...base_style,
         container: {
             ...base_style.container,
+            backgroundColor: "#4361EE",
+            alignItems: "center",
+            alignSelf: "center",
+            margin: 20,
             paddingVertical: 10,
+            paddingHorizontal: 50,
+            borderRadius: 20
 
-            borderWidth: 1,
-            borderColor: COLORS.primary,
-            borderRadius: 5,
 
         },
         title: {
             ...base_style.title,
-            textAlign: "center",
-            fontSize: "18",
+            color: "white",
+            fontSize: 20,
+            fontWeight: "bold"
 
 
 

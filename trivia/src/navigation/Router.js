@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react'
 import auth from '@react-native-firebase/auth';
 import { NavigationContainer } from '@react-navigation/native'
 import AuthStack from './AuthStack'
-import Home from '../screens/Home';
+import MainStack from './MainStack';
+
 
 const Router = () => {
     const [currentUser, setCurentUser] = useState(null)
@@ -24,7 +25,7 @@ const Router = () => {
     }
     return (
         <NavigationContainer>
-            {currentUser ? <Home /> : <AuthStack />}
+            {currentUser ? <MainStack /> : <AuthStack />}
         </NavigationContainer>
     )
 }

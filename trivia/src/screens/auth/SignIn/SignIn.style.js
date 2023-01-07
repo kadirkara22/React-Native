@@ -6,7 +6,8 @@ export default StyleSheet.create({
         flex: 1,
         alignItems: "center",
         justifyContent: "flex-start",
-        padding: 20
+        padding: 20,
+
     },
     title: {
         fontSize: 24,
