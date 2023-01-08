@@ -37,6 +37,7 @@ export default StyleSheet.create({
         color: "white",
         textAlign: "center",
         fontSize: 24,
-        paddingRight: 5
+        paddingRight: 5,
+        
     },
 })
