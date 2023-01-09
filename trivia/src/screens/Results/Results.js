@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import styles from "./Results.style"
 const Results = ({navigation,route}) => {
     const {score,item}=route.params
-const scoreBanner = score > 10 ? 'https://cdni.iconscout.com/illustration/premium/thumb/men-celebrating-victory-4587301-3856211.png' : "https://cdni.iconscout.com/illustration/premium/thumb/businessman-dealing-with-business-failure-5623858-4678583.png"
+const scoreBanner = score > 30 ? 'https://cdni.iconscout.com/illustration/premium/thumb/men-celebrating-victory-4587301-3856211.png' : "https://cdni.iconscout.com/illustration/premium/thumb/businessman-dealing-with-business-failure-5623858-4678583.png"
 
 const handleHomeBack=()=>{
     navigation.navigate("HomeScreen")

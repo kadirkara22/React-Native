@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text,TouchableHighlight } from 'react-native'
 import styles from "./QuestionCard.style"
 import {COLORS} from "../../constants/theme";
-const QuestionCard = ({optionbgColor,questions, ques, options,handleSelectOption,item }) => {
+const QuestionCard = ({ optionbgColor,questions, ques, options,handleSelectOption,item }) => {
     
 console.log(questions)
     return (

@@ -23,6 +23,7 @@ const QuestionsScreen = ({ navigation, route }) => {
     const [score, setScore] = useState(0)
     const [seconds, setSeconds] = useState(12);
     const [optionbgColor, setOptionBgColor] = useState("")
+    const [optionTextColor, setOptionTextColor] = useState("")
 
 
    
@@ -74,8 +75,10 @@ const QuestionsScreen = ({ navigation, route }) => {
         if (_option === questions[ques].correct_answer) {
             setScore(score + 10)
              setOptionBgColor("green")
+             setOptionTextColor("white")
         }else {
             setOptionBgColor("red")
+             setOptionTextColor("white")
         }
            if (ques !== 9) {
             setQues(ques + 1)
@@ -88,13 +91,15 @@ const QuestionsScreen = ({ navigation, route }) => {
 
     }
         const handleShowResults = () => {
+            const randomNumber=Math.floor(Math.random() * 100+1)
        const userMail = auth().currentUser.email
         const contentObject = {
+            category:item.name,
             score,
-            username: userMail.split('@')[0],
+            username: userMail.split('@')[0]+randomNumber,
             date: new Date().toISOString(),
         }
-        database().ref('gamer/').push(contentObject)
+        database().ref('gamers/').push(contentObject)
 
 
         navigation.navigate("ResultsScreen", {
@@ -135,7 +140,7 @@ const QuestionsScreen = ({ navigation, route }) => {
                     <Icon name="watch-later" size={30} color="white" />
                 </View>
             </View>
-            <QuestionCard optionbgColor={optionbgColor}  item={item} questions={questions} ques={ques} options={options} handleSelectOption={handleSelectOption}/>
+            <QuestionCard optionTextColor={optionTextColor} optionbgColor={optionbgColor}  item={item} questions={questions} ques={ques} options={options} handleSelectOption={handleSelectOption}/>
 
 
 

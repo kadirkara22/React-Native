@@ -11,7 +11,7 @@ const Home = ({ navigation }) => {
  const [contentList, setContentList] = useState([])
 
    useEffect(() => {
-        database().ref('gamer/')
+        database().ref('gamers/')
             .on('value', snapshot => {
                 const contentData = snapshot.val();
                 const parsedData = ParseContentData(contentData || {})
