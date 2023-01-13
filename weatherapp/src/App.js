@@ -1,40 +1,78 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Image, Dimensions, ScrollView, Text, View } from 'react-native'
-import { format} from 'date-fns'
+import { StyleSheet, Image, Dimensions, ScrollView, Text, View, RefreshControl } from 'react-native'
+import { format } from 'date-fns'
 import { tr } from 'date-fns/locale'
 import Config from 'react-native-config';
 import useFetch from './hook/useFetch';
 import Geolocation from '@react-native-community/geolocation';
+import Loading from './components/Loading';
 
 const App = () => {
+  const [refresh, setRefresh] = useState(false);
   const [lat, setLat] = useState(0);
   const [lon, setLon] = useState(0);
   const formattedDate = format(new Date(), " hh:mm eeee MM/dd/yyyy", { locale: tr })
   const { data, error, loading } = useFetch(`${Config.API_URL}lat=${lat}&lon=${lon}&appid=${Config.API_KEY}&lang=tr`);
 
-  Geolocation.getCurrentPosition(
-    (position) => {
-      setLat(position.coords.latitude), setLon(position.coords.longitude);
-    },
-    (error) => {
-      console.log(error.message);
-    },
-    { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-  );
+  const pullRefresh = () => {
+    setRefresh(true);
+    // Generate random latitude between -90 and 90
+    const latitude = (Math.random() * 180) - 90;
+
+    // Generate random longitude between -180 and 180
+    const longitude = (Math.random() * 360) - 180;
+    setLat(latitude);
+    setLon(longitude);
+
+    setTimeout(() => {
+      setRefresh(false);
+    }, 1000);
+  };
+
+  let watchID = null;
+  useEffect(() => {
+    Geolocation.getCurrentPosition(
+      (position) => {
+        setLat(position.coords.latitude), setLon(position.coords.longitude);
+      },
+      (error) => {
+        console.log(error.message);
+      },
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+
+    );
+    watchID = Geolocation.watchPosition(position => {
+      const lastPosition = JSON.stringify(position);
+    });
+    return () => {
+      watchID != null && Geolocation.clearWatch(watchID);
+    };
+  }, [])
+
 
   console.log(data)
   if (loading) {
-    return <Text>Loading...</Text>
+    return <Loading />
   }
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container}
+      refreshControl={
+        <RefreshControl
+          refreshing={refresh}
+          onRefresh={() => pullRefresh()}
+        />
+      }
+
+    >
       {(data && data.weather) ?
         <>
           <Image
-            source={require("./assets/clouds.jpg")}
+            source={require("./assets/skyback.jpg")}
+
             style={styles.image}
             resizeMode="cover"
+
           />
 
           <View style={styles.header_container}>
@@ -48,7 +86,7 @@ const App = () => {
             <Text style={styles.value}>{Math.floor(data?.main?.temp - 272.15)}&#176;C</Text>
             <View style={styles.weather_container}>
               <Image style={styles.icon} source={{ uri: `https://openweathermap.org/img/wn/${data?.weather[0].icon}@2x.png` }} />
-              <Text style={styles.description}>{data?.weather[0]?.description}</Text>
+              <Text style={styles.description}>{data?.weather[0]?.main}</Text>
             </View>
           </View>
           <View style={styles.footer_container}>
@@ -56,10 +94,42 @@ const App = () => {
               <Text style={styles.infoText}>Wind</Text>
               <Text style={[styles.infoText, { fontSize: 24 }]}>{data.wind.speed}</Text>
               <Text style={styles.infoText}>km/h</Text>
-            </View>
-            <View style={styles.infoBar}>
-              <View style={{}}>
+              <View style={styles.infoBar}>
+                <View style={{
+                  width: data.wind.speed * 2,
+                  height: 7,
+                  backgroundColor: "#69F0AE"
+                }}>
 
+                </View>
+              </View>
+            </View>
+            <View style={{ alignItems: "center" }}>
+              <Text style={styles.infoText}>Pressure</Text>
+              <Text style={[styles.infoText, { fontSize: 24 }]}>{data.main.pressure}</Text>
+              <Text style={styles.infoText}>hPa</Text>
+              <View style={styles.infoBar}>
+                <View style={{
+                  width: data.main.pressure / 100,
+                  height: 7,
+                  backgroundColor: "#F44336"
+                }}>
+
+                </View>
+              </View>
+            </View>
+            <View style={{ alignItems: "center" }}>
+              <Text style={styles.infoText}>Humidity</Text>
+              <Text style={[styles.infoText, { fontSize: 24 }]}>{data.main.humidity}</Text>
+              <Text style={styles.infoText}>%</Text>
+              <View style={styles.infoBar}>
+                <View style={{
+                  width: data.main.humidity / 2,
+                  height: 7,
+                  backgroundColor: "#F44336"
+                }}>
+
+                </View>
               </View>
             </View>
 
@@ -121,9 +191,8 @@ const styles = StyleSheet.create({
     bottom: 0,
     alignItems: 'center',
     padding: 10,
-    borderWidth: 1,
-    borderBottomColor: "grey"
-
+    borderBottomWidth: 1,
+    borderBottomColor: "grey",
   },
   icon: {
     width: 80,
@@ -136,11 +205,24 @@ const styles = StyleSheet.create({
 
   },
   footer_container: {
-    backgroundColor: "red",
-    bottom: 0
+    width: Dimensions.get("window").width,
+    height: 200,
+    position: "absolute",
+    bottom: 0,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginVertical: -30,
+    paddingHorizontal: 30
   },
   infoText: {
-    color: "white"
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold"
+  },
+  infoBar: {
+    width: 60,
+    height: 7,
+    backgroundColor: "rgba(255,255,255,0.5)"
   }
 })
 
