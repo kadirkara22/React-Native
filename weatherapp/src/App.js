@@ -11,7 +11,7 @@ const App = () => {
   const [refresh, setRefresh] = useState(false);
   const [lat, setLat] = useState(0);
   const [lon, setLon] = useState(0);
-  const formattedDate = format(new Date(), " hh:mm eeee MM/dd/yyyy", { locale: tr })
+  const formattedDate = format(new Date(), "HH:MM eeee MM/dd/yyyy", { locale: tr })
   const { data, error, loading } = useFetch(`${Config.API_URL}lat=${lat}&lon=${lon}&appid=${Config.API_KEY}&lang=tr`);
 
   const pullRefresh = () => {
