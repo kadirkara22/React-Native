@@ -1,6 +1,6 @@
 const space = []
 const radii = {
-    normal: 6,
+    normal: 8,
     full: 999
 }
 const colors = {

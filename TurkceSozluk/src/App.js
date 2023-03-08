@@ -18,7 +18,12 @@ const HomeStack = createNativeStackNavigator();
 function SearchStack() {
   return (
     <HomeStack.Navigator>
-      <HomeStack.Screen name="SearchView" component={SearchView} />
+      <HomeStack.Screen name="SearchView" component={SearchView} 
+      options={() => {
+          return {
+            headerShown: false
+          }
+        }}/>
       <HomeStack.Screen name="Details" component={DetailView} />
     </HomeStack.Navigator>
   );
