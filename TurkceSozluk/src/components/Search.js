@@ -6,10 +6,14 @@ import Button from "./Button"
 import Input from "./Input"
 import {Search,Close} from "./icons"
 import theme from "../utils/theme";
-const SearchBox = () => {
+const SearchBox = ({onChangeFocus}) => {
     const [value, setValue] = React.useState('')
     const [isFocus,setFocus]= React.useState(false)
- 
+   React.useEffect(() => {
+    onChangeFocus(isFocus)
+  }, [isFocus, onChangeFocus])
+
+
     const onCancel=()=>{
         setFocus(false)
         Keyboard.dismiss()
@@ -23,8 +27,9 @@ const SearchBox = () => {
          <Input
            style={{
             shadowColor: '#000',
-            shadowOpacity: 0.1,
+            shadowOpacity: 0.34,
             shadowRadius: 24,
+             elevation: 6,
             shadowOffset: {
               width: 0,
               height: 4

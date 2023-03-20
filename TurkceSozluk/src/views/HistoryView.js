@@ -1,11 +1,19 @@
 import React from 'react'
-import { View, Text } from 'react-native'
-
+import { StatusBar } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
+import Box from '../components/Box'
+import Text from '../components/Text'
 const HistoryView = () => {
+    function FocusAwareStatusBar(props) {
+  const isFocused = useIsFocused();
+
+  return isFocused ? <StatusBar {...props} /> : null;
+}
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Box flex={1}>
+                <FocusAwareStatusBar barStyle="dark-content" backgroundColor="#F6F8FA"/>
             <Text>history</Text>
-        </View>
+        </Box>
     )
 }
 

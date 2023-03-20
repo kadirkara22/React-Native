@@ -7,7 +7,16 @@ import { Bookmark, RotateCcw, Search } from "./icons";
 
 function TabBar({ state, descriptors, navigation }) {
     return (
-        <View style={{ flexDirection: 'row' }}>
+        <Box  flexDirection= 'row' bg="white"
+          style={{
+            shadowColor: '#000',
+            shadowOpacity: 0.34,
+            shadowRadius: 24,
+             elevation: 6,
+         
+          }}
+      
+        >
             {state.routes.map((route, index) => {
                 const { options } = descriptors[route.key];
                 const label =
@@ -41,13 +50,13 @@ function TabBar({ state, descriptors, navigation }) {
                         </Box>)
                         :
                         <Button pt={6} flexDirection="column" flex={1} height={56} onPress={onPress} key={label}>
-                            {label === 'History' && <RotateCcw color={theme.colors.textLight} />}
-                            {label === 'Favorite' && <Bookmark color={theme.colors.textLight} />}
-                            <Box size={3} bg={isFocused ? "red" : "white"} mt={6} />
+                            {label === 'History' && <RotateCcw color={isFocused ? theme.colors.red : theme.colors.textLight} />}
+                            {label === 'Favorite' && <Bookmark color={isFocused ? theme.colors.red : theme.colors.textLight} />}
+                            <Box size={4} bg={isFocused ? "red" : "white"} mt={6} borderRadius="full" />
                         </Button>
                 );
             })}
-        </View>
+        </Box>
     );
 }
 
